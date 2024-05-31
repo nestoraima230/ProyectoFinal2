@@ -33,7 +33,7 @@ public class MainLogin extends JFrame {
             public void run() {
                 try {
                     MainLoginController mainLoginController = new MainLoginController();
-                    MainLogin frame = new MainLogin(mainLoginController); 
+                    MainLogin frame = new MainLogin(mainLoginController);;
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -95,4 +95,6 @@ public class MainLogin extends JFrame {
         btnLogin.setBounds(160, 150, 100, 25);
         contentPane.add(btnLogin);
     }
+    
+
 }

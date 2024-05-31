@@ -150,6 +150,16 @@ public class MainWindows {
         btnLogout.setBounds(569, 477, 105, 23);
         frame.getContentPane().add(btnLogout);
         
+        btnLogout.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(frame, "Sesión cerrada");
+                frame.setVisible(false);
+
+                MainPanel mainPanel = new MainPanel();
+                mainPanel.setVisible(true);
+            }
+        });
+        
         JPanel panel_3 = new JPanel();
         panel_3.setLayout(null);
         panel_3.setBounds(349, 11, 325, 75);
@@ -162,9 +172,6 @@ public class MainWindows {
         lblNewLabel_1.setBounds(0, 0, 325, 75);
         panel_3.add(lblNewLabel_1);
 
-       
-
-       
     }
 
     public void setVisible(boolean visible) {

@@ -79,7 +79,7 @@ public class MainPanel {
         btnLogin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                //authController.login();
+                MainLogin.main(new String[0]);
             }
         });
         panel.add(btnLogin);
@@ -92,7 +92,7 @@ public class MainPanel {
         btnRegister.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                //authController.registro();
+                MainRegister.main(new String[0]);
             }
         });
         panel.add(btnRegister);

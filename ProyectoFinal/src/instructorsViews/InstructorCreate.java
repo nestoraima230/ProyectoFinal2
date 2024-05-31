@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -148,6 +149,26 @@ public class InstructorCreate extends JPanel {
             String especialidad = textField_2.getText();
             String email = textField_4.getText();
 
+            if (nombre.isEmpty() || apellidos.isEmpty() || especialidad.isEmpty() || email.isEmpty()) {
+                JOptionPane.showMessageDialog(frame, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if (nombre.matches(".\\d.")) {
+                JOptionPane.showMessageDialog(frame, "El nombre no puede contener números.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if (apellidos.matches(".\\d.")) {
+                JOptionPane.showMessageDialog(frame, "El apellido no puede contener números.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if (especialidad.matches(".\\d.")) {
+                JOptionPane.showMessageDialog(frame, "La especialidad no puede contener números.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
             boolean success = controller.addInstructor(nombre, apellidos, especialidad, email);
             if (success) {
                 System.out.println("Instructor agegado exitosamente!");

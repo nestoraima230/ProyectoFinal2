@@ -82,6 +82,14 @@ public class MainRegister extends JFrame {
         btnToMainPanel.setForeground(new Color(144, 45, 65));
         panel.add(btnToMainPanel);
 
+        btnToMainPanel.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();               
+                MainPanel mainPanel = new MainPanel(); 
+                mainPanel.setVisible(true); 
+            }
+        });
+        
         JLabel lblTitle = new JLabel("Registrarse");
         lblTitle.setBounds(151, 33, 373, 80);
         lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
@@ -134,7 +142,6 @@ public class MainRegister extends JFrame {
 
         frame.getContentPane().add(panel);
 
-        // Register button action
         btnRegister.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String username = textField.getText();
@@ -153,4 +160,8 @@ public class MainRegister extends JFrame {
             }
         });
     }
+    
+    
+    
+    
 }

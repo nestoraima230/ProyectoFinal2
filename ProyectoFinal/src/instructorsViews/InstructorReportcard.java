@@ -119,4 +119,8 @@ public class InstructorReportcard {
 		lblNewLabel_1.setBounds(0, 0, 684, 511);
 		panel.add(lblNewLabel_1);
 	}
+	
+    public JFrame getFrame() {
+        return frame;
+    }
 }

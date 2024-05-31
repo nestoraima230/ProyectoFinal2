@@ -2,14 +2,20 @@ package instructorsControllers;
 
 import instructorsModels.EditInstructorModel;
 import instructorsViews.InstructorEdit;
+import instructorsViews.InstructorPanel;
+
 
 public class EditInstructorController {
 
     private EditInstructorModel model;
     private InstructorEdit view;
+    private InstructorPanel instructorPanel;
+
 
     public EditInstructorController() {
         model = new EditInstructorModel();
+        instructorPanel = new InstructorPanel();
+
     }
 
     public boolean updateInstructor(int id, String nombre, String apellidos, String especialidad, String email) {

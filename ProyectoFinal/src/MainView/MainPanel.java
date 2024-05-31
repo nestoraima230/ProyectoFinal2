@@ -10,13 +10,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
-import controllers.AuthController;
+//import controllers.AuthController;
 import javax.swing.ImageIcon;
 
 public class MainPanel {
 
     private JFrame frame;
-    private AuthController authController;
+    //private AuthController authController;
 
     /**
      * Launch the application.
@@ -38,7 +38,7 @@ public class MainPanel {
      * Create the application.
      */
     public MainPanel() {
-        authController = new AuthController();
+        //authController = new AuthController();
         initialize();
     }
 
@@ -79,7 +79,7 @@ public class MainPanel {
         btnLogin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                authController.login();
+                //authController.login();
             }
         });
         panel.add(btnLogin);
@@ -92,7 +92,7 @@ public class MainPanel {
         btnRegister.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                authController.registro();
+                //authController.registro();
             }
         });
         panel.add(btnRegister);
@@ -110,14 +110,12 @@ public class MainPanel {
         panel_1.add(lblNewLabel_1);
     }
 
-	public void setVisible(boolean b) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	public void mostrarPanelPrincipal() {
-		// TODO Auto-generated method stub
-		
-	}
+
+    public void setVisible(boolean visible) {
+        frame.setVisible(visible);
+    }
+
+
 }
 

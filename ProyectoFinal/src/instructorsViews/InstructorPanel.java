@@ -7,6 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
+import MainView.MainWindows;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -69,6 +72,7 @@ public class InstructorPanel {
         btnNewButton_3.setBounds(85, 281, 164, 32);
         btnNewButton_3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	frame.dispose();
             	InstructorEdit InstructorEdit = new InstructorEdit(null, 0);
             	InstructorEdit.getFrame().setVisible(true);     
             }
@@ -81,6 +85,9 @@ public class InstructorPanel {
         btnNewButton_3_1.setBounds(122, 379, 89, 23);
         btnNewButton_3_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                MainWindows MainWindows = new MainWindows();
+                MainWindows.setVisible(true);
             }
         });
         panel_1.add(btnNewButton_3_1);
@@ -92,6 +99,7 @@ public class InstructorPanel {
         btnNewButton_3_2.setBounds(85, 219, 164, 32);
         btnNewButton_3_2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	frame.dispose();
             	InstructorCreate InstructorCreate = new InstructorCreate(null);
             	InstructorCreate.getFrame().setVisible(true);            
             	}
@@ -105,6 +113,7 @@ public class InstructorPanel {
         btnNewButton_3_2_1.setBounds(85, 159, 164, 32);
         btnNewButton_3_2_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	frame.dispose();
             	InstructorsDetails InstructorsDetails = new InstructorsDetails();
             	InstructorsDetails.getFrame().setVisible(true);
             }
@@ -117,6 +126,7 @@ public class InstructorPanel {
         btnNewButton_3_2_1_1.setOpaque(true);
         btnNewButton_3_2_1_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	frame.dispose();
             	ConsultRecords consultRecords = new ConsultRecords();
             	consultRecords.getFrame().setVisible(true);
             }
@@ -130,5 +140,9 @@ public class InstructorPanel {
         lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
         lblNewLabel.setBounds(0, 0, 340, 511);
         panel.add(lblNewLabel);
+    }
+
+    public JFrame getFrame() {
+        return frame;
     }
 }

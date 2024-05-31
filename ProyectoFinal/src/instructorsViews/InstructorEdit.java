@@ -124,7 +124,9 @@ public class InstructorEdit extends JPanel {
         JButton btnNewButton = new JButton("Regresar");
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                
+				frame.dispose();
+				InstructorPanel instructorPanel = new InstructorPanel();
+				instructorPanel.getFrame().setVisible(true);          
             }
         });
         btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));

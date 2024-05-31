@@ -52,20 +52,24 @@ public class EditInstructorModel {
                  PreparedStatement pstmt3 = con.prepareStatement(deleteClaseImpartidaQuery);
                  PreparedStatement pstmt4 = con.prepareStatement(deleteInstructorQuery)) {
 
+                // Delete from INSCRIPCION
                 pstmt1.setInt(1, id);
                 pstmt1.executeUpdate();
 
+                // Delete from ASISTENCIA
                 pstmt2.setInt(1, id);
                 pstmt2.executeUpdate();
 
+                // Delete from CLASE_IMPARTIDA
                 pstmt3.setInt(1, id);
                 pstmt3.executeUpdate();
 
+                // Delete from INSTRUCTOR
                 pstmt4.setInt(1, id);
-                int rowsAffected = pstmt4.executeUpdate();
+                pstmt4.executeUpdate();
 
                 con.commit();
-                return rowsAffected > 0;
+                return true;
             } catch (SQLException e) {
                 con.rollback();
                 e.printStackTrace();
@@ -76,4 +80,5 @@ public class EditInstructorModel {
             return false;
         }
     }
+
 }

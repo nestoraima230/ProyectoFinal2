@@ -1,6 +1,9 @@
 package MainView;
 
 import javax.swing.*;
+
+import instructorsViews.InstructorPanel;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -64,6 +67,14 @@ public class MainWindows {
         btnInstructors.setOpaque(true);
         btnInstructors.setBounds(286, 224, 105, 23);
         panel_1.add(btnInstructors);
+
+        btnInstructors.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				InstructorPanel instructorPanel = new InstructorPanel();
+				instructorPanel.getFrame().setVisible(true);
+			}
+		});
 
         JButton btnClasses = new JButton("Clases");
         btnClasses.setForeground(new Color(0, 0, 0));

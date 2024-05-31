@@ -8,6 +8,9 @@ import javax.swing.table.DefaultTableModel;
 
 import instructorsControllers.ConsultRecordsController;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import java.util.List;
 import java.awt.Color;
@@ -61,6 +64,13 @@ public class ConsultRecords {
         JButton btnNewButton_3_1 = new JButton("Regresar");
         btnNewButton_3_1.setBounds(27, 441, 89, 23);
         panel_1.add(btnNewButton_3_1);
+        btnNewButton_3_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				InstructorPanel instructorPanel = new InstructorPanel();
+				instructorPanel.getFrame().setVisible(true);
+			}
+		});
 
         JLabel lblNewLabel = new JLabel("Instructores");
         lblNewLabel.setForeground(new Color(255, 255, 255));

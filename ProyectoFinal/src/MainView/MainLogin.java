@@ -13,119 +13,86 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.ImageIcon;
+
+import instructorsViews.InstructorReportcard;
+import mainControllers.MainLoginController;
 
 public class MainLogin extends JFrame {
 	
-	private JFrame frame;
-	private JTextField textField;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainLogin frame = new MainLogin();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+    private JTextField usernameField;
+    private JTextField passwordField;
+    private MainLoginController MainLoginController;
+    
+    public MainLogin(MainLoginController MainLoginController) {
+        this.MainLoginController = MainLoginController;
+        initialize();
+    }
+    
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    MainLoginController mainLoginController = new MainLoginController();
+                    MainLogin frame = new MainLogin(mainLoginController); 
+                    frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
-	/**
-	 * Create the frame.
-	 */
-	
-	public MainLogin() {
-		initialize();
-	}
-	 public void initialize() {
-		 
-		 	frame = new JFrame();
-			frame.setVisible(true);
-			frame.setBounds(100, 100, 700, 550);
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			frame.getContentPane().setLayout(null);
-	        
-	        JPanel panel = new JPanel();
-	        panel.setBackground(new Color(148, 121, 150));
-	        panel.setBounds(100, 100, 700, 550);
-	        panel.setBorder(new EmptyBorder(20, 20, 20, 20));
-	      
-	        panel.setLayout(null);
 
-	        JLabel lblTitle = new JLabel("Iniciar sesión");
-	        lblTitle.setForeground(new Color(255, 255, 255));
-	        lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
-	        lblTitle.setFont(new Font("Arial", Font.BOLD, 53));
-	        lblTitle.setBounds(177, 46, 408, 50);
-	        panel.add(lblTitle);
 
-	        JTextField usernameField = new JTextField();
-	        usernameField.setBounds(237, 208, 300, 40);
-	        panel.add(usernameField);
-	        usernameField.setColumns(10);
 
-	        JLabel lblUsername = new JLabel("Nombre");
-	        lblUsername.setFont(new Font("Tahoma", Font.BOLD, 20));
-	        lblUsername.setForeground(new Color(255, 255, 255));
-	        lblUsername.setBounds(177, 165, 300, 20);
-	        panel.add(lblUsername);
+    private void initialize() {
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(100, 100, 450, 300);
+        setTitle("Login");
 
-	        JTextField passwordField = new JTextField();
-	        passwordField.setBounds(237, 319, 300, 40);
-	        panel.add(passwordField);
-	        passwordField.setColumns(10);
+        JPanel contentPane = new JPanel();
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        setContentPane(contentPane);
+        contentPane.setLayout(null);
 
-	        JLabel lblPassword = new JLabel("Contraseña");
-	        lblPassword.setFont(new Font("Tahoma", Font.BOLD, 20));
-	        lblPassword.setForeground(new Color(255, 255, 255));
-	        lblPassword.setBounds(177, 269, 300, 20);
-	        panel.add(lblPassword);
+        JLabel lblUsername = new JLabel("Username:");
+        lblUsername.setBounds(50, 50, 100, 25);
+        contentPane.add(lblUsername);
 
-	        JButton btnLogin = new JButton("Iniciar sesión");
-	       
-	        	
-	        btnLogin.setFont(new Font("Arial", Font.BOLD, 18));
-	        btnLogin.setBackground(new Color(100, 149, 237));
-			btnLogin.setForeground(new Color(144, 45, 65));
-	        btnLogin.setBounds(317, 395, 160, 40);
-	        panel.add(btnLogin);
-	        
-	        JButton btnToMainPanel = new JButton("Salir");
-	        btnToMainPanel.setFont(new Font("Arial", Font.PLAIN, 12));
-	        btnToMainPanel.setBounds(564, 485, 95, 35);
-	        btnToMainPanel.setBackground(new Color(100, 149, 237));
-	        btnToMainPanel.setForeground(new Color(144, 45, 65));
-	       
-	        panel.add(btnToMainPanel);
-	    
-	       
+        usernameField = new JTextField();
+        usernameField.setBounds(160, 50, 200, 25);
+        contentPane.add(usernameField);
+        usernameField.setColumns(10);
 
-	        JButton btnToRegister = new JButton("¿No tienes cuenta? Registrate");
-	        btnToRegister.setFont(new Font("Arial", Font.PLAIN, 14));
-	        btnToRegister.setOpaque(false);
-	        btnToRegister.setBounds(237, 445, 300, 30);
-	       
-	        panel.add(btnToRegister);
-	        
-	        JPanel panel_2 = new JPanel();
-			panel_2.setBounds(35, 0, 95, 550);
-			panel_2.setBackground(new Color (144, 151, 192));
-			panel.add(panel_2);
-			
-			JLabel lblNewLabel = new JLabel("");
-			lblNewLabel.setIcon(new ImageIcon(MainLogin.class.getResource("/ImagenesGym/IconoChikito1.png")));
-			lblNewLabel.setBounds(177, 206, 61, 52);
-			panel.add(lblNewLabel);
-			
-			JLabel lblNewLabel_1 = new JLabel("");
-			lblNewLabel_1.setIcon(new ImageIcon(MainLogin.class.getResource("/ImagenesGym/InocoChikito2.png")));
-			lblNewLabel_1.setBounds(177, 319, 50, 40);
-			panel.add(lblNewLabel_1);
-	    }
+        JLabel lblPassword = new JLabel("Password:");
+        lblPassword.setBounds(50, 100, 100, 25);
+        contentPane.add(lblPassword);
+
+        passwordField = new JTextField();
+        passwordField.setBounds(160, 100, 200, 25);
+        contentPane.add(passwordField);
+        passwordField.setColumns(10);
+
+        JButton btnLogin = new JButton("Login");
+        btnLogin.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String username = usernameField.getText();
+                String password = passwordField.getText();
+                boolean loggedIn = MainLoginController.login(username, password);
+                if (loggedIn) {
+                    System.out.println("Login successful!");
+                    dispose();
+                    MainWindows MainWindows = new MainWindows();
+                    MainWindows.setVisible(true);
+
+                } else {
+                    System.out.println("Login failed. Invalid username or password.");
+                }
+                
+
+            }
+        });
+        btnLogin.setBounds(160, 150, 100, 25);
+        contentPane.add(btnLogin);
+    }
 }
-

@@ -10,6 +10,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.ImageIcon;
 
 public class InstructorCredential {
@@ -139,10 +142,24 @@ public class InstructorCredential {
 		btnNewButton.setBounds(60, 477, 95, 24);
 		panel.add(btnNewButton);
 		
+		btnNewButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	frame.dispose();
+            	InstructorsDetails InstructorsDetails = new InstructorsDetails();
+            	InstructorsDetails.getFrame().setVisible(true);
+            }
+        });
+		
 		JButton btnNewButton_1 = new JButton("Descargar");
 		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_1.setBounds(529, 477, 95, 24);
 		panel.add(btnNewButton_1);
 	
+	}
+	
+    public JFrame getFrame() {
+        return frame;
+    }
 
-}}
+}
+	

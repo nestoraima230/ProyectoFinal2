@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JList;
@@ -143,14 +145,38 @@ public class InstructorsDetails {
         btnNewButton = new JButton("Regresar");
         btnNewButton.setBounds(80, 468, 89, 23);
         panel.add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				InstructorPanel instructorPanel = new InstructorPanel();
+				instructorPanel.getFrame().setVisible(true);
+			}
+		});
 
         btnNewButton_1 = new JButton("Credencial");
         btnNewButton_1.setBounds(298, 468, 89, 23);
         panel.add(btnNewButton_1);
+        
+        btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				InstructorCredential InstructorCredential = new InstructorCredential();
+				InstructorCredential.getFrame().setVisible(true);
+			}
+		});
 
+        
         btnNewButton_2 = new JButton("Reporte");
         btnNewButton_2.setBounds(527, 468, 89, 23);
         panel.add(btnNewButton_2);
+        
+        btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				InstructorReportcard InstructorReportcard = new InstructorReportcard();
+				InstructorReportcard.getFrame().setVisible(true);
+			}
+		});
     }
 
     private String getInstructorSpecialty(int instructorId) {

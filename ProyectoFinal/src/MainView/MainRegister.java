@@ -37,6 +37,7 @@ public class MainRegister extends JFrame {
         JFrame frame = new JFrame();
         frame.setVisible(true);
         frame.setBounds(100, 100, 700, 550);
+        frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
 

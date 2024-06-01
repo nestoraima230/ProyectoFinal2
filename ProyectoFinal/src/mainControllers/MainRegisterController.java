@@ -12,4 +12,9 @@ public class MainRegisterController {
     public boolean registerUser(String username, String password, String email) {
         return registerModel.registerUser(username, password, email);
     }
+
+	public static boolean login(String username, String password) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

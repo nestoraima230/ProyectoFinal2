@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 
 public class MainRegister extends JFrame {
 
+    private JFrame frame;
     private JTextField textField;
     private JTextField emailField;
     private JTextField passwordField;
@@ -34,7 +35,7 @@ public class MainRegister extends JFrame {
     }
 
     public void initialize() {
-        JFrame frame = new JFrame();
+        frame = new JFrame();
         frame.setVisible(true);
         frame.setBounds(100, 100, 700, 550);
         frame.setLocationRelativeTo(null);
@@ -160,6 +161,10 @@ public class MainRegister extends JFrame {
                 }
             }
         });
+    }
+    
+    public JFrame getFrame() {
+        return frame;
     }
     
     

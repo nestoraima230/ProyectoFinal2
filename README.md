@@ -1,4 +1,6 @@
 
+CONEXION MYSQL:
 
 *USUARIO*
 ("Juan","12345678")
+

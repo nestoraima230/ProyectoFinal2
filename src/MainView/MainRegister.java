@@ -1,5 +1,4 @@
 package MainView;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
@@ -10,7 +9,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainRegister {
+public class MainRegister extends JFrame {
+
     private JFrame frame;
     private JTextField textField;
     private JTextField emailField;
@@ -22,8 +22,7 @@ public class MainRegister {
         SwingUtilities.invokeLater(() -> {
             try {
                 MainRegister window = new MainRegister();
-                window.initialize();
-                window.frame.setVisible(true);
+                window.setVisible(true);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -31,22 +30,23 @@ public class MainRegister {
     }
 
     public MainRegister() {
+        initialize();
         registerController = new MainRegisterController();
     }
-// registro
+
     public void initialize() {
         frame = new JFrame();
-        frame.setBounds(0, 0, 700, 550);
+        frame.setVisible(true);
+        frame.setBounds(100, 100, 700, 550);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
 
         JPanel panel = new JPanel();
         panel.setBackground(new Color(148, 121, 150));
-        panel.setBounds(0, 0, 700, 550);
+        panel.setBounds(100, 100, 700, 550);
         panel.setBorder(new EmptyBorder(20, 20, 20, 20));
         panel.setLayout(null);
-        frame.getContentPane().add(panel);
 
         emailField = new JTextField();
         emailField.setBounds(229, 269, 300, 40);
@@ -77,7 +77,20 @@ public class MainRegister {
         btnRegister.setForeground(new Color(144, 45, 65));
         panel.add(btnRegister);
 
-      
+        JButton btnToMainPanel = new JButton("Salir");
+        btnToMainPanel.setBounds(575, 491, 95, 35);
+        btnToMainPanel.setFont(new Font("Arial", Font.BOLD, 18));
+        btnToMainPanel.setBackground(new Color(100, 149, 237));
+        btnToMainPanel.setForeground(new Color(144, 45, 65));
+        panel.add(btnToMainPanel);
+
+        btnToMainPanel.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();               
+                MainPanel mainPanel = new MainPanel(); 
+                mainPanel.setVisible(true); 
+            }
+        });
         
         JLabel lblTitle = new JLabel("Registrarse");
         lblTitle.setBounds(151, 33, 373, 80);
@@ -129,7 +142,7 @@ public class MainRegister {
         lblNewLabel_2_1_1.setBounds(173, 373, 46, 39);
         panel.add(lblNewLabel_2_1_1);
 
-        frame.setVisible(true);
+        frame.getContentPane().add(panel);
 
         btnRegister.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -140,13 +153,21 @@ public class MainRegister {
                 boolean registered = registerController.registerUser(username, password, email);
                 if (registered) {
                     JOptionPane.showMessageDialog(frame, "Usuario registrado exitosamente.");
-                    frame.dispose();
-                    MainWindows mainWindows = new MainWindows();
-                    mainWindows.setVisible(true);
+                    dispose();
+                    MainWindows MainWindows = new MainWindows();
+                    MainWindows.setVisible(true);
                 } else {
                     JOptionPane.showMessageDialog(frame, "Error al registrar el usuario.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
     }
+    
+    public JFrame getFrame() {
+        return frame;
+    }
+    
+    
+    
+    
 }

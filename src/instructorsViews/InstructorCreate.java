@@ -126,17 +126,6 @@ public class InstructorCreate extends JPanel {
 		lblNewLabel_1_1_1_1.setBounds(24, 283, 250, 32);
 		panel_1.add(lblNewLabel_1_1_1_1);
 		
-		JButton btnNewButton = new JButton("Regresar");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				InstructorPanel instructorPanel = new InstructorPanel();
-				instructorPanel.getFrame().setVisible(true);
-			}
-		});
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnNewButton.setBounds(152, 460, 100, 32);
-		panel_1.add(btnNewButton);
 		
 		JButton btnCrear = new JButton("Guardar");
 		btnCrear.setFont(new Font("Tahoma", Font.BOLD, 14));

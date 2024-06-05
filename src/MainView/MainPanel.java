@@ -52,30 +52,28 @@ public class MainPanel {
     /**
      * Initialize the contents of the frame.
      */
+    
+    
+    //principal
+
     private void initialize() {
         frame = new JFrame();
-        frame.setBounds(100, 100, 550, 550);
+        frame.setBounds(100, 100, 700, 550);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null); 
         frame.getContentPane().setLayout(null);
 
         JPanel panel = new JPanel();
         panel.setBackground(new Color(148, 121, 150));
-        panel.setBounds(235, 0, 299, 511);
+        panel.setBounds(344, -12, 543, 550);
         frame.getContentPane().add(panel);
         panel.setLayout(null);
-
-        JLabel lblNewLabel = new JLabel("GYM PZ");
-        lblNewLabel.setFont(new Font("Lucida Console", Font.PLAIN, 24));
-        lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNewLabel.setBounds(51, 49, 196, 59);
-        panel.add(lblNewLabel);
 
         JButton btnLogin = new JButton("Iniciar Sesion");
         btnLogin.setForeground(new Color(255, 255, 255));
         btnLogin.setBackground(new Color(144, 45, 65 ));
         btnLogin.setOpaque(true);
-        btnLogin.setBounds(87, 175, 128, 48);
+        btnLogin.setBounds(102, 195, 128, 48);
         btnLogin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
@@ -88,7 +86,7 @@ public class MainPanel {
         btnRegister.setForeground(new Color(255, 255, 255));
         btnRegister.setBackground(new Color(17, 75, 95 ));
         btnRegister.setOpaque(true); 
-        btnRegister.setBounds(87, 299, 128, 48);
+        btnRegister.setBounds(102, 312, 128, 48);
         btnRegister.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
@@ -99,14 +97,14 @@ public class MainPanel {
 
         JPanel panel_1 = new JPanel();
         panel_1.setBackground(new Color(144, 151, 192));
-        panel_1.setBounds(0, 0, 235, 511);
+        panel_1.setBounds(0, 0, 352, 511);
         frame.getContentPane().add(panel_1);
         panel_1.setLayout(null);
         
         JLabel lblNewLabel_1 = new JLabel("");
         lblNewLabel_1.setIcon(new ImageIcon(MainPanel.class.getResource("/ImagenesGym/LogoFinal.png")));
         lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNewLabel_1.setBounds(0, 154, 235, 209);
+        lblNewLabel_1.setBounds(64, 148, 235, 209);
         panel_1.add(lblNewLabel_1);
     }
 

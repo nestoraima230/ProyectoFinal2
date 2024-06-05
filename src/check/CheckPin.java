@@ -82,3 +82,7 @@ public class CheckPin {
 	}
 
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 217ac2c997a5b90c6b446331ff8aaf97debb2494

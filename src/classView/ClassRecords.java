@@ -11,6 +11,8 @@ import javax.swing.table.TableCellRenderer;
 import authControllers.classControllers;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -98,17 +100,51 @@ public class ClassRecords {
 
         List<List<String>> clases = controller.getAllClases();
         for (List<String> clase : clases) {
-            model.addRow(new Object[]{clase.get(0), clase.get(1), clase.get(2), clase.get(3), clase.get(4), new Object()});
+            model.addRow(new Object[]{
+                clase.get(1),    
+                clase.get(3),    
+                clase.get(4),    
+                clase.get(5),    
+                clase.get(2),    
+                new Object()     
+            });
         }
+
 
         table.getColumnModel().getColumn(5).setCellRenderer(new TableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                JPanel panel = new JPanel(new GridLayout(1, 3, 10, 0));
+                JPanel panel = new JPanel(new GridLayout(1, 2, 10, 0));
                 panel.setBackground(table.getBackground());
 
                 JButton btnEdit = new JButton(new ImageIcon(getClass().getResource("/ImagenesGym/boton-editar.png")));
                 JButton btnView = new JButton(new ImageIcon(getClass().getResource("/ImagenesGym/ver-detalles.png")));
+
+                btnEdit.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        //int rowIndex = table.convertRowIndexToModel(row);
+                        
+                        //String claseSeleccionada = (String) table.getModel().getValueAt(rowIndex, 0);
+                        
+
+                        ClassEdit editWindow = new ClassEdit();
+                        editWindow.setVisible(true);
+                    }
+                });
+
+                btnView.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        int rowIndex = table.convertRowIndexToModel(row);
+                        
+                        String claseSeleccionada = (String) table.getModel().getValueAt(rowIndex, 0);
+                        
+
+                        //classDetails detailsWindow = new classDetails(claseSeleccionada);
+                      //  detailsWindow.setVisible(true);
+                    }
+                });
 
                 panel.add(btnEdit);
                 panel.add(btnView);
@@ -116,6 +152,7 @@ public class ClassRecords {
                 return panel;
             }
         });
+
 
         table.setRowHeight(50);
 

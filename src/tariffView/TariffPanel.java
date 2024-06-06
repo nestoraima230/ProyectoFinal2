@@ -15,15 +15,20 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
+import authControllers.tariffControllers;
 import clientView.ClientPanel;
 
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
 
 public class TariffPanel {
 
 	private JFrame frame;
 	private JTable table;
+    private tariffControllers controller;
 
 	/**
 	 * Launch the application.
@@ -45,6 +50,7 @@ public class TariffPanel {
 	 * Create the application.
 	 */
 	public TariffPanel() {
+        controller = new tariffControllers();
 		initialize();
 	}
 
@@ -69,7 +75,7 @@ public class TariffPanel {
 		
 		JLabel img= new JLabel ();
 		img.setBounds(623,10,63,85);
-		img.setIcon(new ImageIcon(ClientPanel.class.getResource("/ImagenesGym/agregar2.png")));
+		//img.setIcon(new ImageIcon(ClientPanel.class.getResource("/ImagenesGym/agregar2.png")));
 		panel.add(img);
 		
 		JButton btnNewButton = new JButton("OK");
@@ -81,51 +87,65 @@ public class TariffPanel {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 75, 666, 331);
 		panel.add(scrollPane);
+		
+        table = new JTable();
+        scrollPane.setViewportView(table);
+        
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("");
+        model.addColumn("");
+        model.addColumn("");
+        model.addColumn("");
+        model.addColumn("");
+        
+        model.addColumn(""); // Espacio para botones
 
-		table =  new JTable();
-		table.setBackground(new Color(255, 255, 255));
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"Juan Martinez","Plan black","    ","   ","          $390", new ImageIcon[] {
-					new ImageIcon(TariffPanel.class.getResource("/ImagenesGym/boton-editar.png")),
-					new ImageIcon(TariffPanel.class.getResource("/ImagenesGym/quitar-usuario.png")),
-					new ImageIcon(TariffPanel.class.getResource("/ImagenesGym/ver-detalles.png"))
-				}},
-				{   "Maria muñoz" ,"Plan power","    ","   ","          $290  ", new ImageIcon[] {
-					new ImageIcon(ClientPanel.class.getResource("/ImagenesGym/boton-editar.png")),
-					new ImageIcon(ClientPanel.class.getResource("/ImagenesGym/quitar-usuario.png")),
-					new ImageIcon(ClientPanel.class.getResource("/ImagenesGym/ver-detalles.png"))
-				}},
-				{ "Carlos hernandez","Plan fit","    ","   ","           $450", new ImageIcon[] {
-						new ImageIcon(ClientPanel.class.getResource("/ImagenesGym/boton-editar.png")),
-					new ImageIcon(ClientPanel.class.getResource("/ImagenesGym/quitar-usuario.png")),
-					new ImageIcon(ClientPanel.class.getResource("/ImagenesGym/ver-detalles.png"))
-				}}
-			},
-			new String[] {
-				"","","","","",""
-			}
-		));
+        table.setModel(model);
 
-		table.getColumnModel().getColumn(5).setCellRenderer(new TableCellRenderer() {
-			
-			@Override
-			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-				JPanel panel = new JPanel(new GridLayout(1, 3, 5, 0)); 
-				panel.setBackground(table.getBackground());
 
-				if (value instanceof ImageIcon[]) {
-					ImageIcon[] icons = (ImageIcon[]) value;
-					for (ImageIcon icon : icons) {
-						JLabel label = new JLabel(icon);
-						label.setPreferredSize(new Dimension(30, 30)); 
-						panel.add(label);
-					}
-				}
+        List<List<String>> tariffs = controller.getAllTariffs();
+        for (List<String> tariff : tariffs) {
+            model.addRow(new Object[]{
+                    tariff.get(1),
+                    tariff.get(5),
+                    tariff.get(2),
+                    tariff.get(3),
+                    tariff.get(4),
+                    //new Object()
+            });
+        }
 
-				return panel;
-			}
-		});
+        table.getColumnModel().getColumn(5).setCellRenderer(new TableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                JPanel panel = new JPanel(new GridLayout(1, 2, 10, 0));
+                panel.setBackground(table.getBackground());
+
+                JButton btnEdit = new JButton(new ImageIcon(getClass().getResource("/ImagenesGym/boton-editar.png")));
+                JButton btnView = new JButton(new ImageIcon(getClass().getResource("/ImagenesGym/ver-detalles.png")));
+
+                panel.add(btnEdit);
+                panel.add(btnView);
+
+                btnEdit.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+
+                    }
+                });
+
+                btnView.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+
+                    }
+                });
+
+                return panel;
+            }
+        });
+
+        table.setRowHeight(50);
 
 
 		table.getColumnModel().getColumn(0).setPreferredWidth(30); 

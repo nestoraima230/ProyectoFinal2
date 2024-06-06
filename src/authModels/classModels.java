@@ -68,7 +68,9 @@ public class classModels {
     }
 
     public List<List<String>> getAllClases() {
-        String query = "SELECT * FROM CLASE";
+        String query = "SELECT c.CLASE_ID, c.NOMBRE, c.HORARIO, c.DURACION, i.NOMBRE AS NOMBRE_INSTRUCTOR, c.CAPACIDAD_MAXIMA " +
+                       "FROM CLASE c " +
+                       "JOIN INSTRUCTOR i ON c.INSTRUCTOR_ID = i.INSTRUCTOR_ID";
         List<List<String>> allClases = new ArrayList<>();
 
         try (Connection con = getConnection();
@@ -80,7 +82,7 @@ public class classModels {
                 claseDetails.add(rs.getString("NOMBRE"));
                 claseDetails.add(rs.getTime("HORARIO").toString());
                 claseDetails.add(rs.getTime("DURACION").toString());
-                claseDetails.add(String.valueOf(rs.getInt("INSTRUCTOR_ID")));
+                claseDetails.add(rs.getString("NOMBRE_INSTRUCTOR"));
                 claseDetails.add(String.valueOf(rs.getInt("CAPACIDAD_MAXIMA")));
                 allClases.add(claseDetails);
             }
@@ -90,6 +92,7 @@ public class classModels {
 
         return allClases;
     }
+
 
     public boolean deleteClase(int ID) {
         String query = "DELETE FROM CLASE WHERE CLASE_ID = ?";

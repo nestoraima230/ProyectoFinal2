@@ -11,8 +11,8 @@ public class tariffControllers {
         tariffModels = new tariffModels();
     }
 
-    public boolean addTariff(int clienteId, Date fechaValidaInicial, Date fechaValidaFinal) {
-        return tariffModels.addTariff(clienteId, fechaValidaInicial, fechaValidaFinal);
+    public boolean addTariff(int clienteId, java.sql.Date fechaValidaInicial, java.sql.Date fechaValidaFinal, double costo) {
+        return tariffModels.addTariff(clienteId, fechaValidaInicial, fechaValidaFinal, costo);
     }
 
     public List<String> getTariff(int id) {
@@ -23,11 +23,12 @@ public class tariffControllers {
         return tariffModels.getAllTariffs();
     }
 
-    public boolean updateTariff(int id, int clienteId, Date fechaValidaInicial, Date fechaValidaFinal) {
-        return tariffModels.updateTariff(id, clienteId, fechaValidaInicial, fechaValidaFinal);
+    public boolean updateTariff(int id, int clienteId, java.sql.Date fechaValidaInicial, java.sql.Date fechaValidaFinal, double costo, String nombre) {
+        return tariffModels.updateTariff(id, clienteId, fechaValidaInicial, fechaValidaFinal, costo, nombre);
     }
 
     public boolean deleteTariff(int id) {
         return tariffModels.deleteTariff(id);
     }
 }
+

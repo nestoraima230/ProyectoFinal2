@@ -5,10 +5,15 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import classView.ClassPanel;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ClientReport {
 
@@ -66,12 +71,22 @@ public class ClientReport {
 		btnNewButton_1.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
 		btnNewButton_1.setBounds(469, 299, 117, 40);
 		panel.add(btnNewButton_1);
-	}
-
-
-	public void show() {
-		// TODO Auto-generated method stub
 		
+		btnNewButton_1.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+
+		        frame.dispose();		        
+                ClassPanel classPanelWindow = new ClassPanel();
+		        classPanelWindow.getFrame().setVisible(true);
+		    }
+		});
+
 	}
+
+
+    public JFrame getFrame() {
+        return frame;
+    }
 
 }

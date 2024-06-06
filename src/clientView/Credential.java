@@ -150,9 +150,8 @@ public class Credential {
         return frame;
     }
 
-	public void show() {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
 
 }

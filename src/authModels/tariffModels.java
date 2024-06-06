@@ -21,8 +21,8 @@ public class tariffModels {
         return DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
     }
 
-    public boolean addTariff(int clienteId, java.sql.Date fechaValidaInicial, java.sql.Date fechaValidaFinal) {
-        String query = "INSERT INTO tariff (cliente_id, fecha_valida_inicial, fecha_valida_final) VALUES (?, ?, ?)";
+    public boolean addTariff(int clienteId, java.sql.Date fechaValidaInicial, java.sql.Date fechaValidaFinal, double costo) {
+        String query = "INSERT INTO TARIFA (CLIENTE_ID, FECHA_VALIDA_INICIAL, FECHA_VALIDA_FINALIZADA, COSTO) VALUES (?, ?, ?, ?)";;
 
         try (Connection con = getConnection();
              PreparedStatement pstmt = con.prepareStatement(query)) {
@@ -30,6 +30,7 @@ public class tariffModels {
             pstmt.setInt(1, clienteId);
             pstmt.setDate(2, fechaValidaInicial);
             pstmt.setDate(3, fechaValidaFinal);
+            pstmt.setDouble(4, costo); 
 
             int rowsAffected = pstmt.executeUpdate();
             return rowsAffected > 0;
@@ -40,7 +41,7 @@ public class tariffModels {
     }
 
     public List<String> getTariff(int id) {
-        String query = "SELECT * FROM tariff WHERE id = ?";
+        String query = "SELECT * FROM TARIFA WHERE TARIFA_ID = ?";
         List<String> tariffDetails = new ArrayList<>();
 
         try (Connection con = getConnection();
@@ -48,10 +49,12 @@ public class tariffModels {
             pstmt.setInt(1, id);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
-                    tariffDetails.add(String.valueOf(rs.getInt("id")));
-                    tariffDetails.add(String.valueOf(rs.getInt("cliente_id")));
-                    tariffDetails.add(rs.getDate("fecha_valida_inicial").toString());
-                    tariffDetails.add(rs.getDate("fecha_valida_final").toString());
+                    tariffDetails.add(String.valueOf(rs.getInt("TARIFA_ID")));
+                    tariffDetails.add(String.valueOf(rs.getInt("CLIENTE_ID")));
+                    tariffDetails.add(rs.getDate("FECHA_VALIDA_INICIAL").toString());
+                    tariffDetails.add(rs.getDate("FECHA_VALIDA_FINALIZADA").toString());
+                    tariffDetails.add(String.valueOf(rs.getDouble("COSTO")));
+                    tariffDetails.add(rs.getString("NOMBRE")); 
                 }
             }
         } catch (SQLException e) {
@@ -61,7 +64,8 @@ public class tariffModels {
     }
 
     public List<List<String>> getAllTariffs() {
-        String query = "SELECT * FROM tariff";
+        String query = "SELECT t.TARIFA_ID, t.CLIENTE_ID, c.NOMBRE AS NOMBRE_CLIENTE, t.FECHA_VALIDA_INICIAL, t.FECHA_VALIDA_FINALIZADA, t.COSTO, t.NOMBRE " +
+                       "FROM TARIFA t JOIN CLIENTE c ON t.CLIENTE_ID = c.CLIENTE_ID";
         List<List<String>> allTariffs = new ArrayList<>();
 
         try (Connection con = getConnection();
@@ -69,10 +73,12 @@ public class tariffModels {
              ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {
                 List<String> tariffDetails = new ArrayList<>();
-                tariffDetails.add(String.valueOf(rs.getInt("id")));
-                tariffDetails.add(String.valueOf(rs.getInt("cliente_id")));
-                tariffDetails.add(rs.getDate("fecha_valida_inicial").toString());
-                tariffDetails.add(rs.getDate("fecha_valida_final").toString());
+                tariffDetails.add(String.valueOf(rs.getInt("TARIFA_ID")));
+                tariffDetails.add(rs.getString("NOMBRE_CLIENTE")); 
+                tariffDetails.add(rs.getDate("FECHA_VALIDA_INICIAL").toString());
+                tariffDetails.add(rs.getDate("FECHA_VALIDA_FINALIZADA").toString());
+                tariffDetails.add(String.valueOf(rs.getDouble("COSTO"))); 
+                tariffDetails.add(rs.getString("NOMBRE")); 
                 allTariffs.add(tariffDetails);
             }
         } catch (SQLException e) {
@@ -82,27 +88,9 @@ public class tariffModels {
         return allTariffs;
     }
 
-    public boolean updateTariff(int id, int clienteId, java.sql.Date fechaValidaInicial, java.sql.Date fechaValidaFinal) {
-        String query = "UPDATE tariff SET cliente_id = ?, fecha_valida_inicial = ?, fecha_valida_final = ? WHERE id = ?";
-
-        try (Connection con = getConnection();
-             PreparedStatement pstmt = con.prepareStatement(query)) {
-
-            pstmt.setInt(1, clienteId);
-            pstmt.setDate(2, fechaValidaInicial);
-            pstmt.setDate(3, fechaValidaFinal);
-            pstmt.setInt(4, id);
-
-            int rowsAffected = pstmt.executeUpdate();
-            return rowsAffected > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
+    
     public boolean deleteTariff(int id) {
-        String query = "DELETE FROM tariff WHERE id = ?";
+        String query = "DELETE FROM TARIFA WHERE TARIFA_ID = ?";
 
         try (Connection con = getConnection();
              PreparedStatement pstmt = con.prepareStatement(query)) {
@@ -116,4 +104,28 @@ public class tariffModels {
             return false;
         }
     }
+
+
+    public boolean updateTariff(int id, int clienteId, java.sql.Date fechaValidaInicial, java.sql.Date fechaValidaFinal, double costo, String nombre) {
+        String query = "UPDATE TARIFA SET CLIENTE_ID = ?, FECHA_VALIDA_INICIAL = ?, FECHA_VALIDA_FINALIZADA = ?, COSTO = ?, NOMBRE = ? WHERE TARIFA_ID = ?";
+
+        try (Connection con = getConnection();
+             PreparedStatement pstmt = con.prepareStatement(query)) {
+
+            pstmt.setInt(1, clienteId);
+            pstmt.setDate(2, fechaValidaInicial);
+            pstmt.setDate(3, fechaValidaFinal);
+            pstmt.setDouble(4, costo);
+            pstmt.setString(5, nombre);
+            pstmt.setInt(6, id);
+
+            int rowsAffected = pstmt.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
 }

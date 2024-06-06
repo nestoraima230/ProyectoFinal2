@@ -1,10 +1,13 @@
 package tariffView;
 
+import authModels.tariffModels;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,6 +22,7 @@ public class TariffDetail {
 
     private JFrame frame;
     private JTable table;
+    private tariffModels model;
 
     /**
      * Launch the application.
@@ -41,6 +45,8 @@ public class TariffDetail {
      */
     public TariffDetail() {
         initialize();
+        model = new tariffModels();
+        populateTable();
     }
 
     /**
@@ -74,26 +80,13 @@ public class TariffDetail {
 
         table = new JTable();
         table.setModel(new DefaultTableModel(
-            new Object[][] {
-                {"Plan power", "x", "", "", "","x" },
-                {"Plan black", "", "x", "x", "x", "x"},
-                {"Plan fit", "x", "", "x", "","x"}
-            },
+            new Object[][] {},
             new String[] {
-                "", "Sillones de masaje", "entrenamiento personalizado","Acceso a todas areas","Clases grupales","Entrena con 3 amigos"
+                "Nombre de Tarifa", "Sillones de masaje", "entrenamiento personalizado","Acceso a todas areas","Clases grupales","Entrena con 3 amigos"
             }
         ));
 
-        table.getColumnModel().getColumn(5).setCellRenderer(new TableCellRenderer() {
-            @Override
-            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                JPanel panel = new JPanel(new GridLayout(1, 3, 10, 0));
-                panel.setBackground(table.getBackground());
-                return panel;
-            }
-        });
-
-        table.getColumnModel().getColumn(0).setPreferredWidth(10);
+        table.getColumnModel().getColumn(0).setPreferredWidth(150);
         table.getColumnModel().getColumn(1).setPreferredWidth(10);
         table.getColumnModel().getColumn(2).setPreferredWidth(10);
         table.getColumnModel().getColumn(3).setPreferredWidth(10);
@@ -103,7 +96,16 @@ public class TariffDetail {
         scrollPane.setViewportView(table);
     }
 
-	public void show() {
-		frame.setVisible(true);
-	}
+    public void populateTable() {
+        List<List<String>> allTariffs = model.getAllTariffs();
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        for (List<String> tariffDetails : allTariffs) {
+            model.addRow(new Object[]{tariffDetails.get(5), "x", "", "x", "", "x"});
+            
+        }
+    }
+
+    public void show() {
+        frame.setVisible(true);
+    }
 }

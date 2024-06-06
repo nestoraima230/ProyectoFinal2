@@ -6,6 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
@@ -127,12 +130,30 @@ public class ClientDetail {
 		btnCredencial.setFont(new Font("Tw Cen MT", Font.BOLD, 18));
 		btnCredencial.setBounds(61, 451, 128, 21);
 		panel.add(btnCredencial);
+		
+		btnCredencial.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		    	frame.dispose();
+		        Credential credentialWindow = new Credential();
+		        credentialWindow.getFrame().setVisible(true); 
+		    }
+		});
 
+		
 		JButton btnReporte = new JButton("Reporte");
 		btnReporte.setBackground(new Color(255, 255, 255));
 		btnReporte.setFont(new Font("Tw Cen MT", Font.BOLD, 19));
 		btnReporte.setBounds(279, 451, 150, 21);
 		panel.add(btnReporte);
+
+		btnReporte.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		    	ClientReport ClientReportWindow = new ClientReport();
+		    	ClientReportWindow.getFrame().setVisible(true); 
+		    }
+		});
 
 		JButton btnOk = new JButton("OK");
 		btnOk.setBackground(new Color(255, 255, 255));

@@ -66,11 +66,13 @@ public class ClassPanel {
         table = new JTable();
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Nombre");
-        model.addColumn("");
+        model.addColumn("Acciones");
 
         List<List<String>> clases = controller.getAllClases();
         for (List<String> clase : clases) {
-            model.addRow(new Object[]{clase.get(0), new ImageIcon[]{new ImageIcon(getClass().getResource("/ImagenesGym/boton-editar.png")), new ImageIcon(getClass().getResource("/ImagenesGym/ver-detalles.png"))}});
+            model.addRow(new Object[]{clase.get(1), new ImageIcon[]{
+                    new ImageIcon(getClass().getResource("/ImagenesGym/boton-editar.png")), 
+                    new ImageIcon(getClass().getResource("/ImagenesGym/ver-detalles.png"))}});
         }
 
         table.setModel(model);
@@ -92,7 +94,7 @@ public class ClassPanel {
         });
 
         table.setRowHeight(50);
-        table.getColumnModel().getColumn(0).setPreferredWidth(30);
+        table.getColumnModel().getColumn(0).setPreferredWidth(300);
 
         scrollPane.setViewportView(table);
 

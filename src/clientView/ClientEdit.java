@@ -161,6 +161,11 @@ public class ClientEdit {
         lblNewLabel_6.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
         lblNewLabel_6.setBounds(135, 361, 85, 13);
         panel.add(lblNewLabel_6);
+        
+        JLabel lblNewLabel_3_1 = new JLabel("ID");
+        lblNewLabel_3_1.setFont(new Font("Tw Cen MT", Font.BOLD, 19));
+        lblNewLabel_3_1.setBounds(436, 274, 179, 13);
+        panel.add(lblNewLabel_3_1);
 
         btnNewButton_1.addActionListener(e -> {
             String nombre = textField.getText();
@@ -193,5 +198,4 @@ public class ClientEdit {
             return -1; 
         }
     }
-
 }

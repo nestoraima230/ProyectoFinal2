@@ -214,4 +214,9 @@ public class ClassEdit {
         textField_4.setText("");
     }
 
+	public void setVisible(boolean b) {
+        frame.setVisible(true);
+		
+	}
+
 }

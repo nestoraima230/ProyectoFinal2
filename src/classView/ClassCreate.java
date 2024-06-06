@@ -160,9 +160,13 @@ public class ClassCreate {
         
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                ClassPanel classPanel = new ClassPanel();
+                
+                classPanel.getFrame().setVisible(true);
+                
                 frame.dispose();
-                // Agregar la acción para regresar a la vista anterior
             }
         });
+
     }
 }

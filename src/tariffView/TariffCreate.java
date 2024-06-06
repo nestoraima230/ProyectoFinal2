@@ -3,12 +3,18 @@ package tariffView;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Date;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import authControllers.tariffControllers;
 
 public class TariffCreate {
 
@@ -17,6 +23,7 @@ public class TariffCreate {
     private JTextField textField_2;
     private JTextField textField_3;
     private JTextField textField_1;
+    private tariffControllers controller;
 
     /**
      * Launch the application.
@@ -38,6 +45,7 @@ public class TariffCreate {
      * Create the application.
      */
     public TariffCreate() {
+        controller = new tariffControllers(); 
         initialize();
     }
 
@@ -107,6 +115,25 @@ public class TariffCreate {
         panel_1.add(btnNewButton);
         btnNewButton.setBackground(new Color(0, 0, 0));
         btnNewButton.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
+        
+        btnNewButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int clienteID = Integer.parseInt(textField.getText());
+                double cuotaMensual = Double.parseDouble(textField_2.getText());
+                Date fechaInicio = Date.valueOf(textField_3.getText().trim());
+                Date fechaFin = Date.valueOf(textField_1.getText().trim()); 
+                
+                boolean tarifaGuardada = controller.addTariff(clienteID, fechaInicio,fechaFin, cuotaMensual);
+
+
+                if (tarifaGuardada) {
+                    JOptionPane.showMessageDialog(frame, "Tarifa guardada correctamente.");
+                } else {
+                    JOptionPane.showMessageDialog(frame, "Error al guardar la tarifa. Por favor, inténtelo de nuevo.");
+                }
+
+            }
+        });
 
         JLabel lblNewLabel_4 = new JLabel("Editar tarifa de gimnasio");
         lblNewLabel_4.setBounds(103, 10, 268, 28);

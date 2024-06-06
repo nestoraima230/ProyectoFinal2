@@ -138,7 +138,6 @@ public class NewClient {
             String fechaNacimiento = textField_5.getText() + "-" + textField_3.getText() + "-" + textField_4.getText();
             String telefono = textField_2.getText();
 
-<<<<<<< HEAD
             boolean clienteAgregado = controller.addClient(List.of(nombre, apellidos, fechaNacimiento, telefono));
             if (clienteAgregado) {
                 System.out.println("Cliente agregado exitosamente.");
@@ -153,11 +152,9 @@ public class NewClient {
         lblNewLabel_6.setBounds(135, 361, 85, 13);
         panel.add(lblNewLabel_6);
     }
-=======
 	public void show() {
 		// TODO Auto-generated method stub
 		
 	}
 
->>>>>>> 0b42efe94cc4f697257abe3050ef315e3be7c784
 }

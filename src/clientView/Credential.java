@@ -59,18 +59,15 @@ public class Credential {
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-<<<<<<< HEAD
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setIcon(new ImageIcon(Credential.class.getResource("/ImagenesGym/Credential.png")));
 		lblNewLabel.setBounds(126, 28, 425, 376);
 		panel.add(lblNewLabel);
-=======
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(144, 45, 65));
 		panel_1.setBounds(60, 31, 252, 420);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
->>>>>>> 0b42efe94cc4f697257abe3050ef315e3be7c784
 		
 		JPanel panel_2_1 = new JPanel();
 		panel_2_1.setBackground(Color.WHITE);
@@ -117,10 +114,10 @@ public class Credential {
 		panel_1_1.add(panel_2);
 		panel_2.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(InstructorCredential.class.getResource("/ImagenesGym/LogoChikito2.png")));
-		lblNewLabel.setBounds(78, 0, 94, 74);
-		panel_2.add(lblNewLabel);
+		JLabel lblNewLabel1 = new JLabel("");
+		lblNewLabel1.setIcon(new ImageIcon(InstructorCredential.class.getResource("/ImagenesGym/LogoChikito2.png")));
+		lblNewLabel1.setBounds(78, 0, 94, 74);
+		panel_2.add(lblNewLabel1);
 		
 		JPanel panel_2_1_1 = new JPanel();
 		panel_2_1_1.setLayout(null);

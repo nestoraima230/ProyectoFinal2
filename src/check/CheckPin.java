@@ -80,7 +80,4 @@ public class CheckPin {
         });
     }
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 0b42efe94cc4f697257abe3050ef315e3be7c784

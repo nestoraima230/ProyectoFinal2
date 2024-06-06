@@ -2,7 +2,6 @@ package clientView;
 
 import java.awt.Color;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -11,25 +10,18 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
 import javax.swing.JButton;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.ImageIcon;
 
 public class ClientDetail {
 
 	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
+	private JTextField textFieldName;
+	private JTextField textFieldPhone;
+	private JTextField textFieldBirthDay;
+	private JTextField textFieldBirthMonth;
+	private JTextField textFieldBirthYear;
 	private JTable table;
-	private JButton btnNewButton;
-	private JButton btnNewButton_1;
-	private JButton btnNewButton_2;
-	private JLabel lblNewLabel_4;
-	private JLabel lblNewLabel_5;
-	private JLabel lblNewLabel_6;
 
 	/**
 	 * Launch the application.
@@ -38,7 +30,7 @@ public class ClientDetail {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ClientEdit window = new ClientEdit();
+					ClientDetail window = new ClientDetail();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,7 +41,6 @@ public class ClientDetail {
 
 	/**
 	 * Create the application.
-	 * @wbp.parser.entryPoint
 	 */
 	public ClientDetail() {
 		initialize();
@@ -62,6 +53,7 @@ public class ClientDetail {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 700, 550);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 686, 513);
@@ -69,115 +61,111 @@ public class ClientDetail {
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("Nombre");
-		lblNewLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 18));
-		lblNewLabel.setBounds(61, 48, 105, 21);
-		panel.add(lblNewLabel);
+		JLabel lblName = new JLabel("Nombre");
+		lblName.setFont(new Font("Tw Cen MT", Font.BOLD, 18));
+		lblName.setBounds(61, 48, 105, 21);
+		panel.add(lblName);
 
-		JLabel lblNewLabel_1 = new JLabel("Telefono");
-		lblNewLabel_1.setFont(new Font("Tw Cen MT", Font.BOLD, 19));
-		lblNewLabel_1.setBounds(61, 125, 105, 21);
-		panel.add(lblNewLabel_1);
+		JLabel lblPhone = new JLabel("Telefono");
+		lblPhone.setFont(new Font("Tw Cen MT", Font.BOLD, 19));
+		lblPhone.setBounds(61, 125, 105, 21);
+		panel.add(lblPhone);
 
-		JLabel lblNewLabel_2 = new JLabel("Fecha de nacimiento");
-		lblNewLabel_2.setFont(new Font("Tw Cen MT", Font.BOLD, 19));
-		lblNewLabel_2.setBounds(61, 186, 196, 21);
-		panel.add(lblNewLabel_2);
+		JLabel lblBirthDate = new JLabel("Fecha de nacimiento");
+		lblBirthDate.setFont(new Font("Tw Cen MT", Font.BOLD, 19));
+		lblBirthDate.setBounds(61, 186, 196, 21);
+		panel.add(lblBirthDate);
 
-		textField = new JTextField();
-		textField.setBounds(61, 71, 326, 29);
-		panel.add(textField);
-		textField.setColumns(10);
+		textFieldName = new JTextField();
+		textFieldName.setBounds(61, 71, 326, 29);
+		panel.add(textFieldName);
+		textFieldName.setColumns(10);
 
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(61, 147, 326, 29);
-		panel.add(textField_1);
+		textFieldPhone = new JTextField();
+		textFieldPhone.setColumns(10);
+		textFieldPhone.setBounds(61, 147, 326, 29);
+		panel.add(textFieldPhone);
 
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(61, 210, 65, 29);
-		panel.add(textField_2);
+		textFieldBirthDay = new JTextField();
+		textFieldBirthDay.setColumns(10);
+		textFieldBirthDay.setBounds(61, 210, 65, 29);
+		panel.add(textFieldBirthDay);
 
-		JLabel lblNewLabel_3 = new JLabel("Imagen");
-		lblNewLabel_3.setIcon(new ImageIcon(ClientDetail.class.getResource("/ImagenesGym/mujerFoto.png")));
-		lblNewLabel_3.setBackground(new Color(255, 255, 255));
-		lblNewLabel_3.setBounds(500, 71, 141, 168);
-		lblNewLabel_3.setOpaque(true);
-		panel.add(lblNewLabel_3);
+		JLabel lblImage = new JLabel("Imagen");
+		lblImage.setIcon(new ImageIcon(ClientDetail.class.getResource("/ImagenesGym/mujerFoto.png")));
+		lblImage.setBackground(new Color(255, 255, 255));
+		lblImage.setBounds(500, 71, 141, 168);
+		lblImage.setOpaque(true);
+		panel.add(lblImage);
 
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(322, 210, 65, 29);
-		panel.add(textField_3);
+		textFieldBirthMonth = new JTextField();
+		textFieldBirthMonth.setColumns(10);
+		textFieldBirthMonth.setBounds(204, 210, 65, 29);
+		panel.add(textFieldBirthMonth);
 
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(204, 210, 65, 29);
-		panel.add(textField_4);
+		textFieldBirthYear = new JTextField();
+		textFieldBirthYear.setColumns(10);
+		textFieldBirthYear.setBounds(322, 210, 65, 29);
+		panel.add(textFieldBirthYear);
 
-		Object[][] data = { { "Alejandro Perez", "$290", "Sí" }, { "Hannia Ruiz", "$450", "No" },
-				{ "Ruben Alejandro", "$200", "No" } };
+		Object[][] data = {
+			{ "Alejandro Perez", "$290", "Sí" },
+			{ "Hannia Ruiz", "$450", "No" },
+			{ "Ruben Alejandro", "$200", "No" }
+		};
 
 		String[] columnNames = { "Entrenador", "Pagos", "Asistencia" };
 		DefaultTableModel model = new DefaultTableModel(data, columnNames);
 		table = new JTable(model);
-		table.setBounds(61, 271, 576, 150);
-		panel.add(table);
 
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(61, 271, 576, 150);
 		panel.add(scrollPane);
 
-		btnNewButton = new JButton("Credencial");
-		btnNewButton.setBackground(new Color(255, 255, 255));
-		btnNewButton.setFont(new Font("Tw Cen MT", Font.BOLD, 18));
-		btnNewButton.setBounds(61, 451, 128, 21);
-		panel.add(btnNewButton);
+		JButton btnCredencial = new JButton("Credencial");
+		btnCredencial.setBackground(new Color(255, 255, 255));
+		btnCredencial.setFont(new Font("Tw Cen MT", Font.BOLD, 18));
+		btnCredencial.setBounds(61, 451, 128, 21);
+		panel.add(btnCredencial);
 
-		btnNewButton_1 = new JButton("Reporte");
-		btnNewButton_1.setBackground(new Color(255, 255, 255));
-		btnNewButton_1.setFont(new Font("Tw Cen MT", Font.BOLD, 19));
-		btnNewButton_1.setBounds(279, 451, 150, 21);
-		panel.add(btnNewButton_1);
+		JButton btnReporte = new JButton("Reporte");
+		btnReporte.setBackground(new Color(255, 255, 255));
+		btnReporte.setFont(new Font("Tw Cen MT", Font.BOLD, 19));
+		btnReporte.setBounds(279, 451, 150, 21);
+		panel.add(btnReporte);
 
-		btnNewButton_2 = new JButton("OK");
-		btnNewButton_2.setBackground(new Color(255, 255, 255));
-		btnNewButton_2.setFont(new Font("Tw Cen MT", Font.BOLD, 19));
-		btnNewButton_2.setBounds(521, 451, 113, 21);
-		panel.add(btnNewButton_2);
+		JButton btnOk = new JButton("OK");
+		btnOk.setBackground(new Color(255, 255, 255));
+		btnOk.setFont(new Font("Tw Cen MT", Font.BOLD, 19));
+		btnOk.setBounds(521, 451, 113, 21);
+		panel.add(btnOk);
 
-		lblNewLabel_4 = new JLabel("Entrenador");
-		lblNewLabel_4.setForeground(new Color(255, 255, 255));
-		lblNewLabel_4.setBackground(new Color(0, 0, 0));
-		lblNewLabel_4.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
-		lblNewLabel_4.setOpaque(true);
-		lblNewLabel_4.setBounds(61, 258, 190, 13);
-		panel.add(lblNewLabel_4);
+		JLabel lblTrainer = new JLabel("Entrenador");
+		lblTrainer.setForeground(new Color(255, 255, 255));
+		lblTrainer.setBackground(new Color(0, 0, 0));
+		lblTrainer.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
+		lblTrainer.setOpaque(true);
+		lblTrainer.setBounds(61, 258, 190, 13);
+		panel.add(lblTrainer);
 
-		lblNewLabel_5 = new JLabel("Pagos");
-		lblNewLabel_5.setForeground(new Color(255, 255, 255));
-		lblNewLabel_5.setBackground(new Color(0, 0, 0));
-		lblNewLabel_5.setOpaque(true);
-		lblNewLabel_5.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
-		lblNewLabel_5.setBounds(250, 259, 190, 13);
-		panel.add(lblNewLabel_5);
+		JLabel lblPayments = new JLabel("Pagos");
+		lblPayments.setForeground(new Color(255, 255, 255));
+		lblPayments.setBackground(new Color(0, 0, 0));
+		lblPayments.setOpaque(true);
+		lblPayments.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
+		lblPayments.setBounds(250, 259, 190, 13);
+		panel.add(lblPayments);
 
-		lblNewLabel_6 = new JLabel("Asistencia");
-		lblNewLabel_6.setBackground(new Color(0, 0, 0));
-		lblNewLabel_6.setForeground(new Color(255, 255, 255));
-		lblNewLabel_6.setOpaque(true);
-		lblNewLabel_6.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
-		lblNewLabel_6.setBounds(440, 258, 194, 13);
-		panel.add(lblNewLabel_6);
+		JLabel lblAttendance = new JLabel("Asistencia");
+		lblAttendance.setBackground(new Color(0, 0, 0));
+		lblAttendance.setForeground(new Color(255, 255, 255));
+		lblAttendance.setOpaque(true);
+		lblAttendance.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
+		lblAttendance.setBounds(440, 258, 194, 13);
+		panel.add(lblAttendance);
 	}
-<<<<<<< HEAD:src/clientView/ClientDetail.java
-}
-=======
-
+	
 	public void show() {
-		// TODO Auto-generated method stub
-		
+		frame.setVisible(true);
 	}
 }
->>>>>>> 0b42efe94cc4f697257abe3050ef315e3be7c784:src/clientView/EditClient.java

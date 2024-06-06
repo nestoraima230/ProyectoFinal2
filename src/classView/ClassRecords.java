@@ -34,7 +34,7 @@ public class ClassRecords {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                	ClassRecords window = new ClassRecords();
+                    ClassRecords window = new ClassRecords();
                     window.frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -49,6 +49,12 @@ public class ClassRecords {
 
         
     }
+    
+    public JButton getBtnMostrarDetalle() {
+        return btnMostrarDetalle;
+    }
+    
+    private JButton btnMostrarDetalle;
 
     private void initialize() {
     	  frame = new JFrame();
@@ -82,9 +88,29 @@ public class ClassRecords {
           img.setIcon(new ImageIcon(ClientPanel.class.getResource("/ImagenesGym/agregarUsuario.png")));
           panel_1.add(img);
 
+<<<<<<< HEAD
           JScrollPane scrollPane = new JScrollPane();
           scrollPane.setBounds(28, 97, 630, 350);
           panel_1.add(scrollPane);
+=======
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Nombre");
+        model.addColumn("Apellidos");
+        model.addColumn("Especialidad");
+        model.addColumn("Email");
+        table.setModel(model);
+        
+        btnMostrarDetalle = new JButton("Mostrar Detalle");
+        btnMostrarDetalle.setFont(new Font("Tahoma", Font.BOLD, 11));
+        btnMostrarDetalle.setBounds(28, 457, 130, 24);
+        panel_1.add(btnMostrarDetalle);
+        
+        JButton btnNewButton = new JButton("Salir");
+        btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+        btnNewButton.setBounds(168, 457, 100, 24);
+        panel_1.add(btnNewButton);
+    }
+>>>>>>> 0b42efe94cc4f697257abe3050ef315e3be7c784
 
           table = new JTable();
           scrollPane.setViewportView(table);

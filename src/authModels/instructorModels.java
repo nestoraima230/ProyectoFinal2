@@ -181,7 +181,7 @@ public class instructorModels {
         return instructorSpecialties;
     }
     
-    public boolean generarPDFCredencial(List<String> instructorDetails, String filePath) {
+    public boolean generateCredentialPDF(List<String> instructorDetails, String filePath) {
         try {
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream(filePath));
@@ -227,7 +227,7 @@ public class instructorModels {
         }
     }
     
-    public boolean generarPDFReporte(List<List<String>> data, String filePath) {
+    public boolean generateReportPDF(List<List<String>> data, String filePath) {
         try {
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream(filePath));

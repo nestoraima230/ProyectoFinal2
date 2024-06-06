@@ -2,8 +2,6 @@ package MainView;
 
 import javax.swing.*;
 
-import instructorsViews.InstructorPanel;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,9 +28,9 @@ public class MainWindows {
         frame.getContentPane().add(panel);
         panel.setLayout(null);
 
-        JLabel lblNewLabel = new JLabel("Bienvenido a PZ GYM");
+        JLabel lblNewLabel = new JLabel("Bienvenido(a)");
         lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+        lblNewLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 29));
         lblNewLabel.setBounds(111, 22, 197, 29);
         panel.add(lblNewLabel);
         
@@ -68,13 +66,6 @@ public class MainWindows {
         btnInstructors.setBounds(286, 224, 105, 23);
         panel_1.add(btnInstructors);
 
-        btnInstructors.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				InstructorPanel instructorPanel = new InstructorPanel();
-				instructorPanel.getFrame().setVisible(true);
-			}
-		});
 
         JButton btnClasses = new JButton("Clases");
         btnClasses.setForeground(new Color(0, 0, 0));
@@ -147,11 +138,13 @@ public class MainWindows {
         panel_2_1_1_1_1.add(lblNewLabel_3_1_1_1_1);
 
         JButton btnLogout = new JButton("Cerrar Sesion");
-        btnLogout.setBounds(569, 477, 105, 23);
-        frame.getContentPane().add(btnLogout);
-        
+        btnLogout.setBounds(548, 337, 115, 23);
+        btnLogout.setBackground(new Color(148, 121, 150 ));
+        panel_1.add(btnLogout);
+
         btnLogout.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            @Override
+			public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(frame, "Sesión cerrada");
                 frame.setVisible(false);
 
@@ -172,11 +165,12 @@ public class MainWindows {
         lblNewLabel_1.setBounds(0, 0, 325, 75);
         panel_3.add(lblNewLabel_1);
 
+        
     }
 
     public void setVisible(boolean visible) {
         frame.setVisible(visible);
+        
     }
 }
-
 

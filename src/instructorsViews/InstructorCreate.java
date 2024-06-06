@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,178 +13,155 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import instructorsControllers.AddInstructorController;
 
-import javax.swing.ImageIcon;
+import instructorsControllers.AddInstructorController;
 
 public class InstructorCreate extends JPanel {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_4;
+    private static final long serialVersionUID = 1L;
+    private JFrame frame;
+    private JTextField nombre;
+    private JTextField apellido;
+    private JTextField especialidad;
+    private JTextField email;
     private AddInstructorController controller;
 
+    public static void main(String[] args) {
+        EventQueue.invokeLater(() -> {
+            try {
+                AddInstructorController controller = new AddInstructorController();
+                InstructorCreate window = controller.getView();
+                window.frame.setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AddInstructorController controller = new AddInstructorController();
-					InstructorCreate window = controller.getView();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
-	public InstructorCreate(AddInstructorController controller) {
+    public InstructorCreate(AddInstructorController controller) {
         this.controller = controller;
         initialize();
-	}
+    }
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 700, 550);
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 684, 511);
-		frame.getContentPane().add(panel);
-		panel.setLayout(null);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(251, 0, 433, 511);
-		panel_1.setBackground(new Color (148, 121, 150 ));
-		panel.add(panel_1);
-		panel_1.setLayout(null);
-		
-		JLabel lblNewLabel_1 = new JLabel("Nombre");
-		lblNewLabel_1.setForeground(new Color(255, 255, 255));
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_1.setBounds(24, 39, 250, 32);
-		panel_1.add(lblNewLabel_1);
-		
-		textField = new JTextField();
-		textField.setBounds(24, 81, 250, 32);
-		panel_1.add(textField);
-		textField.setColumns(10);
-		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(24, 158, 250, 32);
-		textField_1.setOpaque(true); 
-		textField_1.setBorder(new EmptyBorder(0,5,0,2)); 
-		textField_1.setPreferredSize(new Dimension(100,20)); 
-		panel_1.add(textField_1);
-		
-		JLabel lblNewLabel_1_1 = new JLabel("Apellidos");
-		lblNewLabel_1_1.setForeground(new Color(255, 255, 255));
-		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_1_1.setBounds(24, 116, 250, 32);
-		panel_1.add(lblNewLabel_1_1);
-		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(24, 241, 250, 32);
-		panel_1.add(textField_2);
-		
-		JLabel lblNewLabel_1_1_1 = new JLabel("Especialidad");
-		lblNewLabel_1_1_1.setForeground(new Color(255, 255, 255));
-		lblNewLabel_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_1_1_1.setBounds(24, 200, 250, 32);
-		panel_1.add(lblNewLabel_1_1_1);
-		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(24, 325, 250, 32);
-		panel_1.add(textField_4);
-		
-		JLabel lblNewLabel_1_1_1_1 = new JLabel("Correo electronico");
-		lblNewLabel_1_1_1_1.setForeground(new Color(255, 255, 255));
-		lblNewLabel_1_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_1_1_1_1.setBounds(24, 283, 250, 32);
-		panel_1.add(lblNewLabel_1_1_1_1);
-		
-		JButton btnNewButton = new JButton("Regresar");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				InstructorPanel instructorPanel = new InstructorPanel();
-				instructorPanel.getFrame().setVisible(true);
-			}
-		});
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnNewButton.setBounds(152, 460, 100, 32);
-		panel_1.add(btnNewButton);
-		
-		JButton btnCrear = new JButton("Guardar");
-		btnCrear.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnCrear.setBounds(295, 460, 100, 32);
-		panel_1.add(btnCrear);
-		
+    private void initialize() {
+        frame = new JFrame();
+        frame.setBounds(100, 100, 700, 550);
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().setLayout(null);
+
+        JPanel panel = new JPanel();
+        panel.setBounds(0, 0, 684, 511);
+        frame.getContentPane().add(panel);
+        panel.setLayout(null);
+
+        JPanel panel_1 = new JPanel();
+        panel_1.setBounds(0, 0, 684, 511);
+        panel_1.setBackground(new Color(148, 121, 150));
+        panel.add(panel_1);
+        panel_1.setLayout(null);
+
+        JPanel panel_2 = new JPanel();
+        panel_2.setBounds(155, 27, 409, 454);
+        panel_1.add(panel_2);
+        panel_2.setLayout(null);
+
+        JLabel lblNewLabel_1 = new JLabel("Nombre");
+        lblNewLabel_1.setBounds(29, 56, 70, 25);
+        panel_2.add(lblNewLabel_1);
+        lblNewLabel_1.setForeground(new Color(0, 0, 0));
+        lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+
+        nombre = new JTextField();
+        nombre.setBackground(new Color(255, 255, 255));
+        nombre.setBounds(29, 91, 338, 32);
+        panel_2.add(nombre);
+        nombre.setColumns(10);
+
+        JLabel lblNewLabel_1_1 = new JLabel("Apellidos");
+        lblNewLabel_1_1.setBounds(29, 133, 250, 32);
+        panel_2.add(lblNewLabel_1_1);
+        lblNewLabel_1_1.setForeground(new Color(0, 0, 0));
+        lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+
+        apellido = new JTextField();
+        apellido.setBounds(29, 175, 338, 32);
+        panel_2.add(apellido);
+        apellido.setColumns(10);
+        apellido.setOpaque(true);
+        apellido.setBorder(new EmptyBorder(0, 5, 0, 2));
+        apellido.setPreferredSize(new Dimension(100, 20));
+
+        especialidad = new JTextField();
+        especialidad.setBounds(29, 259, 338, 32);
+        panel_2.add(especialidad);
+        especialidad.setColumns(10);
+
+        JLabel lblNewLabel_1_1_1 = new JLabel("Especialidad");
+        lblNewLabel_1_1_1.setBounds(29, 217, 250, 32);
+        panel_2.add(lblNewLabel_1_1_1);
+        lblNewLabel_1_1_1.setForeground(new Color(0, 0, 0));
+        lblNewLabel_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+
+        JLabel lblNewLabel_1_1_1_1 = new JLabel("Correo electronico");
+        lblNewLabel_1_1_1_1.setBounds(29, 301, 250, 32);
+        panel_2.add(lblNewLabel_1_1_1_1);
+        lblNewLabel_1_1_1_1.setForeground(new Color(0, 0, 0));
+        lblNewLabel_1_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+
+        email = new JTextField();
+        email.setBounds(29, 334, 338, 32);
+        panel_2.add(email);
+        email.setColumns(10);
+
+        JLabel lblNewLabel = new JLabel("Crear instructor");
+        lblNewLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 30));
+        lblNewLabel.setBounds(111, 10, 256, 25);
+        panel_2.add(lblNewLabel);
+
+        JButton btnCrear = new JButton("Guardar");
+        btnCrear.setForeground(new Color(255, 255, 255));
+        btnCrear.setBackground(new Color(0, 0, 0));
+        btnCrear.setBounds(265, 412, 100, 32);
+        panel_2.add(btnCrear);
+        btnCrear.setFont(new Font("Tahoma", Font.BOLD, 14));
+
         btnCrear.addActionListener(e -> {
-            String nombre = textField.getText();
-            String apellidos = textField_1.getText();
-            String especialidad = textField_2.getText();
-            String email = textField_4.getText();
+            String nombreText = nombre.getText();
+            String apellidoText = apellido.getText();
+            String especialidadText = especialidad.getText();
+            String emailText = email.getText();
 
-            if (nombre.isEmpty() || apellidos.isEmpty() || especialidad.isEmpty() || email.isEmpty()) {
+            if (nombreText.isEmpty() || apellidoText.isEmpty() || especialidadText.isEmpty() || emailText.isEmpty()) {
                 JOptionPane.showMessageDialog(frame, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
-            if (nombre.matches(".\\d.")) {
+            if (nombreText.matches(".*\\d.*")) {
                 JOptionPane.showMessageDialog(frame, "El nombre no puede contener números.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
-            if (apellidos.matches(".\\d.")) {
+            if (apellidoText.matches(".*\\d.*")) {
                 JOptionPane.showMessageDialog(frame, "El apellido no puede contener números.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
-            if (especialidad.matches(".\\d.")) {
+            if (especialidadText.matches(".*\\d.*")) {
                 JOptionPane.showMessageDialog(frame, "La especialidad no puede contener números.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            
-            boolean success = controller.addInstructor(nombre, apellidos, especialidad, email);
+
+            boolean success = controller.addInstructor(nombreText, apellidoText, especialidadText, emailText);
             if (success) {
-                System.out.println("Instructor agegado exitosamente!");
+                JOptionPane.showMessageDialog(frame, "Instructor agregado exitosamente!");
             } else {
-                System.out.println("Error al agregar instructor.");
+                JOptionPane.showMessageDialog(frame, "Error al agregar instructor.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         });
-	
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(InstructorCreate.class.getResource("/ImagenesGym/instructorGymChikito.jpg")));
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(0, 0, 253, 511);
-		panel.add(lblNewLabel);
-	}
-	
+    }
+
     public JFrame getFrame() {
         return frame;
     }
 }
-

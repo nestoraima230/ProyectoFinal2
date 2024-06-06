@@ -50,6 +50,7 @@ public class MainLogin {
         frame = new JFrame();
         frame.setBounds(100, 100, 700, 550);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null); 
         frame.getContentPane().setLayout(null);
 
         JPanel panel = new JPanel();
@@ -98,7 +99,7 @@ public class MainLogin {
         btnLogin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String username = usernameField.getText();
-                String password = new String(passwordField.getPassword()); // Use getPassword() for JPasswordField
+                String password = new String(passwordField.getPassword()); 
                 boolean loggedIn = mainLoginController.login(username, password);
                 if (loggedIn) {
                     System.out.println("Login successful!");
@@ -111,31 +112,20 @@ public class MainLogin {
             }
         });
 
-        JButton btnToMainPanel = new JButton("Salir");
-        btnToMainPanel.setFont(new Font("Arial", Font.PLAIN, 12));
-        btnToMainPanel.setBounds(564, 485, 95, 35);
-        btnToMainPanel.setBackground(new Color(100, 149, 237));
-        btnToMainPanel.setForeground(new Color(144, 45, 65));
-        panel.add(btnToMainPanel);
-        
-        btnToMainPanel.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose();               
-                MainPanel mainPanel = new MainPanel(); 
-                mainPanel.setVisible(true);             
-            }
-        });
+  
 
         JButton btnToRegister = new JButton("¿No tienes cuenta? Registrate");
         btnToRegister.setFont(new Font("Arial", Font.PLAIN, 14));
-        btnToRegister.setOpaque(false);
+        btnToRegister.setFocusPainted(false);
+        btnToRegister.setBorderPainted(false);
+        btnToRegister.setContentAreaFilled(false);
         btnToRegister.setBounds(237, 445, 300, 30);
         panel.add(btnToRegister);
-
         btnToRegister.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose();               
-                MainRegister.main(new String[0]);         
+            @Override
+			public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                MainRegister.main(new String[0]);
                 }
         });
         

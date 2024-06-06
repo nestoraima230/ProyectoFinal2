@@ -79,5 +79,9 @@ public class CheckPin {
             }
         });
     }
+
+    public JFrame getFrame() {
+        return frame;
+    }
 }
 

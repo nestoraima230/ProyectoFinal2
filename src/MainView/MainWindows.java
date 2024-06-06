@@ -2,6 +2,12 @@ package MainView;
 
 import javax.swing.*;
 
+import check.CheckPin;
+import classView.ClassPanel;
+import clientView.ClientPanel;
+import instructorsViews.InstructorPanel;
+import tariffView.TariffPanel;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -51,6 +57,13 @@ public class MainWindows {
         btnClients.setOpaque(true);
         btnClients.setBounds(24, 224, 105, 23);
         panel_1.add(btnClients);
+        
+        btnClients.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                ClientPanel.main(new String[0]);
+            }
+        });
 
         JButton btnRates = new JButton("Tarifas");
         btnRates.setForeground(new Color(0, 0, 0));
@@ -58,6 +71,14 @@ public class MainWindows {
         btnRates.setOpaque(true);
         btnRates.setBounds(155, 224, 105, 23);
         panel_1.add(btnRates);
+        
+        btnRates.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                TariffPanel.main(new String[0]);
+            }
+        });
+
 
         JButton btnInstructors = new JButton("Instructores");
         btnInstructors.setForeground(new Color(0, 0, 0));
@@ -66,13 +87,26 @@ public class MainWindows {
         btnInstructors.setBounds(286, 224, 105, 23);
         panel_1.add(btnInstructors);
 
-
+        btnInstructors.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                InstructorPanel.main(new String[0]);
+            }
+        });
+        
         JButton btnClasses = new JButton("Clases");
         btnClasses.setForeground(new Color(0, 0, 0));
         btnClasses.setBackground(new Color(148, 121, 150 ));
         btnClasses.setOpaque(true);
         btnClasses.setBounds(417, 224, 105, 23);
         panel_1.add(btnClasses);
+        
+        btnClasses.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                ClassPanel.main(new String[0]);
+            }
+        });
 
         JButton btnCheckIn = new JButton("Checador");
         btnCheckIn.setForeground(new Color(0, 0, 0));
@@ -80,6 +114,16 @@ public class MainWindows {
         btnCheckIn.setOpaque(true);
         btnCheckIn.setBounds(548, 224, 105, 23);
         panel_1.add(btnCheckIn);
+        
+        btnCheckIn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                
+                CheckPin checkPin = new CheckPin();
+                checkPin.getFrame().setVisible(true);
+            }
+        });
+
 
         JPanel panel_2 = new JPanel();
         panel_2.setForeground(new Color(255, 255, 255));

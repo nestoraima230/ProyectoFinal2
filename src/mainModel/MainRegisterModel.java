@@ -6,9 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class MainRegisterModel {
-    private static final String JDBC_URL = "postgresql://postgres:mWJFQyAVPzVQxPEClOxjpLZIghmfrKWN@monorail.proxy.rlwy.net:22532/railway";
-    private static final String JDBC_USER = "mWJFQyAVPzVQxPEClOxjpLZIghmfrKWN";
-    private static final String JDBC_PASSWORD = "postgres";
+    private static final String JDBC_URL = "jdbc:mysql://sql.freedb.tech:3306/freedb_gimnasio";
+    private static final String JDBC_USER = "freedb_nestor_arce";
+    private static final String JDBC_PASSWORD = "uwDrTJ7Xw!a8v!r";
+
 
     public boolean registerUser(String username, String password, String email) {
         String query = "INSERT INTO USUARIO_2 (NOMBRE, CONTRASENA, EMAIL) VALUES (?, ?, ?)";

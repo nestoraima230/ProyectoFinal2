@@ -2,12 +2,10 @@ package tariffView;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -63,8 +61,6 @@ public class TariffDetail {
         lblNewLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 24));
         lblNewLabel.setBounds(252, 17, 243, 27);
         panel.add(lblNewLabel);
-        
-       
 
         JButton btnNewButton = new JButton("OK");
         btnNewButton.setFont(new Font("Tw Cen MT", Font.BOLD, 15));
@@ -93,9 +89,6 @@ public class TariffDetail {
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                 JPanel panel = new JPanel(new GridLayout(1, 3, 10, 0));
                 panel.setBackground(table.getBackground());
-                
-    
-                
                 return panel;
             }
         });
@@ -105,11 +98,12 @@ public class TariffDetail {
         table.getColumnModel().getColumn(2).setPreferredWidth(10);
         table.getColumnModel().getColumn(3).setPreferredWidth(10);
         table.getColumnModel().getColumn(4).setPreferredWidth(10);
-        
-        
         table.getColumnModel().getColumn(5).setPreferredWidth(10);
         table.setRowHeight(60);
         scrollPane.setViewportView(table);
     }
 
+	public void show() {
+		frame.setVisible(true);
+	}
 }

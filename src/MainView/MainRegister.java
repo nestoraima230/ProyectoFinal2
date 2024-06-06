@@ -33,7 +33,7 @@ public class MainRegister {
     public MainRegister() {
         registerController = new MainRegisterController();
     }
-// registro
+    // registro
     public void initialize() {
         frame = new JFrame();
         frame.setBounds(0, 0, 700, 550);
@@ -149,8 +149,4 @@ public class MainRegister {
             }
         });
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 217ac2c997a5b90c6b446331ff8aaf97debb2494

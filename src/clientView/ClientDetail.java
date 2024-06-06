@@ -15,7 +15,7 @@ import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.ImageIcon;
 
-public class EditClient {
+public class ClientDetail {
 
 	private JFrame frame;
 	private JTextField textField;
@@ -38,7 +38,7 @@ public class EditClient {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					EditClient window = new EditClient();
+					ClientEdit window = new ClientEdit();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,8 +49,9 @@ public class EditClient {
 
 	/**
 	 * Create the application.
+	 * @wbp.parser.entryPoint
 	 */
-	public EditClient() {
+	public ClientDetail() {
 		initialize();
 	}
 
@@ -99,7 +100,7 @@ public class EditClient {
 		panel.add(textField_2);
 
 		JLabel lblNewLabel_3 = new JLabel("Imagen");
-		lblNewLabel_3.setIcon(new ImageIcon(EditClient.class.getResource("/ImagenesGym/mujerFoto.png")));
+		lblNewLabel_3.setIcon(new ImageIcon(ClientDetail.class.getResource("/ImagenesGym/mujerFoto.png")));
 		lblNewLabel_3.setBackground(new Color(255, 255, 255));
 		lblNewLabel_3.setBounds(500, 71, 141, 168);
 		lblNewLabel_3.setOpaque(true);

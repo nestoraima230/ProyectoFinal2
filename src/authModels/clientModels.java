@@ -63,6 +63,30 @@ public class clientModels {
         }
     }
     
+    public boolean updateClient(int id, List<String> newClientDetails) {
+        String query = "UPDATE CLIENTE SET NOMBRE = ?, APELLIDOS = ?, FECHA_NACIMIENTO = ?, TELEFONO = ? WHERE CLIENTE_ID = ?";
+
+        try (Connection con = getConnection();
+             PreparedStatement pstmt = con.prepareStatement(query)) {
+
+            pstmt.setString(1, newClientDetails.get(0));
+            pstmt.setString(2, newClientDetails.get(1));
+            pstmt.setString(3, newClientDetails.get(2));
+            pstmt.setString(4, newClientDetails.get(3));
+            pstmt.setInt(5, id);
+
+            int rowsAffected = pstmt.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Client Updated: ID=" + id + ", Name=" + newClientDetails.get(0) + ", Lastname=" + newClientDetails.get(1) + ", Birthday=" + newClientDetails.get(2) + ", Phone=" + newClientDetails.get(3));
+            }
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    
     public List<String> getClientDetails(int clientId) {
         String query = "SELECT NOMBRE, TELEFONO, FECHA_NACIMIENTO FROM CLIENTE WHERE CLIENTE = ?";
         List<String> clientDetails = new ArrayList<>();
@@ -84,7 +108,7 @@ public class clientModels {
     }
     
     public List<List<String>> getAllClients() {
-        String query = "SELECT NOMBRE, APELLIDOS, TELEFONO, FROM INSTRUCTOR";
+        String query = "SELECT NOMBRE, APELLIDOS, TELEFONO FROM CLIENTE";
         List<List<String>> allClients = new ArrayList<>();
 
         try (Connection con = getConnection();
@@ -105,27 +129,23 @@ public class clientModels {
     }
     
     public boolean deleteClient(int id) {
-        String getClientQuery = "SELECT NOMBRE, APELLIDOS, FECHA_NACIMIENTO, TELEFONO FROM CLIENTE WHERE CLIENTE_ID = ?";
+    	
+        String deleteTarifaQuery = "DELETE FROM TARIFA WHERE CLIENTE_ID = ?";
         String deleteClientQuery = "DELETE FROM CLIENTE WHERE CLIENTE_ID = ?";
         
         try (Connection con = getConnection();
-             PreparedStatement pstmtSelect = con.prepareStatement(getClientQuery);
-             PreparedStatement pstmtDelete = con.prepareStatement(deleteClientQuery)) {
+             PreparedStatement pstmtDeleteTarifa = con.prepareStatement(deleteTarifaQuery);
+             PreparedStatement pstmtDeleteClient = con.prepareStatement(deleteClientQuery)) {
             
-            pstmtSelect.setInt(1, id);
-            ResultSet rs = pstmtSelect.executeQuery();
-            if (rs.next()) {
-                String nombre = rs.getString("NOMBRE");
-                String apellidos = rs.getString("APELLIDOS");
-                String fechaNacimiento = rs.getString("FECHA_NACIMIENTO");
-                String telefono = rs.getString("TELEFONO");
-                
-                pstmtDelete.setInt(1, id);
-                pstmtDelete.executeUpdate();
-                
-                System.out.println("Client deleted: ID=" + id + ", Name=" + nombre + ", Lastname=" + apellidos + ", Birthday=" + fechaNacimiento + ", Phone=" + telefono);
-                
-                return true; 
+            pstmtDeleteTarifa.setInt(1, id);
+            pstmtDeleteTarifa.executeUpdate();
+            
+            pstmtDeleteClient.setInt(1, id);
+            int rowsAffected = pstmtDeleteClient.executeUpdate();
+            
+            if (rowsAffected > 0) {
+                System.out.println("Client deleted: ID=" + id);
+                return true;
             } else {
                 System.out.println("No client found with ID=" + id);
                 return false;
@@ -135,6 +155,28 @@ public class clientModels {
             return false;
         }
     }
+
+
+    
+    public int buscarIdCliente(String nombre, String apellidos, String fechaNacimiento, String telefono) {
+        String query = "SELECT CLIENTE_ID FROM CLIENTE WHERE NOMBRE = ? AND APELLIDOS = ? AND FECHA_NACIMIENTO = ? AND TELEFONO = ?";
+        try (Connection con = getConnection(); PreparedStatement pstmt = con.prepareStatement(query)) {
+            pstmt.setString(1, nombre);
+            pstmt.setString(2, apellidos);
+            pstmt.setString(3, fechaNacimiento);
+            pstmt.setString(4, telefono);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("CLIENTE_ID");
+            } else {
+                return -1; 
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return -1; 
+        }
+    }
+
     
     public boolean generarPDFCredencialCliente(List<String> clienteDetails, String logoPath, String clienteImagePath, String filePath) {
         try {

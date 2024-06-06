@@ -1,8 +1,8 @@
 package authControllers;
 
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.List;
-
 import authModels.classModels;
 
 public class classControllers {
@@ -12,27 +12,29 @@ public class classControllers {
         classModels = new classModels();
     }
 
-    public boolean addClase(String nombre, String tipoClase, String descripcion, String nivelDificultad, 
-                            java.sql.Date fechaInicio, java.sql.Date fechaFin, Time duracion, 
-                            int instructorId, int capacidadMaxima) {
-        return classModels.addClase(nombre, tipoClase, descripcion, nivelDificultad, fechaInicio, fechaFin, duracion, instructorId, capacidadMaxima);
+    public boolean addClase(String nombre, Timestamp horario, Time duracion, int instructorId, int capacidadMaxima) {
+        return classModels.addClase(nombre, horario, duracion, instructorId, capacidadMaxima);
     }
 
-    public List<String> getClase(int id) {
-        return classModels.getClase(id);
+
+    public List<String> getClase(int ID) {
+        return classModels.getClase(ID);
     }
 
     public List<List<String>> getAllClases() {
         return classModels.getAllClases();
     }
 
-    public boolean updateClase(int id, String nombre, String tipoClase, String descripcion, String nivelDificultad, 
-                               java.sql.Date fechaInicio, java.sql.Date fechaFin, Time duracion, 
-                               int instructorId, int capacidadMaxima) {
-        return classModels.updateClase(id, nombre, tipoClase, descripcion, nivelDificultad, fechaInicio, fechaFin, duracion, instructorId, capacidadMaxima);
+    public boolean updateClase(String nombre,  Timestamp horario, Time duracion, int instructorId, int capacidadMaxima, Timestamp nuevaHora){
+    	return classModels.updateClase(nombre, horario, duracion, instructorId, capacidadMaxima);
+    }
+    
+    public List<String> getDetallesClase(String nombreClase) {
+        return classModels.getDetallesClase(nombreClase);
     }
 
-    public boolean deleteClase(int id) {
-        return classModels.deleteClase(id);
+
+    public boolean deleteClase(int ID) {
+        return classModels.deleteClase(ID);
     }
 }

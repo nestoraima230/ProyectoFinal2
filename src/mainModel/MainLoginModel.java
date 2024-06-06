@@ -8,9 +8,10 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class MainLoginModel {
-    private static final String JDBC_URL = "jdbc:mysql://sql.freedb.tech:3306/freedb_gimnasio";
-    private static final String JDBC_USER = "freedb_nestor_arce";
-    private static final String JDBC_PASSWORD = "uwDrTJ7Xw!a8v!r";
+    private static final String JDBC_URL = "postgresql://postgres:mWJFQyAVPzVQxPEClOxjpLZIghmfrKWN@monorail.proxy.rlwy.net:22532/railway";
+    private static final String JDBC_USER = "mWJFQyAVPzVQxPEClOxjpLZIghmfrKWN";
+    private static final String JDBC_PASSWORD = "postgres";
+
 
     public MainLoginModel() {
     }

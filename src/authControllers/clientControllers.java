@@ -6,9 +6,10 @@ import authModels.clientModels;
 
 public class clientControllers {
     private clientModels clientModels;
+    private int selectedClientId;
 
     public clientControllers() {
-    	clientModels = new clientModels();
+        clientModels = new clientModels();
     }
 
     public boolean addClient(List<String> client) {
@@ -27,6 +28,11 @@ public class clientControllers {
         return clientModels.deleteClient(id);
     }
 
+    public boolean updateClient(int clientId, List<String> newClientDetails) {
+        return clientModels.updateClient(clientId, newClientDetails);
+    }
+
+
     public boolean generarPDFCredencialCliente(List<String> clienteDetails, String logoPath, String clienteImagePath, String filePath) {
         return clientModels.generarPDFCredencialCliente(clienteDetails, logoPath, clienteImagePath, filePath);
     }
@@ -34,4 +40,29 @@ public class clientControllers {
     public boolean generarPDFReporteCliente(List<String> clienteDetails, List<String> reportDetails, String filePath) {
         return clientModels.generarPDFReporteCliente(clienteDetails, reportDetails, filePath);
     }
+    public void setSelectedClientId(int clientId) {
+        this.selectedClientId = clientId;
+    }
+
+    public int getSelectedClientId() {
+        return selectedClientId;
+    }
+    
+    
+    public int buscarIdCliente(String nombre, String apellidos, String fechaNacimiento, String telefono) {
+        List<List<String>> allClients = clientModels.getAllClients();
+
+        for (List<String> clientDetails : allClients) {
+            if (clientDetails.get(0).equals(nombre) &&
+                clientDetails.get(1).equals(apellidos) &&
+                clientDetails.get(2).equals(telefono) &&
+                clientDetails.get(3).equals(fechaNacimiento)) {
+                return allClients.indexOf(clientDetails) + 1;
+            }
+        }
+
+        return -1;
+    }
+
+
 }

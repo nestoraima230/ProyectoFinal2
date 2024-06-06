@@ -7,12 +7,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
-public class MainModel {
+public class mainModels {
     private static final String JDBC_URL = "jdbc:mysql://sql.freedb.tech:3306/freedb_gimnasio";
     private static final String JDBC_USER = "freedb_nestor_arce";
     private static final String JDBC_PASSWORD = "uwDrTJ7Xw!a8v!r";
 
-    public MainModel() {
+    public mainModels() {
     }
 
     private Connection getConnection() throws SQLException {

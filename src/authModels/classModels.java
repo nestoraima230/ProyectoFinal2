@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,23 +23,18 @@ public class classModels {
         return DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
     }
 
-    public boolean addClase(String nombre, String tipoClase, String descripcion, String nivelDificultad, 
-                            java.sql.Date fechaInicio, java.sql.Date fechaFin, Time duracion, 
-                            int instructorId, int capacidadMaxima) {
-        String query = "INSERT INTO clase (nombre, tipo_clase, descripcion, nivel_dificultad, fecha_inicio, fecha_fin, duracion, instructor_id, capacidad_maxima) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    public boolean addClase(String NOMBRE, java.sql.Timestamp HORARIO, java.sql.Time DURACION, 
+                            int INSTRUCTOR_ID, int CAPACIDAD_MAXIMA) {
+        String query = "INSERT INTO CLASE (NOMBRE, HORARIO, DURACION, INSTRUCTOR_ID, CAPACIDAD_MAXIMA) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection con = getConnection();
              PreparedStatement pstmt = con.prepareStatement(query)) {
 
-            pstmt.setString(1, nombre);
-            pstmt.setString(2, tipoClase);
-            pstmt.setString(3, descripcion);
-            pstmt.setString(4, nivelDificultad);
-            pstmt.setDate(5, fechaInicio);
-            pstmt.setDate(6, fechaFin);
-            pstmt.setTime(7, duracion);
-            pstmt.setInt(8, instructorId);
-            pstmt.setInt(9, capacidadMaxima);
+            pstmt.setString(1, NOMBRE);
+            pstmt.setTimestamp(2, HORARIO);
+            pstmt.setTime(3, DURACION);
+            pstmt.setInt(4, INSTRUCTOR_ID);
+            pstmt.setInt(5, CAPACIDAD_MAXIMA);
 
             int rowsAffected = pstmt.executeUpdate();
             return rowsAffected > 0;
@@ -48,26 +44,21 @@ public class classModels {
         }
     }
 
-    // Obtener una clase por ID
-    public List<String> getClase(int id) {
-        String query = "SELECT * FROM clase WHERE id = ?";
+    public List<String> getClase(int ID) {
+        String query = "SELECT * FROM CLASE WHERE CLASE_ID = ?";
         List<String> claseDetails = new ArrayList<>();
 
         try (Connection con = getConnection();
              PreparedStatement pstmt = con.prepareStatement(query)) {
-            pstmt.setInt(1, id);
+            pstmt.setInt(1, ID);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
-                    claseDetails.add(String.valueOf(rs.getInt("id")));
-                    claseDetails.add(rs.getString("nombre"));
-                    claseDetails.add(rs.getString("tipo_clase"));
-                    claseDetails.add(rs.getString("descripcion"));
-                    claseDetails.add(rs.getString("nivel_dificultad"));
-                    claseDetails.add(rs.getDate("fecha_inicio").toString());
-                    claseDetails.add(rs.getDate("fecha_fin").toString());
-                    claseDetails.add(rs.getTime("duracion").toString());
-                    claseDetails.add(String.valueOf(rs.getInt("instructor_id")));
-                    claseDetails.add(String.valueOf(rs.getInt("capacidad_maxima")));
+                    claseDetails.add(String.valueOf(rs.getInt("CLASE_ID")));
+                    claseDetails.add(rs.getString("NOMBRE"));
+                    claseDetails.add(rs.getTime("HORARIO").toString());
+                    claseDetails.add(rs.getTime("DURACION").toString());
+                    claseDetails.add(String.valueOf(rs.getInt("INSTRUCTOR_ID")));
+                    claseDetails.add(String.valueOf(rs.getInt("CAPACIDAD_MAXIMA")));
                 }
             }
         } catch (SQLException e) {
@@ -76,9 +67,8 @@ public class classModels {
         return claseDetails;
     }
 
-
     public List<List<String>> getAllClases() {
-        String query = "SELECT * FROM clase";
+        String query = "SELECT * FROM CLASE";
         List<List<String>> allClases = new ArrayList<>();
 
         try (Connection con = getConnection();
@@ -86,16 +76,12 @@ public class classModels {
              ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {
                 List<String> claseDetails = new ArrayList<>();
-                claseDetails.add(String.valueOf(rs.getInt("id")));
-                claseDetails.add(rs.getString("nombre"));
-                claseDetails.add(rs.getString("tipo_clase"));
-                claseDetails.add(rs.getString("descripcion"));
-                claseDetails.add(rs.getString("nivel_dificultad"));
-                claseDetails.add(rs.getDate("fecha_inicio").toString());
-                claseDetails.add(rs.getDate("fecha_fin").toString());
-                claseDetails.add(rs.getTime("duracion").toString());
-                claseDetails.add(String.valueOf(rs.getInt("instructor_id")));
-                claseDetails.add(String.valueOf(rs.getInt("capacidad_maxima")));
+                claseDetails.add(String.valueOf(rs.getInt("CLASE_ID")));
+                claseDetails.add(rs.getString("NOMBRE"));
+                claseDetails.add(rs.getTime("HORARIO").toString());
+                claseDetails.add(rs.getTime("DURACION").toString());
+                claseDetails.add(String.valueOf(rs.getInt("INSTRUCTOR_ID")));
+                claseDetails.add(String.valueOf(rs.getInt("CAPACIDAD_MAXIMA")));
                 allClases.add(claseDetails);
             }
         } catch (SQLException e) {
@@ -105,24 +91,13 @@ public class classModels {
         return allClases;
     }
 
-    public boolean updateClase(int id, String nombre, String tipoClase, String descripcion, String nivelDificultad, 
-                               java.sql.Date fechaInicio, java.sql.Date fechaFin, Time duracion, 
-                               int instructorId, int capacidadMaxima) {
-        String query = "UPDATE clase SET nombre = ?, tipo_clase = ?, descripcion = ?, nivel_dificultad = ?, fecha_inicio = ?, fecha_fin = ?, duracion = ?, instructor_id = ?, capacidad_maxima = ? WHERE id = ?";
+    public boolean deleteClase(int ID) {
+        String query = "DELETE FROM CLASE WHERE CLASE_ID = ?";
 
         try (Connection con = getConnection();
              PreparedStatement pstmt = con.prepareStatement(query)) {
 
-            pstmt.setString(1, nombre);
-            pstmt.setString(2, tipoClase);
-            pstmt.setString(3, descripcion);
-            pstmt.setString(4, nivelDificultad);
-            pstmt.setDate(5, fechaInicio);
-            pstmt.setDate(6, fechaFin);
-            pstmt.setTime(7, duracion);
-            pstmt.setInt(8, instructorId);
-            pstmt.setInt(9, capacidadMaxima);
-            pstmt.setInt(10, id);
+            pstmt.setInt(1, ID);
 
             int rowsAffected = pstmt.executeUpdate();
             return rowsAffected > 0;
@@ -132,20 +107,46 @@ public class classModels {
         }
     }
 
-    // Eliminar una clase
-    public boolean deleteClase(int id) {
-        String query = "DELETE FROM clase WHERE id = ?";
+    public List<String> getDetallesClase(String nombreClase) {
+        String query = "SELECT * FROM CLASE WHERE NOMBRE = ?";
+        List<String> claseDetails = new ArrayList<>();
 
         try (Connection con = getConnection();
              PreparedStatement pstmt = con.prepareStatement(query)) {
-
-            pstmt.setInt(1, id);
-
-            int rowsAffected = pstmt.executeUpdate();
-            return rowsAffected > 0;
+            pstmt.setString(1, nombreClase);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    claseDetails.add(String.valueOf(rs.getInt("CLASE_ID")));
+                    claseDetails.add(rs.getString("NOMBRE"));
+                    claseDetails.add(rs.getTime("DURACION").toString());
+                    claseDetails.add(rs.getTimestamp("HORARIO").toString());
+                    claseDetails.add(String.valueOf(rs.getInt("CAPACIDAD_MAXIMA")));
+                    claseDetails.add(String.valueOf(rs.getInt("INSTRUCTOR_ID")));
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
+        return claseDetails;
     }
+
+	public boolean updateClase(String nombre, Timestamp horario, Time duracion, int instructorId, int capacidadMaxima) {
+		  String query = "UPDATE CLASE SET NOMBRE = ?, HORARIO = ?, DURACION = ?, INSTRUCTOR_ID = ?, CAPACIDAD_MAXIMA = ? WHERE CLASE_ID = ?";
+	        try (Connection con = getConnection();
+	                PreparedStatement pstmt = con.prepareStatement(query)) {
+
+	               pstmt.setString(1, nombre);
+	               pstmt.setTimestamp(2, horario);
+	               pstmt.setTime(3, duracion);
+	               pstmt.setInt(4, instructorId);
+	               pstmt.setInt(5, capacidadMaxima);
+
+	               int rowsAffected = pstmt.executeUpdate();
+	               return rowsAffected > 0;
+	           } catch (SQLException e) {
+	               e.printStackTrace();
+	               return false;
+	           }
+	}
+
 }

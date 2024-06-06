@@ -23,18 +23,14 @@ import java.util.List;
 public class InstructorsDetails {
 
     private JFrame frame;
-    private JLabel lblNewLabel_5;
     private JButton btnNewButton;
     private JButton btnNewButton_1;
     private JButton btnNewButton_2;
-    private JPanel panel_4;
-    private JLabel lblImagenInstructor;
-    private JPanel panel_5;
-    private JTable table;
-    private JTable table_1;
-    private JTable table_2;
     private JLabel lblImagenInstructor_1;
     private InstructorDetailsController controller;
+    private JTable table;
+    private JLabel lblNewLabel_1;
+    private JLabel lblNewLabel_2;
 
     /**
      * Launch the application.
@@ -76,76 +72,20 @@ public class InstructorsDetails {
         frame.getContentPane().add(panel);
         panel.setLayout(null);
 
-        JPanel panel_1 = new JPanel();
-        panel_1.setBackground(new Color(128, 128, 192));
-        panel_1.setBounds(477, 11, 181, 437);
-        panel.add(panel_1);
-        panel_1.setLayout(null);
-
-        JLabel lblNewLabel = new JLabel("");
-        lblNewLabel.setIcon(new ImageIcon(InstructorsDetails.class.getResource("/ImagenesGym/javierChikito.jpg")));
+        JLabel lblNewLabel = new JLabel("\tHistorial de clases");
+        lblNewLabel.setForeground(new Color(255, 255, 255));
+        lblNewLabel.setBackground(new Color(144, 45, 65));
+        lblNewLabel.setOpaque(true);
         lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNewLabel.setBounds(36, 11, 108, 165);
-        panel_1.add(lblNewLabel);
-
-        table_2 = new JTable();
-        table_2.setBounds(0, 209, 181, 225);
-        panel_1.add(table_2);
-
-        lblImagenInstructor_1 = new JLabel("Especialidad: " + getInstructorSpecialty(1)); 
-        lblImagenInstructor_1.setHorizontalAlignment(SwingConstants.CENTER);
-        lblImagenInstructor_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblImagenInstructor_1.setBounds(0, 176, 181, 34);
-        panel_1.add(lblImagenInstructor_1);
-
-        panel_4 = new JPanel();
-        panel_4.setLayout(null);
-        panel_4.setBackground(new Color(128, 128, 192));
-        panel_4.setBounds(251, 11, 181, 446);
-        panel.add(panel_4);
-
-        lblImagenInstructor = new JLabel("");
-        lblImagenInstructor.setIcon(new ImageIcon(InstructorsDetails.class.getResource("/ImagenesGym/rubenChikito.jpg")));
-        lblImagenInstructor.setHorizontalAlignment(SwingConstants.CENTER);
-        lblImagenInstructor.setBounds(36, 11, 108, 165);
-        panel_4.add(lblImagenInstructor);
-
-        table_1 = new JTable();
-        table_1.setBounds(0, 209, 181, 236);
-        panel_4.add(table_1);
-
-        JLabel lblNewLabel_5_1 = new JLabel("Especialidad: " + getInstructorSpecialty(2)); 
-        lblNewLabel_5_1.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNewLabel_5_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblNewLabel_5_1.setBounds(0, 176, 181, 34);
-        panel_4.add(lblNewLabel_5_1);
-
-        panel_5 = new JPanel();
-        panel_5.setLayout(null);
-        panel_5.setBackground(new Color(128, 128, 192));
-        panel_5.setBounds(35, 11, 181, 446);
-        panel.add(panel_5);
-
-        lblNewLabel_5 = new JLabel("Especialidad: " + getInstructorSpecialty(3)); 
-        lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblNewLabel_5.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNewLabel_5.setBounds(0, 176, 181, 34);
-        panel_5.add(lblNewLabel_5);
-
-        table = new JTable();
-        table.setBounds(0, 209, 181, 237);
-        panel_5.add(table);
-
-        lblImagenInstructor_1 = new JLabel("");
-        lblImagenInstructor_1.setIcon(new ImageIcon(InstructorsDetails.class.getResource("/ImagenesGym/hanniachikita.jpg")));
-        lblImagenInstructor_1.setHorizontalAlignment(SwingConstants.CENTER);
-        lblImagenInstructor_1.setBounds(35, 11, 108, 165);
-        panel_5.add(lblImagenInstructor_1);
-
-       
+        lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 32));
+        lblNewLabel.setBounds(139, 10, 400, 40);
+        panel.add(lblNewLabel);
 
         btnNewButton_1 = new JButton("Credencial");
-        btnNewButton_1.setBounds(298, 468, 89, 23);
+        btnNewButton_1.setForeground(new Color(255, 255, 255));
+        btnNewButton_1.setBackground(new Color(0, 0, 0));
+        btnNewButton_1.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
+        btnNewButton_1.setBounds(400, 478, 112, 23);
         panel.add(btnNewButton_1);
         
         btnNewButton_1.addActionListener(new ActionListener() {
@@ -158,8 +98,25 @@ public class InstructorsDetails {
 
         
         btnNewButton_2 = new JButton("Reporte");
-        btnNewButton_2.setBounds(527, 468, 89, 23);
+        btnNewButton_2.setForeground(new Color(255, 255, 255));
+        btnNewButton_2.setBackground(new Color(0, 0, 0));
+        btnNewButton_2.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
+        btnNewButton_2.setBounds(545, 478, 112, 23);
         panel.add(btnNewButton_2);
+        
+        table = new JTable();
+        table.setBounds(35, 85, 622, 371);
+        panel.add(table);
+        
+        lblNewLabel_1 = new JLabel("Nombre");
+        lblNewLabel_1.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
+        lblNewLabel_1.setBounds(35, 70, 128, 13);
+        panel.add(lblNewLabel_1);
+        
+        lblNewLabel_2 = new JLabel("Historial");
+        lblNewLabel_2.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
+        lblNewLabel_2.setBounds(351, 71, 112, 13);
+        panel.add(lblNewLabel_2);
         
         btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

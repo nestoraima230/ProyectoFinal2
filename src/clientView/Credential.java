@@ -51,8 +51,8 @@ public class Credential {
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon(Credential.class.getResource("/ImagenesGym/Credencial1.png")));
-		lblNewLabel.setBounds(22, 10, 631, 421);
+		lblNewLabel.setIcon(new ImageIcon(Credential.class.getResource("/ImagenesGym/Credential.png")));
+		lblNewLabel.setBounds(126, 28, 425, 376);
 		panel.add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Descargar");

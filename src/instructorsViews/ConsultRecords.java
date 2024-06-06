@@ -61,17 +61,6 @@ public class ConsultRecords {
         panel.add(panel_1);
         panel_1.setLayout(null);
 
-        JButton btnNewButton_3_1 = new JButton("Regresar");
-        btnNewButton_3_1.setBounds(27, 441, 89, 23);
-        panel_1.add(btnNewButton_3_1);
-        btnNewButton_3_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				InstructorPanel instructorPanel = new InstructorPanel();
-				instructorPanel.getFrame().setVisible(true);
-			}
-		});
-
         JLabel lblNewLabel = new JLabel("Instructores");
         lblNewLabel.setForeground(new Color(255, 255, 255));
         lblNewLabel.setBackground(new Color(144, 45, 65 ));

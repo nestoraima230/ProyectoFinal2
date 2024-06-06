@@ -142,16 +142,7 @@ public class InstructorsDetails {
         lblImagenInstructor_1.setBounds(35, 11, 108, 165);
         panel_5.add(lblImagenInstructor_1);
 
-        btnNewButton = new JButton("Regresar");
-        btnNewButton.setBounds(80, 468, 89, 23);
-        panel.add(btnNewButton);
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				InstructorPanel instructorPanel = new InstructorPanel();
-				instructorPanel.getFrame().setVisible(true);
-			}
-		});
+       
 
         btnNewButton_1 = new JButton("Credencial");
         btnNewButton_1.setBounds(298, 468, 89, 23);

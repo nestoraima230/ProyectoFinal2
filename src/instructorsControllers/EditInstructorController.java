@@ -2,19 +2,17 @@ package instructorsControllers;
 
 import instructorsModels.EditInstructorModel;
 import instructorsViews.InstructorEdit;
-import instructorsViews.InstructorPanel;
+
 
 
 public class EditInstructorController {
 
     private EditInstructorModel model;
     private InstructorEdit view;
-    private InstructorPanel instructorPanel;
 
 
     public EditInstructorController() {
         model = new EditInstructorModel();
-        instructorPanel = new InstructorPanel();
 
     }
 

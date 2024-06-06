@@ -70,17 +70,17 @@ public class EditClient {
 
 		JLabel lblNewLabel = new JLabel("Nombre");
 		lblNewLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 18));
-		lblNewLabel.setBounds(61, 48, 105, 13);
+		lblNewLabel.setBounds(61, 48, 105, 21);
 		panel.add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("Telefono");
 		lblNewLabel_1.setFont(new Font("Tw Cen MT", Font.BOLD, 19));
-		lblNewLabel_1.setBounds(61, 110, 105, 30);
+		lblNewLabel_1.setBounds(61, 125, 105, 21);
 		panel.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("Fecha de nacimiento");
 		lblNewLabel_2.setFont(new Font("Tw Cen MT", Font.BOLD, 19));
-		lblNewLabel_2.setBounds(61, 186, 196, 13);
+		lblNewLabel_2.setBounds(61, 186, 196, 21);
 		panel.add(lblNewLabel_2);
 
 		textField = new JTextField();
@@ -95,7 +95,7 @@ public class EditClient {
 
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
-		textField_2.setBounds(86, 209, 65, 29);
+		textField_2.setBounds(61, 210, 65, 29);
 		panel.add(textField_2);
 
 		JLabel lblNewLabel_3 = new JLabel("Imagen");
@@ -107,12 +107,12 @@ public class EditClient {
 
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
-		textField_3.setBounds(289, 209, 65, 29);
+		textField_3.setBounds(322, 210, 65, 29);
 		panel.add(textField_3);
 
 		textField_4 = new JTextField();
 		textField_4.setColumns(10);
-		textField_4.setBounds(192, 209, 65, 29);
+		textField_4.setBounds(204, 210, 65, 29);
 		panel.add(textField_4);
 
 		Object[][] data = { { "Alejandro Perez", "$290", "Sí" }, { "Hannia Ruiz", "$450", "No" },
@@ -169,5 +169,10 @@ public class EditClient {
 		lblNewLabel_6.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
 		lblNewLabel_6.setBounds(440, 258, 194, 13);
 		panel.add(lblNewLabel_6);
+	}
+
+	public void show() {
+		// TODO Auto-generated method stub
+		
 	}
 }

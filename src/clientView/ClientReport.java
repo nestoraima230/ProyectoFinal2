@@ -68,4 +68,9 @@ public class ClientReport {
 		panel.add(btnNewButton_1);
 	}
 
+	public void show() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

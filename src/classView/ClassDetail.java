@@ -15,8 +15,10 @@ import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JTable;
+import javax.swing.JScrollPane;
+import java.awt.Component;
 
-public class ClassRecords {
+public class ClassDetail {
 
     private JFrame frame;
     private JTable table;
@@ -26,7 +28,7 @@ public class ClassRecords {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    ClassRecords window = new ClassRecords();
+                	ClassDetail window = new ClassDetail();
                     window.frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -35,17 +37,11 @@ public class ClassRecords {
         });
     }
 
-    public ClassRecords() {
+    public ClassDetail() {
         initialize();
         controller = new ConsultRecordsController();
         displayInstructors(); 
     }
-    
-    public JButton getBtnMostrarDetalle() {
-        return btnMostrarDetalle;
-    }
-    
-    private JButton btnMostrarDetalle;
 
     private void initialize() {
         frame = new JFrame();
@@ -64,18 +60,46 @@ public class ClassRecords {
         panel_1.setBounds(0, 0, 684, 511);
         panel.add(panel_1);
         panel_1.setLayout(null);
-
-        JLabel lblNewLabel = new JLabel("Registro de Clases");
-        lblNewLabel.setForeground(new Color(255, 255, 255));
-        lblNewLabel.setBackground(new Color(144, 45, 65 ));
-        lblNewLabel.setOpaque(true);
-        lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 32));
-        lblNewLabel.setBounds(138, 31, 400, 40);
-        panel_1.add(lblNewLabel);
+        
+        JLabel lblNewLabel_4 = new JLabel("Zumba");
+        lblNewLabel_4.setOpaque(true);
+        lblNewLabel_4.setForeground(Color.WHITE);
+        lblNewLabel_4.setFont(new Font("Dialog", Font.BOLD, 16));
+        lblNewLabel_4.setBackground(Color.BLACK);
+        lblNewLabel_4.setBounds(27, 82, 200, 30);
+        panel_1.add(lblNewLabel_4);
+        
+        JLabel lblNewLabel_5 = new JLabel("Cross Fit");
+        lblNewLabel_5.setOpaque(true);
+        lblNewLabel_5.setForeground(Color.WHITE);
+        lblNewLabel_5.setFont(new Font("Dialog", Font.BOLD, 16));
+        lblNewLabel_5.setBackground(Color.BLACK);
+        lblNewLabel_5.setBounds(242, 82, 200, 30);
+        panel_1.add(lblNewLabel_5);
+        
+                JLabel lblNewLabel = new JLabel("Detalles de Clases");
+                lblNewLabel.setForeground(new Color(255, 255, 255));
+                lblNewLabel.setBackground(new Color(144, 45, 65 ));
+                lblNewLabel.setOpaque(true);
+                lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+                lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 32));
+                lblNewLabel.setBounds(138, 31, 400, 40);
+                panel_1.add(lblNewLabel);
+        
+        JLabel lblNewLabel_6 = new JLabel("Body Combat");
+        lblNewLabel_6.setOpaque(true);
+        lblNewLabel_6.setForeground(Color.WHITE);
+        lblNewLabel_6.setFont(new Font("Dialog", Font.BOLD, 16));
+        lblNewLabel_6.setBackground(Color.BLACK);
+        lblNewLabel_6.setBounds(457, 82, 200, 30);
+        panel_1.add(lblNewLabel_6);
+        
+        JScrollPane scrollPane = new JScrollPane((Component) null);
+        scrollPane.setBounds(27, 112, 630, 317);
+        panel_1.add(scrollPane);
 
         table = new JTable();
-        table.setBounds(27, 80, 630, 350);
+        table.setBounds(27, 112, 630, 315);
         panel_1.add(table);
 
         DefaultTableModel model = new DefaultTableModel();
@@ -85,14 +109,9 @@ public class ClassRecords {
         model.addColumn("Email");
         table.setModel(model);
         
-        btnMostrarDetalle = new JButton("Mostrar Detalle");
-        btnMostrarDetalle.setFont(new Font("Tahoma", Font.BOLD, 11));
-        btnMostrarDetalle.setBounds(28, 457, 130, 24);
-        panel_1.add(btnMostrarDetalle);
-        
         JButton btnNewButton = new JButton("Salir");
         btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
-        btnNewButton.setBounds(168, 457, 100, 24);
+        btnNewButton.setBounds(28, 457, 100, 24);
         panel_1.add(btnNewButton);
     }
 

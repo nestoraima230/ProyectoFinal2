@@ -11,12 +11,10 @@ import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
-
-
-
 import java.awt.Font;
 import javax.swing.JScrollPane;
 import java.awt.GridLayout;
+import java.awt.Window;
 import javax.swing.JButton;
 
 public class ClassPanel {
@@ -24,14 +22,11 @@ public class ClassPanel {
     private JFrame frame;
     private JTable table;
 
-    /**
-     * Launch the application.
-     */
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                	ClassPanel window = new ClassPanel();
+                    ClassPanel window = new ClassPanel();
                     window.frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -40,16 +35,10 @@ public class ClassPanel {
         });
     }
 
-    /**
-     * Create the application.
-     */
     public ClassPanel() {
         initialize();
     }
 
-    /**
-     * Initialize the contents of the frame.
-     */
     private void initialize() {
         frame = new JFrame();
         frame.setBounds(100, 100, 700, 550);
@@ -96,10 +85,9 @@ public class ClassPanel {
         ));
 
         JLabel img= new JLabel ();
-		img.setBounds(613,-13,63,85);
-		img.setIcon(new ImageIcon(ClassPanel.class.getResource("/ImagenesGym/agregarUsuario.png")));
-		panel.add(img);
-		
+        img.setBounds(613,-13,63,85);
+        img.setIcon(new ImageIcon(ClassPanel.class.getResource("/ImagenesGym/agregarUsuario.png")));
+        panel.add(img);
         
         table.getColumnModel().getColumn(1).setCellRenderer(new TableCellRenderer() {
             @Override
@@ -127,6 +115,20 @@ public class ClassPanel {
         btnNewButton.setBackground(new Color(255, 255, 255));
         btnNewButton.setBounds(565, 467, 85, 21);
         panel.add(btnNewButton);
-    
     }
+
+    public Window getFrame() {
+        return frame;
+    }
+
+    public JButton getBtnMostrarClasses() {
+        return btnMostrarClasses;
+    }
+
+    public JButton getBtnMostrarRecords() {
+        return btnMostrarRecords;
+    }
+
+    private JButton btnMostrarClasses;
+    private JButton btnMostrarRecords;
 }

@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import java.awt.Font;
+import java.awt.Window;
+
 import javax.swing.JTable;
 
 public class Classes {
@@ -17,6 +19,7 @@ public class Classes {
     private JTable table;
     private JTable table_1;
     private JTable table_2;
+    private JButton btnCrearClase;
 
     /**
      * Launch the application.
@@ -39,6 +42,10 @@ public class Classes {
      */
     public Classes() {
         initialize();
+    }
+    
+    public JButton getBtnCrearClase() {
+        return btnCrearClase;
     }
 
     /**
@@ -156,8 +163,26 @@ public class Classes {
         lblNewLabel_2_2.setBounds(10, 155, 166, 31);
         panel_1_1_1_1.add(lblNewLabel_2_2);
 
-        JButton btnNewButton = new JButton("Regresar");
-        btnNewButton.setBounds(31, 463, 100, 32);
-        panel.add(btnNewButton);
-    }
+        
+            JButton btnNewButton = new JButton("Regresar");
+            btnNewButton.setBounds(31, 463, 100, 32);
+            panel.add(btnNewButton);
+            
+            JLabel lblNewLabel_2_3 = new JLabel("Clases");
+            lblNewLabel_2_3.setOpaque(true);
+            lblNewLabel_2_3.setHorizontalAlignment(SwingConstants.CENTER);
+            lblNewLabel_2_3.setForeground(Color.WHITE);
+            lblNewLabel_2_3.setFont(new Font("Tahoma", Font.BOLD, 16));
+            lblNewLabel_2_3.setBackground(new Color(144, 45, 65));
+            lblNewLabel_2_3.setBounds(0, 11, 684, 40);
+            panel.add(lblNewLabel_2_3);
+            
+            btnCrearClase = new JButton("Crear Clase");
+            btnCrearClase.setBounds(572, 463, 100, 32);
+            panel.add(btnCrearClase);
+        }
+
+        public Window getFrame() {
+            return frame;
+        }
 }

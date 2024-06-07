@@ -111,15 +111,15 @@ public class ClientDetail {
 		textFieldBirthYear.setBounds(322, 210, 65, 29);
 		panel.add(textFieldBirthYear);
 
-		Object[][] data = {
-			{ "Alejandro Perez", "$290", "Sí" },
-			{ "Hannia Ruiz", "$450", "No" },
-			{ "Ruben Alejandro", "$200", "No" }
-		};
+		//Object[][] data = {
+			//{ "Alejandro Perez", "$290", "Sí" },
+			//{ "Hannia Ruiz", "$450", "No" },
+			//{ "Ruben Alejandro", "$200", "No" }
+		//};
 
-		String[] columnNames = { "Entrenador", "Pagos", "Asistencia" };
-		DefaultTableModel model = new DefaultTableModel(data, columnNames);
-		table = new JTable(model);
+		String[] columnNames = { "Clase", "Pagos", "Asistencia" };
+		//DefaultTableModel model = new DefaultTableModel(data, columnNames);
+		//table = new JTable(model);
 
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(61, 271, 576, 150);

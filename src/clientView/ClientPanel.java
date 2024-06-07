@@ -83,18 +83,19 @@ public class ClientPanel {
         table = new JTable();
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Nombre");
+        model.addColumn("Apellidos");
         model.addColumn("Acciones");
 
         List<List<String>> clientes = controller.getAllClients();
         for (List<String> cliente : clientes) {
-            model.addRow(new Object[]{cliente.get(0), ""});
+            model.addRow(new Object[]{cliente.get(0),cliente.get(2), ""});
         }
 
         table.setModel(model);
 
         // Set the cell renderer and editor for the "Acciones" column
-        table.getColumnModel().getColumn(1).setCellRenderer(new ButtonRenderer());
-        table.getColumnModel().getColumn(1).setCellEditor(new ButtonEditor());
+        table.getColumnModel().getColumn(2).setCellRenderer(new ButtonRenderer());
+        table.getColumnModel().getColumn(2).setCellEditor(new ButtonEditor());
 
         table.setRowHeight(50);
         table.getColumnModel().getColumn(0).setPreferredWidth(30);
@@ -165,15 +166,34 @@ public class ClientPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == btnEdit) {
-                frame.dispose();
-                ClientEdit.main(new String[0]);
-            } else if (e.getSource() == btnView) {
+        	  if (e.getSource() == btnEdit) {
+        	        String nombreCliente = (String) table.getModel().getValueAt(row, 0);
+        	        int clienteId = buscarIdClientePorNombre(nombreCliente);
+        	        if (clienteId != -1) {
+        	            frame.dispose();
+        	            ClientEdit.main(new String[]{Integer.toString(clienteId)});
+        	        } else {
+        	            JOptionPane.showMessageDialog(frame, "No se pudo encontrar el ID del cliente.");
+        	        }
+        	    } else if (e.getSource() == btnView) {
                 frame.dispose();
                 ClientDetail.main(new String[0]);
-                
             }
             fireEditingStopped();
         }
+        
+        private int buscarIdClientePorNombre(String nombreCliente) {
+            List<List<String>> clientes = controller.getAllClients();
+            for (List<String> cliente : clientes) {
+                String nombre = cliente.get(0); 
+                if (nombre.equals(nombreCliente)) {
+                    return Integer.parseInt(cliente.get(1));
+                }
+            }
+            return -1; 
+        }
+
+
+
     }
 }

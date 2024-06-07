@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -16,7 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JTable;
 import javax.swing.ImageIcon;
-import instructorsControllers.InstructorDetailsController;
+import authControllers.instructorControllers;
 import java.util.List;
 
 //INCOMPLETO
@@ -27,7 +28,7 @@ public class InstructorsDetails {
     private JButton btnNewButton_1;
     private JButton btnNewButton_2;
     private JLabel lblImagenInstructor_1;
-    private InstructorDetailsController controller;
+    private instructorControllers controller;
     private JTable table;
     private JLabel lblNewLabel_1;
     private JLabel lblNewLabel_2;
@@ -52,7 +53,7 @@ public class InstructorsDetails {
      * Create the application.
      */
     public InstructorsDetails() {
-        controller = new InstructorDetailsController();
+        controller = new instructorControllers();
         initialize();
     }
 
@@ -108,6 +109,25 @@ public class InstructorsDetails {
         table.setBounds(35, 85, 622, 371);
         panel.add(table);
         
+        List<List<String>> allInstructorsClassHistory = controller.getAllInstructorsClassHistory();
+        
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Nombre del Instructor");
+        model.addColumn("Fecha");
+        model.addColumn("Nombre de la Clase");
+        
+        for (List<String> instructorClassHistory : allInstructorsClassHistory) {
+            String instructorName = instructorClassHistory.get(0);
+            for (int i = 1; i < instructorClassHistory.size(); i += 2) {
+                String date = instructorClassHistory.get(i);
+                String className = instructorClassHistory.get(i + 1);
+                model.addRow(new Object[]{instructorName, date, className});
+            }
+        }
+        
+        table.setModel(model);
+
+        
         lblNewLabel_1 = new JLabel("Nombre");
         lblNewLabel_1.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
         lblNewLabel_1.setBounds(35, 70, 128, 13);
@@ -127,10 +147,6 @@ public class InstructorsDetails {
 		});
     }
 
-    private String getInstructorSpecialty(int instructorId) {
-        List<String> specialties = controller.getInstructorSpecialties();
-        return specialties.get(instructorId - 1);
-    }
     
     public JFrame getFrame() {
         return frame;

@@ -91,12 +91,12 @@ public class TariffPanel {
         scrollPane.setViewportView(table);
 
         DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("Cliente");
-        model.addColumn("Membresia");
-        model.addColumn("Fecha inicial");
-        model.addColumn("Fecha final");
-        model.addColumn("Precio");
-        model.addColumn("Acciones");
+        model.addColumn("");
+        model.addColumn("");
+        model.addColumn("");
+        model.addColumn("");
+        model.addColumn("");
+        model.addColumn("");
 
         table.setModel(model);
 

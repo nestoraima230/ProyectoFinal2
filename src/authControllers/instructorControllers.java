@@ -30,6 +30,10 @@ public class instructorControllers {
         return instructorModels.deleteInstructor(id);
     }
 
+    public List<List<String>> getAllInstructorsClassHistory() {
+        return instructorModels.getAllInstructorsClassHistory();
+    }
+    
     public List<String> getInstructorSpecialties() {
         return instructorModels.getInstructorSpecialties();
     }

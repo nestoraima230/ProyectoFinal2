@@ -12,7 +12,7 @@ public class MainRegisterModel {
 
 
     public boolean registerUser(String username, String password, String email) {
-        String query = "INSERT INTO USUARIO_2 (NOMBRE, CONTRASENA, EMAIL) VALUES (?, ?, ?)";
+        String query = "INSERT INTO USUARIO (NOMBRE, CONTRASENA, EMAIL) VALUES (?, ?, ?)";
         
         try (Connection conn = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
              PreparedStatement pstmt = conn.prepareStatement(query)) {

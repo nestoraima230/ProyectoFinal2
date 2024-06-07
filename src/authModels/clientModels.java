@@ -88,7 +88,7 @@ public class clientModels {
 
     
     public List<String> getClientDetails(int clientId) {
-        String query = "SELECT NOMBRE, TELEFONO, FECHA_NACIMIENTO FROM CLIENTE WHERE CLIENTE = ?";
+        String query = "SELECT CLIENTE_ID, NOMBRE, APELLIDOS, FECHA_NACIMIENTO, TELEFONO FROM CLIENTE WHERE CLIENTE_ID = ?";
         List<String> clientDetails = new ArrayList<>();
 
         try (Connection con = getConnection();
@@ -97,6 +97,8 @@ public class clientModels {
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
                     clientDetails.add(rs.getString("NOMBRE"));
+                    clientDetails.add(rs.getString("APELLIDOS"));
+                	clientDetails.add(rs.getString("CLIENTE_ID"));
                     clientDetails.add(rs.getString("TELEFONO"));
                     clientDetails.add(rs.getString("FECHA_NACIMIENTO"));
                 }
@@ -108,7 +110,7 @@ public class clientModels {
     }
     
     public List<List<String>> getAllClients() {
-        String query = "SELECT NOMBRE, APELLIDOS, TELEFONO FROM CLIENTE";
+        String query = "SELECT NOMBRE, CLIENTE_ID, APELLIDOS,FECHA_NACIMIENTO, TELEFONO FROM CLIENTE";
         List<List<String>> allClients = new ArrayList<>();
 
         try (Connection con = getConnection();
@@ -117,7 +119,9 @@ public class clientModels {
             while (rs.next()) {
                 List<String> clientDetails = new ArrayList<>();
                 clientDetails.add(rs.getString("NOMBRE"));
+                clientDetails.add(rs.getString("CLIENTE_ID"));
                 clientDetails.add(rs.getString("APELLIDOS"));
+                clientDetails.add(rs.getString("FECHA_NACIMIENTO"));
                 clientDetails.add(rs.getString("TELEFONO"));
                 allClients.add(clientDetails);
             }
@@ -127,18 +131,34 @@ public class clientModels {
 
         return allClients;
     }
+
     
     public boolean deleteClient(int id) {
     	
         String deleteTarifaQuery = "DELETE FROM TARIFA WHERE CLIENTE_ID = ?";
         String deleteClientQuery = "DELETE FROM CLIENTE WHERE CLIENTE_ID = ?";
+        String deleteAssistQuery = "DELETE FROM ASISTENCIA WHERE CLIENTE_ID = ?";
+        String deleteInscriptionQuery = "DELETE FROM INSCRIPCION WHERE CLIENTE_ID = ?";
+        String deletePayQuery = "DELETE FROM PAGO WHERE CLIENTE_ID = ?";
         
         try (Connection con = getConnection();
              PreparedStatement pstmtDeleteTarifa = con.prepareStatement(deleteTarifaQuery);
-             PreparedStatement pstmtDeleteClient = con.prepareStatement(deleteClientQuery)) {
+             PreparedStatement pstmtDeleteClient = con.prepareStatement(deleteClientQuery); 
+             PreparedStatement pstmtDeleteAssist = con.prepareStatement(deleteAssistQuery);
+        	 PreparedStatement pstmtDeleteInscription = con.prepareStatement(deleteInscriptionQuery);
+        	 PreparedStatement pstmtDeletePay= con.prepareStatement(deletePayQuery)){
             
             pstmtDeleteTarifa.setInt(1, id);
             pstmtDeleteTarifa.executeUpdate();
+            
+            pstmtDeleteAssist.setInt(1, id);
+            pstmtDeleteAssist.executeUpdate();
+            
+            pstmtDeleteInscription.setInt(1, id);
+            pstmtDeleteInscription.executeUpdate();
+            
+            pstmtDeletePay.setInt(1, id);
+            pstmtDeletePay.executeUpdate();
             
             pstmtDeleteClient.setInt(1, id);
             int rowsAffected = pstmtDeleteClient.executeUpdate();

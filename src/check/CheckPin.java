@@ -57,7 +57,7 @@ public class CheckPin {
         panel.add(btnIngresar);
 
         JLabel lblNewLabel_1 = new JLabel("");
-        lblNewLabel_1.setIcon(new ImageIcon(CheckPin.class.getResource("/ImagenesGym/chicoenGymIcono.jpg")));
+        //lblNewLabel_1.setIcon(new ImageIcon(CheckPin.class.getResource("/ImagenesGym/chicoenGymIcono.jpg")));
         lblNewLabel_1.setBounds(0, 0, 684, 511);
         panel.add(lblNewLabel_1);
 

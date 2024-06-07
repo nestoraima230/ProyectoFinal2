@@ -164,6 +164,46 @@ public class instructorModels {
         }
     }
 
+    public List<List<String>> getAllInstructorsClassHistory() {
+        List<List<String>> allInstructorsClassHistory = new ArrayList<>();
+
+        String query = "SELECT I.NOMBRE, CI.FECHA_HORA, C.NOMBRE " +
+                       "FROM INSTRUCTOR I " +
+                       "INNER JOIN CLASE_IMPARTIDA CI ON I.INSTRUCTOR_ID = CI.INSTRUCTOR_ID " +
+                       "INNER JOIN CLASE C ON CI.CLASE_ID = C.CLASE_ID";
+
+        try (Connection con = getConnection();
+             PreparedStatement pstmt = con.prepareStatement(query);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            String currentInstructorName = "";
+            List<String> currentInstructorClassHistory = null;
+
+            while (rs.next()) {
+                String instructorName = rs.getString("NOMBRE");
+                if (!instructorName.equals(currentInstructorName)) {
+                    if (currentInstructorClassHistory != null && !currentInstructorClassHistory.isEmpty()) {
+                        allInstructorsClassHistory.add(currentInstructorClassHistory);
+                    }
+                    currentInstructorName = instructorName;
+                    currentInstructorClassHistory = new ArrayList<>();
+                    currentInstructorClassHistory.add(instructorName);
+                }
+                currentInstructorClassHistory.add(rs.getTimestamp("FECHA_HORA").toString());
+                currentInstructorClassHistory.add(rs.getString("C.NOMBRE"));
+            }
+
+            if (currentInstructorClassHistory != null && !currentInstructorClassHistory.isEmpty()) {
+                allInstructorsClassHistory.add(currentInstructorClassHistory);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return allInstructorsClassHistory;
+    }
+    
     // Instructor Details
     public List<String> getInstructorSpecialties() {
         String query = "SELECT ESPECIALIDAD FROM INSTRUCTOR";

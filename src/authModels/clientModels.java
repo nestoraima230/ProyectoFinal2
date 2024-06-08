@@ -132,6 +132,73 @@ public class clientModels {
         return allClients;
     }
 
+    public List<List<String>> getClientClasses(int clientId) {
+        String query = "SELECT c.NOMBRE, ci.FECHA_HORA " +
+                       "FROM ASISTENCIA a " +
+                       "INNER JOIN CLASE_IMPARTIDA ci ON a.CLASE_IMPARTIDA_ID = ci.CLASE_ID " +
+                       "INNER JOIN CLASE c ON ci.CLASE_ID = c.CLASE_ID " +
+                       "WHERE a.CLIENTE_ID = ?";
+        List<List<String>> classes = new ArrayList<>();
+
+        try (Connection con = getConnection();
+             PreparedStatement pstmt = con.prepareStatement(query)) {
+            pstmt.setInt(1, clientId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    List<String> classDetails = new ArrayList<>();
+                    classDetails.add(rs.getString("NOMBRE"));
+                    classDetails.add(rs.getString("FECHA_HORA"));
+                    classes.add(classDetails);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return classes;
+    }
+
+
+    public List<List<String>> getClientPayments(int clientId) {
+        String query = "SELECT FECHA_PAGO, MONTO FROM PAGO WHERE CLIENTE_ID = ?";
+        List<List<String>> payments = new ArrayList<>();
+
+        try (Connection con = getConnection();
+             PreparedStatement pstmt = con.prepareStatement(query)) {
+            pstmt.setInt(1, clientId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    List<String> paymentDetails = new ArrayList<>();
+                    paymentDetails.add(rs.getString("FECHA_PAGO"));
+                    paymentDetails.add(rs.getString("MONTO"));
+                    payments.add(paymentDetails);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return payments;
+    }
+
+    public List<List<String>> getClientAttendances(int clientId) {
+        String query = "SELECT FECHA_ASISTENCIA FROM ASISTENCIA WHERE CLIENTE_ID = ?";
+        List<List<String>> attendances = new ArrayList<>();
+
+        try (Connection con = getConnection();
+             PreparedStatement pstmt = con.prepareStatement(query)) {
+            pstmt.setInt(1, clientId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    List<String> attendanceDetails = new ArrayList<>();
+                    attendanceDetails.add(rs.getString("FECHA_ASISTENCIA"));
+                    attendances.add(attendanceDetails);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return attendances;
+    }
+
     
     public boolean deleteClient(int id) {
     	

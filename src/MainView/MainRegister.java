@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.border.MatteBorder;
 
 public class MainRegister {
     private JFrame frame;
@@ -33,7 +34,7 @@ public class MainRegister {
     public MainRegister() {
         registerController = new MainRegisterController();
     }
-    // registro
+// registro
     public void initialize() {
         frame = new JFrame();
         frame.setBounds(0, 0, 700, 550);
@@ -49,70 +50,77 @@ public class MainRegister {
         frame.getContentPane().add(panel);
 
         emailField = new JTextField();
+        emailField.setFont(new Font("Tw Cen MT", Font.PLAIN, 16));
         emailField.setBounds(229, 269, 300, 40);
+        emailField.setBackground(new Color(148, 121, 150));
+		emailField.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(0, 0, 0)));
+
         panel.add(emailField);
         emailField.setColumns(10);
 
         JLabel lblEmail = new JLabel("Correo electrónico");
-        lblEmail.setFont(new Font("Tahoma", Font.BOLD, 20));
+        lblEmail.setFont(new Font("Tw Cen MT", Font.BOLD, 25));
         lblEmail.setBounds(175, 239, 300, 20);
         lblEmail.setForeground(new Color(255, 255, 255));
         panel.add(lblEmail);
 
         passwordField = new JTextField();
+        passwordField.setFont(new Font("Tw Cen MT", Font.PLAIN, 16));
         passwordField.setBounds(229, 372, 300, 40);
+        passwordField.setBackground(new Color(148, 121, 150));
+		passwordField.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(0, 0, 0)));
+
         panel.add(passwordField);
         passwordField.setColumns(10);
 
         JLabel lblPassword = new JLabel("Contraseña");
-        lblPassword.setFont(new Font("Tahoma", Font.BOLD, 20));
+        lblPassword.setFont(new Font("Tw Cen MT", Font.BOLD, 25));
         lblPassword.setBounds(175, 343, 300, 20);
         lblPassword.setForeground(new Color(255, 255, 255));
         panel.add(lblPassword);
 
         JButton btnRegister = new JButton("Registrarse");
-        btnRegister.setBounds(307, 445, 153, 40);
+        btnRegister.setBounds(289, 438, 153, 40);
         btnRegister.setFont(new Font("Arial", Font.BOLD, 18));
-        btnRegister.setBackground(new Color(100, 149, 237));
-        btnRegister.setForeground(new Color(144, 45, 65));
+        btnRegister.setBackground(new Color(0, 0, 0));
+        btnRegister.setForeground(new Color(255, 255, 255));
         panel.add(btnRegister);
 
       
         
         JLabel lblTitle = new JLabel("Registrarse");
-        lblTitle.setBounds(151, 33, 373, 80);
+        lblTitle.setBounds(151, 33, 373, 73);
         lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
-        lblTitle.setFont(new Font("Arial", Font.BOLD, 56));
+        lblTitle.setFont(new Font("Tw Cen MT", Font.BOLD, 72));
         lblTitle.setForeground(new Color (144, 45, 65));
         lblTitle.setBackground(new Color (17, 75, 95));
         panel.add(lblTitle);
 
         JLabel lblNewLabel = new JLabel("Unete a nuestra comunidad");
-        lblNewLabel.setForeground(new Color(255, 255, 255));
-        lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-        lblNewLabel.setBounds(325, 104, 217, 13);
+        lblNewLabel.setForeground(new Color(0, 0, 0));
+        lblNewLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 17));
+        lblNewLabel.setBounds(312, 104, 217, 13);
         panel.add(lblNewLabel);
 
         JPanel panel_1 = new JPanel();
-        panel_1.setBackground(new Color(255, 255, 255));
-        panel_1.setBounds(198, 110, 125, 4);
+        panel_1.setBackground(new Color(0, 0, 0));
+        panel_1.setBounds(175, 113, 125, 4);
         panel.add(panel_1);
 
         JLabel lblNewLabel_1 = new JLabel("Nombre");
         lblNewLabel_1.setForeground(new Color(255, 255, 255));
-        lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 20));
-        lblNewLabel_1.setBounds(181, 146, 142, 20);
+        lblNewLabel_1.setFont(new Font("Tw Cen MT", Font.BOLD, 25));
+        lblNewLabel_1.setBounds(174, 144, 142, 20);
         panel.add(lblNewLabel_1);
 
         textField = new JTextField();
+        textField.setFont(new Font("Tw Cen MT", Font.PLAIN, 16));
         textField.setBounds(229, 176, 300, 40);
+        textField.setBackground(new Color(148, 121, 150));
+		textField.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(0, 0, 0)));
+
         panel.add(textField);
         textField.setColumns(10);
-
-        JPanel panel_2 = new JPanel();
-        panel_2.setBounds(35, 0, 95, 550);
-        panel_2.setBackground(new Color (144, 151, 192));
-        panel.add(panel_2);
 
         JLabel lblNewLabel_2 = new JLabel("");
         lblNewLabel_2.setIcon(new ImageIcon(MainRegister.class.getResource("/ImagenesGym/IconoChikito1.png")));

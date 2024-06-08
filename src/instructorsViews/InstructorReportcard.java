@@ -11,6 +11,7 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JTextPane;
+import javax.swing.border.MatteBorder;
 
 public class InstructorReportcard {
 
@@ -54,22 +55,31 @@ public class InstructorReportcard {
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
+		JButton btnNewButton_1 = new JButton("Regresar");
+		btnNewButton_1.setBounds(528, 437, 128, 32);
+		panel.add(btnNewButton_1);
+		btnNewButton_1.setFont(new Font("Tw Cen MT", Font.PLAIN, 16));
+		btnNewButton_1.setForeground(new Color(255, 255, 255));
+		btnNewButton_1.setBackground(new Color(0, 0, 0));
+		btnNewButton_1.setOpaque(true);
+		
 		JPanel panel_2 = new JPanel();
+		panel_2.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 		panel_2.setBackground(Color.WHITE);
-		panel_2.setBounds(39, 30, 280, 451);
+		panel_2.setBounds(193, 28, 280, 451);
 		panel.add(panel_2);
 		panel_2.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Carta de Reporte");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblNewLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 30));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setForeground(new Color(144, 45, 65));
-		lblNewLabel.setBounds(40, 22, 200, 40);
+		lblNewLabel.setBounds(24, 35, 230, 40);
 		panel_2.add(lblNewLabel);
 		
 		JTextPane txtpnInstruc = new JTextPane();
 		txtpnInstruc.setFont(new Font("Tahoma", Font.BOLD, 13));
-		txtpnInstruc.setText("Instructores especializados en tecnicas de Gimnacio y Mosculatura");
+		txtpnInstruc.setText("Instructores especializados en tecnicas de Gimnasio y Musculatura");
 		txtpnInstruc.setBounds(10, 106, 260, 53);
 		panel_2.add(txtpnInstruc);
 		
@@ -77,47 +87,43 @@ public class InstructorReportcard {
 		txtpnCapacidadParaLa.setBackground(new Color(148, 121, 150));
 		txtpnCapacidadParaLa.setText("Capacidad para la guia y motivacion de los clientes");
 		txtpnCapacidadParaLa.setFont(new Font("Tahoma", Font.BOLD, 13));
-		txtpnCapacidadParaLa.setBounds(10, 207, 260, 53);
+		txtpnCapacidadParaLa.setBounds(10, 181, 260, 53);
 		panel_2.add(txtpnCapacidadParaLa);
 		
 		JTextPane txtpnInstruc_1_1 = new JTextPane();
 		txtpnInstruc_1_1.setBackground(new Color(148, 121, 150));
 		txtpnInstruc_1_1.setText("Certificacion en reanimacion y primeros auxilios");
 		txtpnInstruc_1_1.setFont(new Font("Tahoma", Font.BOLD, 13));
-		txtpnInstruc_1_1.setBounds(10, 287, 260, 53);
+		txtpnInstruc_1_1.setBounds(10, 263, 260, 53);
 		panel_2.add(txtpnInstruc_1_1);
 		
 		JTextPane txtpnInstruc_1_1_1 = new JTextPane();
 		txtpnInstruc_1_1_1.setBackground(new Color(148, 121, 150));
 		txtpnInstruc_1_1_1.setText("Diseño de rutinas confiables y efectivas");
 		txtpnInstruc_1_1_1.setFont(new Font("Tahoma", Font.BOLD, 13));
-		txtpnInstruc_1_1_1.setBounds(10, 366, 260, 53);
+		txtpnInstruc_1_1_1.setBounds(10, 344, 260, 53);
 		panel_2.add(txtpnInstruc_1_1_1);
+		
+		JButton btnNewButton = new JButton("Descargar ");
+		btnNewButton.setBounds(154, 407, 116, 28);
+		panel_2.add(btnNewButton);
+		btnNewButton.setFont(new Font("Tw Cen MT", Font.PLAIN, 16));
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.setBackground(new Color(0, 0, 0));
+		btnNewButton.setOpaque(true);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(148, 121, 150));
-		panel_1.setBounds(363, 0, 321, 511);
+		panel_1.setBounds(690, 0, 0, 511);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Descargar ");
-		btnNewButton.setBounds(96, 124, 128, 32);
-		btnNewButton.setForeground(new Color(255, 255, 255));
-		btnNewButton.setBackground(new Color(144, 45, 65 ));
-		btnNewButton.setOpaque(true);
-		panel_1.add(btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton("Regresar");
-		btnNewButton_1.setBounds(96, 326, 128, 32);
-		btnNewButton_1.setForeground(new Color(255, 255, 255));
-		btnNewButton_1.setBackground(new Color(144, 45, 65 ));
-		btnNewButton_1.setOpaque(true);
-		panel_1.add(btnNewButton_1);
-		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon(InstructorReportcard.class.getResource("/ImagenesGym/PesasChikitas.jpg")));
-		lblNewLabel_1.setBounds(0, 0, 684, 511);
+		lblNewLabel_1.setBounds(0, 0, 705, 511);
 		panel.add(lblNewLabel_1);
+		
+		
 	}
 	
     public JFrame getFrame() {

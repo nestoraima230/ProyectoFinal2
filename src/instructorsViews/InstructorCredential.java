@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.border.MatteBorder;
 
 public class InstructorCredential {
 
@@ -59,20 +60,22 @@ public class InstructorCredential {
 		panel.setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 		panel_1.setBackground(new Color(144, 45, 65));
 		panel_1.setBounds(60, 31, 252, 420);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
 		JPanel panel_2_1 = new JPanel();
+		panel_2_1.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 		panel_2_1.setBackground(Color.WHITE);
-		panel_2_1.setBounds(0, 32, 252, 74);
+		panel_2_1.setBounds(0, 32, 252, 82);
 		panel_1.add(panel_2_1);
 		panel_2_1.setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon(InstructorCredential.class.getResource("/ImagenesGym/LogoChikito2.png")));
-		lblNewLabel_1.setBounds(78, 0, 94, 74);
+		lblNewLabel_1.setBounds(79, 10, 93, 64);
 		panel_2_1.add(lblNewLabel_1);
 		
 		JPanel panel_3 = new JPanel();
@@ -85,7 +88,7 @@ public class InstructorCredential {
 		lblNewLabel_2.setBounds(0, 0, 212, 180);
 		panel_3.add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_6 = new JLabel("[Ingresa el Nombre]");
+		JLabel lblNewLabel_6 = new JLabel("Entrenador Gym power");
 		lblNewLabel_6.setForeground(Color.WHITE);
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);
@@ -93,6 +96,7 @@ public class InstructorCredential {
 		panel_1.add(lblNewLabel_6);
 		
 		JPanel panel_1_1 = new JPanel();
+		panel_1_1.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 		panel_1_1.setBackground(new Color(144, 45, 65));
 		panel_1_1.setBounds(372, 31, 252, 420);
 		panel.add(panel_1_1);
@@ -136,10 +140,12 @@ public class InstructorCredential {
 		lblNewLabel_4.setBounds(0, 0, 252, 74);
 		panel_2_1_1.add(lblNewLabel_4);
 		
-		JButton btnNewButton = new JButton("Regresar");
+		JButton btnNewButton = new JButton("    Regresar");
+		btnNewButton.setBackground(new Color(0, 0, 0));
+		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton.setBounds(60, 477, 95, 24);
+		btnNewButton.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
+		btnNewButton.setBounds(124, 461, 122, 41);
 		panel.add(btnNewButton);
 		
 		btnNewButton.addActionListener(new ActionListener() {
@@ -151,8 +157,10 @@ public class InstructorCredential {
         });
 		
 		JButton btnNewButton_1 = new JButton("Descargar");
-		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton_1.setBounds(529, 477, 95, 24);
+		btnNewButton_1.setForeground(new Color(255, 255, 255));
+		btnNewButton_1.setBackground(new Color(0, 0, 0));
+		btnNewButton_1.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
+		btnNewButton_1.setBounds(451, 461, 117, 42);
 		panel.add(btnNewButton_1);
 	
 	}

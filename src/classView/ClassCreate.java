@@ -1,139 +1,158 @@
 package classView;
 
 import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
-import authControllers.classControllers;
 import javax.swing.JTextField;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
+import javax.swing.JButton;
+import java.awt.Color;
+import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import javax.swing.JButton;
-import java.awt.Color;
-import javax.swing.ImageIcon;
+import java.awt.event.ActionEvent;
+import javax.swing.border.MatteBorder;
+
+import authControllers.classControllers;
+
 
 public class ClassCreate {
 
-    private JFrame frame;
-    private JTextField textFieldNombre;
-    private JTextField textFieldHorario;
-    private JTextField textFieldDuracion;
-    private JTextField textFieldInstructorId;
-    private JTextField textFieldCapacidadMaxima;
+	private JFrame frame;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_4;
+	private JTextField textField_3;
     private classControllers controller;
 
-    public static void main(String[] args) {
-        EventQueue.invokeLater(() -> {
-            try {
-                ClassCreate window = new ClassCreate();
-                window.frame.setVisible(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-    }
 
-    public ClassCreate() {
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ClassCreate window = new ClassCreate();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public ClassCreate() {
         controller = new classControllers(); 
-        initialize();
-    }
+		initialize();
+	}
 
-    private void initialize() {
-        frame = new JFrame();
-        frame.setBounds(100, 100, 700, 550);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().setLayout(null);
-        
-        JPanel panel = new JPanel();
-        panel.setBackground(new Color(148, 121, 150));
-        panel.setBounds(0, 0, 684, 511);
-        frame.getContentPane().add(panel);
-        panel.setLayout(null);
-        
-        JPanel panel_1 = new JPanel();
-        panel_1.setBackground(new Color(148, 121, 150));
-        panel_1.setBounds(197, 0, 487, 511);
-        panel.add(panel_1);
-        panel_1.setLayout(null);
-        
-        JLabel lblNewLabel_1 = new JLabel("Clase");
-        lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        lblNewLabel_1.setBounds(10, 41, 250, 32);
-        panel_1.add(lblNewLabel_1);
-        
-        textFieldNombre = new JTextField();
-        textFieldNombre.setBounds(10, 73, 250, 32);
-        panel_1.add(textFieldNombre);
-        textFieldNombre.setColumns(10);
-        
-        textFieldHorario = new JTextField();
-        textFieldHorario.setColumns(10);
-        textFieldHorario.setBounds(10, 148, 250, 32);
-        panel_1.add(textFieldHorario);
-        
-        JLabel lblNewLabel_1_1 = new JLabel("Horario");
-        lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        lblNewLabel_1_1.setBounds(10, 116, 250, 32);
-        panel_1.add(lblNewLabel_1_1);
-        
-        textFieldDuracion = new JTextField();
-        textFieldDuracion.setColumns(10);
-        textFieldDuracion.setBounds(10, 227, 250, 32);
-        panel_1.add(textFieldDuracion);
-        
-        JLabel lblNewLabel_1_1_1 = new JLabel("Duracion");
-        lblNewLabel_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        lblNewLabel_1_1_1.setBounds(10, 195, 250, 32);
-        panel_1.add(lblNewLabel_1_1_1);
-        
-        textFieldInstructorId = new JTextField();
-        textFieldInstructorId.setColumns(10);
-        textFieldInstructorId.setBounds(10, 302, 250, 32);
-        panel_1.add(textFieldInstructorId);
-        
-        JLabel lblNewLabel_1_1_1_1 = new JLabel("Instructor ID");
-        lblNewLabel_1_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        lblNewLabel_1_1_1_1.setBounds(10, 270, 250, 32);
-        panel_1.add(lblNewLabel_1_1_1_1);
-        
-        textFieldCapacidadMaxima = new JTextField();
-        textFieldCapacidadMaxima.setColumns(10);
-        textFieldCapacidadMaxima.setBounds(10, 370, 250, 32);
-        panel_1.add(textFieldCapacidadMaxima);
-        
-        JLabel lblNewLabel_1_2 = new JLabel("Capacidad Maxima");
-        lblNewLabel_1_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        lblNewLabel_1_2.setBounds(10, 338, 250, 32);
-        panel_1.add(lblNewLabel_1_2);
-        
-        JButton btnNewButton = new JButton("Regresar");
-        btnNewButton.setBounds(10, 460, 100, 32);
-        panel_1.add(btnNewButton);
-        
-        JButton btnCrear = new JButton("Guardar");
-        btnCrear.setBounds(360, 460, 100, 32);
-        panel_1.add(btnCrear);
-        
-        JLabel lblNewLabel = new JLabel("");
-        lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 19));
-        lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNewLabel.setBounds(0, 0, 193, 511);
-        panel.add(lblNewLabel);
-        
-        btnCrear.addActionListener(new ActionListener() {
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 700, 550);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(148, 121, 150));
+		panel.setBounds(0, 0, 684, 511);
+		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
+		panel_2.setBounds(182, 10, 333, 472);
+		panel.add(panel_2);
+		panel_2.setBackground(new Color(255, 255, 255));
+		panel_2.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("Clase");
+		lblNewLabel_1.setBounds(37, 76, 135, 25);
+		panel_2.add(lblNewLabel_1);
+		lblNewLabel_1.setFont(new Font("Tw Cen MT", Font.PLAIN, 23));
+		
+		textField = new JTextField();
+		textField.setFont(new Font("Tw Cen MT", Font.PLAIN, 16));
+		textField.setBounds(37, 111, 250, 32);
+		panel_2.add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("Duracion");
+		lblNewLabel_1_1.setBounds(37, 164, 250, 32);
+		panel_2.add(lblNewLabel_1_1);
+		lblNewLabel_1_1.setFont(new Font("Tw Cen MT", Font.PLAIN, 23));
+		
+		textField_1 = new JTextField();
+		textField_1.setFont(new Font("Tw Cen MT", Font.PLAIN, 16));
+		textField_1.setBounds(37, 206, 250, 32);
+		panel_2.add(textField_1);
+		textField_1.setColumns(10);
+		
+		JLabel lblNewLabel_1_1_1 = new JLabel("Instructor");
+		lblNewLabel_1_1_1.setBounds(37, 240, 250, 32);
+		panel_2.add(lblNewLabel_1_1_1);
+		lblNewLabel_1_1_1.setFont(new Font("Tw Cen MT", Font.PLAIN, 23));
+		
+		textField_2 = new JTextField();
+		textField_2.setFont(new Font("Tw Cen MT", Font.PLAIN, 16));
+		textField_2.setBounds(37, 282, 250, 32);
+		panel_2.add(textField_2);
+		textField_2.setColumns(10);
+		
+		JLabel lblNewLabel_1_1_1_1 = new JLabel("Capacidad");
+		lblNewLabel_1_1_1_1.setBounds(37, 324, 141, 32);
+		panel_2.add(lblNewLabel_1_1_1_1);
+		lblNewLabel_1_1_1_1.setFont(new Font("Tw Cen MT", Font.PLAIN, 23));
+		
+		textField_4 = new JTextField();
+		textField_4.setFont(new Font("Tw Cen MT", Font.PLAIN, 16));
+		textField_4.setBounds(37, 361, 105, 32);
+		panel_2.add(textField_4);
+		textField_4.setColumns(10);
+		
+		JLabel lblNewLabel_1_2 = new JLabel("Horario");
+		lblNewLabel_1_2.setBounds(173, 324, 96, 32);
+		panel_2.add(lblNewLabel_1_2);
+		lblNewLabel_1_2.setFont(new Font("Tw Cen MT", Font.PLAIN, 23));
+		
+		textField_3 = new JTextField();
+		textField_3.setFont(new Font("Tw Cen MT", Font.PLAIN, 16));
+		textField_3.setBounds(175, 361, 112, 32);
+		panel_2.add(textField_3);
+		textField_3.setColumns(10);
+		
+		JButton btnNewButton = new JButton("OK");
+		btnNewButton.setBackground(new Color(0, 0, 0));
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
+		btnNewButton.setBounds(194, 418, 93, 32);
+		panel_2.add(btnNewButton);
+		
+		JLabel lblNewLabel = new JLabel("Crea una clase");
+		lblNewLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 33));
+		lblNewLabel.setBounds(61, 21, 226, 25);
+		panel_2.add(lblNewLabel);
+		btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String nombre = textFieldNombre.getText();
-                String fechaHora = textFieldHorario.getText();
-                String duracion = textFieldDuracion.getText();
-                String instructorId = textFieldInstructorId.getText();
-                String capacidadMaxima = textFieldCapacidadMaxima.getText();
+                String nombre = textField.getText();
+                String fechaHora = textField_3.getText();
+                String duracion = textField_1.getText();
+                String instructorId = lblNewLabel_1_1_1.getText();
+                String capacidadMaxima = textField_4.getText();
 
                 if (fechaHora.matches("\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}")) {
                     try {
@@ -157,16 +176,5 @@ public class ClassCreate {
                 }
             }
         });
-        
-        btnNewButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                ClassPanel classPanel = new ClassPanel();
-                
-                classPanel.getFrame().setVisible(true);
-                
-                frame.dispose();
-            }
-        });
-
-    }
+	}
 }

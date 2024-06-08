@@ -6,22 +6,30 @@ import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
-import authControllers.classControllers;
+import MainView.MainRegister;
+
+import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import java.util.List;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.EventQueue;
 
+import javax.swing.AbstractCellEditor;
+import javax.swing.ImageIcon;
 import javax.swing.JTable;
+import javax.swing.JOptionPane;
+
+import authControllers.classControllers;
+import clientView.ClientDetail;
+import clientView.ClientEdit;
+import clientView.ClientPanel;
 
 public class ClassRecords {
 
@@ -106,53 +114,12 @@ public class ClassRecords {
                 clase.get(4),    
                 clase.get(5),    
                 clase.get(2),    
-                new Object()     
+                ""  // Cambiar "new Object()" por una cadena vacía para representar la columna de botones
             });
         }
 
-
-        table.getColumnModel().getColumn(5).setCellRenderer(new TableCellRenderer() {
-            @Override
-            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                JPanel panel = new JPanel(new GridLayout(1, 2, 10, 0));
-                panel.setBackground(table.getBackground());
-
-                JButton btnEdit = new JButton(new ImageIcon(getClass().getResource("/ImagenesGym/boton-editar.png")));
-                JButton btnView = new JButton(new ImageIcon(getClass().getResource("/ImagenesGym/ver-detalles.png")));
-
-                btnEdit.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        //int rowIndex = table.convertRowIndexToModel(row);
-                        
-                        //String claseSeleccionada = (String) table.getModel().getValueAt(rowIndex, 0);
-                        
-
-                        ClassEdit editWindow = new ClassEdit();
-                        editWindow.setVisible(true);
-                    }
-                });
-
-                btnView.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        int rowIndex = table.convertRowIndexToModel(row);
-                        
-                        String claseSeleccionada = (String) table.getModel().getValueAt(rowIndex, 0);
-                        
-
-                        //classDetails detailsWindow = new classDetails(claseSeleccionada);
-                      //  detailsWindow.setVisible(true);
-                    }
-                });
-
-                panel.add(btnEdit);
-                panel.add(btnView);
-
-                return panel;
-            }
-        });
-
+        table.getColumnModel().getColumn(5).setCellRenderer(new ButtonRenderer());
+        table.getColumnModel().getColumn(5).setCellEditor(new ButtonEditor());
 
         table.setRowHeight(50);
 
@@ -172,6 +139,64 @@ public class ClassRecords {
         btnNewButton1.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
         btnNewButton1.setBounds(558, 457, 100, 24);
         panel_1.add(btnNewButton1);
+    }
+
+    private class ButtonRenderer extends JPanel implements TableCellRenderer {
+        public ButtonRenderer() {
+            setLayout(new GridLayout(1, 2, 10, 0));
+            setBackground(Color.WHITE);
+        }
+
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            JButton btnEdit = new JButton(new ImageIcon(getClass().getResource("/ImagenesGym/boton-editar.png")));
+            JButton btnView = new JButton(new ImageIcon(getClass().getResource("/ImagenesGym/ver-detalles.png")));
+            removeAll();
+            add(btnEdit);
+            add(btnView);
+            return this;
+        }
+    }
+
+    private class ButtonEditor extends AbstractCellEditor implements TableCellEditor, ActionListener {
+        private JPanel panel;
+        private JButton btnEdit;
+        private JButton btnView;
+        private int row;
+
+        public ButtonEditor() {
+            panel = new JPanel(new GridLayout(1, 2, 10, 0));
+            btnEdit = new JButton(new ImageIcon(getClass().getResource("/ImagenesGym/boton-editar.png")));
+            btnView = new JButton(new ImageIcon(getClass().getResource("/ImagenesGym/ver-detalles.png")));
+            btnEdit.addActionListener(this);
+            btnView.addActionListener(this);
+            panel.add(btnEdit);
+            panel.add(btnView);
+        }
+
+        @Override
+        public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
+            this.row = row;
+            return panel;
+        }
+
+        @Override
+        public Object getCellEditorValue() {
+            return "";
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == btnEdit) {
+                String claseSeleccionada = (String) table.getModel().getValueAt(row, 0);
+                ClientEdit.main(new String[0]);
+
+            } else if (e.getSource() == btnView) {
+                String claseSeleccionada = (String) table.getModel().getValueAt(row, 0);
+                ClientPanel.main(new String[0]);
+            }
+            fireEditingStopped();
+        }
     }
 
     public JFrame getFrame() {

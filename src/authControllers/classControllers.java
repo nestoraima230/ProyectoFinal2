@@ -25,9 +25,10 @@ public class classControllers {
         return classModels.getAllClases();
     }
 
-    public boolean updateClase(String nombre,  Timestamp horario, Time duracion, int instructorId, int capacidadMaxima, Timestamp nuevaHora){
-    	return classModels.updateClase(nombre, horario, duracion, instructorId, capacidadMaxima);
+    public boolean updateClase(String nombre,  Timestamp horario, Time duracion, int instructorId, int capacidadMaxima, int claseid){
+        return classModels.updateClase(nombre, horario, duracion, instructorId, capacidadMaxima, claseid);
     }
+    
     
     public List<String> getDetallesClase(String nombreClase) {
         return classModels.getDetallesClase(nombreClase);

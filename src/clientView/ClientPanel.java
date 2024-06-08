@@ -93,7 +93,6 @@ public class ClientPanel {
 
         table.setModel(model);
 
-        // Set the cell renderer and editor for the "Acciones" column
         table.getColumnModel().getColumn(2).setCellRenderer(new ButtonRenderer());
         table.getColumnModel().getColumn(2).setCellEditor(new ButtonEditor());
 
@@ -176,8 +175,14 @@ public class ClientPanel {
         	            JOptionPane.showMessageDialog(frame, "No se pudo encontrar el ID del cliente.");
         	        }
         	    } else if (e.getSource() == btnView) {
-                frame.dispose();
-                ClientDetail.main(new String[0]);
+        	        String nombreCliente = (String) table.getModel().getValueAt(row, 0);
+        	        int clienteId = buscarIdClientePorNombre(nombreCliente);
+        	        if (clienteId != -1) {
+        	            frame.dispose();
+        	            ClientDetail.main(new String[]{Integer.toString(clienteId)});
+        	        } else {
+        	            JOptionPane.showMessageDialog(frame, "No se pudo encontrar el ID del cliente.");
+        	        }
             }
             fireEditingStopped();
         }

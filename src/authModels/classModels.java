@@ -94,21 +94,35 @@ public class classModels {
     }
 
 
-    public boolean deleteClase(int ID) {
-        String query = "DELETE FROM CLASE WHERE CLASE_ID = ?";
+    public boolean deleteClase(int id) {
+        String deleteClaseQuery = "DELETE FROM CLASE WHERE CLASE_ID = ?";
+        String deleteImpartidClassQuery = "DELETE FROM CLASE_IMPARTIDA WHERE CLASE_ID = ?";
+        String deleteReportQuery = "DELETE FROM REPORTE WHERE CLASE_ID = ?";
 
         try (Connection con = getConnection();
-             PreparedStatement pstmt = con.prepareStatement(query)) {
+                PreparedStatement pstmtDeleteClase = con.prepareStatement(deleteClaseQuery);
+                PreparedStatement pstmtDeleteImpartidClass = con.prepareStatement(deleteImpartidClassQuery);
+                PreparedStatement pstmtDeleteReport = con.prepareStatement(deleteReportQuery)) {
 
-            pstmt.setInt(1, ID);
+            con.setAutoCommit(false);
 
-            int rowsAffected = pstmt.executeUpdate();
+            pstmtDeleteImpartidClass.setInt(1, id);
+            pstmtDeleteImpartidClass.executeUpdate();
+
+            pstmtDeleteReport.setInt(1, id);
+            pstmtDeleteReport.executeUpdate();
+
+            pstmtDeleteClase.setInt(1, id);
+            int rowsAffected = pstmtDeleteClase.executeUpdate();
+
+            con.commit();
             return rowsAffected > 0;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
     }
+
 
     public List<String> getDetallesClase(String nombreClase) {
         String query = "SELECT * FROM CLASE WHERE NOMBRE = ?";
@@ -133,23 +147,25 @@ public class classModels {
         return claseDetails;
     }
 
-	public boolean updateClase(String nombre, Timestamp horario, Time duracion, int instructorId, int capacidadMaxima) {
-		  String query = "UPDATE CLASE SET NOMBRE = ?, HORARIO = ?, DURACION = ?, INSTRUCTOR_ID = ?, CAPACIDAD_MAXIMA = ? WHERE CLASE_ID = ?";
-	        try (Connection con = getConnection();
-	                PreparedStatement pstmt = con.prepareStatement(query)) {
+    public boolean updateClase(String nombre, Timestamp horario, Time duracion, int instructorId, int capacidadMaxima, int claseId) {
+    	String query = "UPDATE CLASE SET NOMBRE = ?, HORARIO = ?, DURACION = ?, INSTRUCTOR_ID = ?, CAPACIDAD_MAXIMA = ? WHERE CLASE_ID = ?";
+    	 try (Connection con = getConnection();
+                  PreparedStatement pstmt = con.prepareStatement(query)) {
 
-	               pstmt.setString(1, nombre);
-	               pstmt.setTimestamp(2, horario);
-	               pstmt.setTime(3, duracion);
-	               pstmt.setInt(4, instructorId);
-	               pstmt.setInt(5, capacidadMaxima);
+                 pstmt.setString(1, nombre);
+                 pstmt.setTimestamp(2, horario);
+                 pstmt.setTime(3, duracion);
+                 pstmt.setInt(4, instructorId);
+                 pstmt.setInt(5, capacidadMaxima);
+                 pstmt.setInt(6, claseId);
 
-	               int rowsAffected = pstmt.executeUpdate();
-	               return rowsAffected > 0;
-	           } catch (SQLException e) {
-	               e.printStackTrace();
-	               return false;
-	           }
-	}
+                 int rowsAffected = pstmt.executeUpdate();
+                 return rowsAffected > 0;
+             } catch (SQLException e) {
+                 e.printStackTrace();
+                 return false;
+             }
+  }
+
 
 }

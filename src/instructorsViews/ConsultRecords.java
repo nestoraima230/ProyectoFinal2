@@ -64,15 +64,15 @@ public class ConsultRecords {
 
         JLabel lblNewLabel = new JLabel("Instructores");
         lblNewLabel.setForeground(new Color(255, 255, 255));
-        lblNewLabel.setBackground(new Color(144, 45, 65));
+        lblNewLabel.setBackground(new Color(0, 0, 0));
         lblNewLabel.setOpaque(true);
         lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
         lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 32));
-        lblNewLabel.setBounds(138, 31, 400, 40);
+        lblNewLabel.setBounds(27, 58, 630, 52);
         panel_1.add(lblNewLabel);
 
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(27, 109, 630, 350);
+        scrollPane.setBounds(27, 109, 630, 323);
         panel_1.add(scrollPane);
 
         table = new JTable();
@@ -83,7 +83,7 @@ public class ConsultRecords {
         model.addColumn("Apellidos");
         model.addColumn("Especialidad");
         model.addColumn("Email");
-        model.addColumn("");
+        model.addColumn("editar         ver detalle");
         table.setModel(model);
 
         table.getColumnModel().getColumn(4).setCellRenderer(new TableCellRenderer() {
@@ -93,9 +93,10 @@ public class ConsultRecords {
                 panel.setBackground(table.getBackground());
 
                 JButton btnEdit = new JButton(new ImageIcon(getClass().getResource("/ImagenesGym/boton-editar.png")));
+                btnEdit.setBackground(Color.white);
                
                 JButton btnView = new JButton(new ImageIcon(getClass().getResource("/ImagenesGym/ver-detalles.png")));
-
+                btnView.setBackground(Color.white);
                 btnEdit.setPreferredSize(new Dimension(50, 50));
                 
                 btnView.setPreferredSize(new Dimension(50, 50));
@@ -113,7 +114,7 @@ public class ConsultRecords {
         table.setRowHeight(50);
         
         JLabel img= new JLabel ();
-		img.setBounds(611,46,63,85);
+		img.setBounds(621,0,63,85);
 		img.setIcon(new ImageIcon(ClientPanel.class.getResource("/ImagenesGym/agregarUsuario.png")));
 		panel_1.add(img);
 
@@ -121,7 +122,7 @@ public class ConsultRecords {
         btnOk.setForeground(new Color(255, 255, 255));
         btnOk.setBackground(new Color(0, 0, 0));
         btnOk.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
-        btnOk.setBounds(546, 469, 111, 32);
+        btnOk.setBounds(546, 455, 111, 32);
         panel_1.add(btnOk);
     }
 

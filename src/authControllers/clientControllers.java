@@ -24,6 +24,19 @@ public class clientControllers {
         return clientModels.getAllClients();
     }
 
+    
+    public List<List<String>> getClientClasses(int clientId) {
+        return clientModels.getClientClasses(clientId);
+    }
+
+    public List<List<String>> getClientPayments(int clientId) {
+        return clientModels.getClientPayments(clientId);
+    }
+
+    public List<List<String>> getClientAttendance(int clientId) {
+        return clientModels.getClientAttendances(clientId);
+    }
+    
     public boolean deleteClient(int id) {
         return clientModels.deleteClient(id);
     }

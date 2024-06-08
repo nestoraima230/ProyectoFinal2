@@ -16,8 +16,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.MatteBorder;
 
 import authControllers.classControllers;
+
 
 public class ClassEdit {
 
@@ -28,7 +30,9 @@ public class ClassEdit {
 	private JTextField textField_4;
 	private JTextField textField_3;
 	private classControllers controller;
-	
+	private JTextField textField_5;
+
+
 	/**
 	 * Launch the application.
 	 */
@@ -63,83 +67,83 @@ public class ClassEdit {
 		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
+		panel.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 		panel.setBackground(new Color(148, 121, 150));
 		panel.setBounds(0, 0, 684, 511);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(148, 121, 150));
-		panel_1.setBounds(488, 29, 487, 511);
-		panel.add(panel_1);
-		panel_1.setLayout(null);
-		
-		JButton btnCrear = new JButton("Guardar");
-		btnCrear.setBounds(360, 460, 100, 32);
-		panel_1.add(btnCrear);
-		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(146, 29, 371, 472);
+		panel_2.setBackground(new Color(255, 255, 255));
+		panel_2.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
+		panel_2.setBounds(135, 29, 436, 453);
 		panel.add(panel_2);
 		panel_2.setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("Clase");
-		lblNewLabel_1.setBounds(10, 34, 135, 25);
+		lblNewLabel_1.setBounds(25, 104, 135, 25);
 		panel_2.add(lblNewLabel_1);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		textField = new JTextField();
-		textField.setBounds(10, 69, 250, 32);
+		textField.setBounds(25, 139, 172, 32);
 		panel_2.add(textField);
 		textField.setColumns(10);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Duracion");
-		lblNewLabel_1_1.setBounds(10, 111, 250, 32);
+		JLabel lblNewLabel_1_1 = new JLabel("Duración");
+		lblNewLabel_1_1.setBounds(223, 97, 250, 32);
 		panel_2.add(lblNewLabel_1_1);
 		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(10, 153, 250, 32);
+		textField_1.setBounds(223, 139, 172, 32);
 		panel_2.add(textField_1);
 		textField_1.setColumns(10);
 		
 		JLabel lblNewLabel_1_1_1 = new JLabel("Instructor");
-		lblNewLabel_1_1_1.setBounds(10, 195, 250, 32);
+		lblNewLabel_1_1_1.setBounds(25, 181, 250, 32);
 		panel_2.add(lblNewLabel_1_1_1);
 		lblNewLabel_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(10, 237, 250, 32);
+		textField_2.setBounds(25, 221, 172, 32);
 		panel_2.add(textField_2);
 		textField_2.setColumns(10);
 		
 		JLabel lblNewLabel_1_1_1_1 = new JLabel("Capacidad");
-		lblNewLabel_1_1_1_1.setBounds(10, 279, 250, 32);
+		lblNewLabel_1_1_1_1.setBounds(223, 181, 250, 32);
 		panel_2.add(lblNewLabel_1_1_1_1);
 		lblNewLabel_1_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		textField_4 = new JTextField();
-		textField_4.setBounds(10, 321, 250, 32);
+		textField_4.setBounds(223, 221, 172, 32);
 		panel_2.add(textField_4);
 		textField_4.setColumns(10);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("Horario");
-		lblNewLabel_1_2.setBounds(10, 353, 250, 32);
+		lblNewLabel_1_2.setBounds(25, 279, 250, 32);
 		panel_2.add(lblNewLabel_1_2);
 		lblNewLabel_1_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		textField_3 = new JTextField();
-		textField_3.setBounds(10, 395, 250, 32);
+		textField_3.setBounds(22, 321, 373, 32);
 		panel_2.add(textField_3);
 		textField_3.setColumns(10);
+		
+		
 		
 		JButton btnNewButton = new JButton("OK");
 		btnNewButton.setBackground(new Color(0, 0, 0));
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
-		btnNewButton.setBounds(234, 437, 93, 32);
+		btnNewButton.setBounds(302, 400, 93, 32);
 		panel_2.add(btnNewButton);
 		
+		textField_5 = new JTextField();
+		textField_5.setBounds(190, 275, 52, 20);
+		panel_2.add(textField_5);
+		textField_5.setColumns(10);
+
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -148,6 +152,7 @@ public class ClassEdit {
                 String instructorId = textField_2.getText();
                 String capacidadMaxima = textField_4.getText();
                 String fechaHora = textField_3.getText();
+                String claseId = textField_2.getText(); 
                 
                 if (fechaHora.matches("\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}")) {
                     try {
@@ -155,7 +160,7 @@ public class ClassEdit {
                         java.util.Date parsedFechaHora = sdf.parse(fechaHora);
                         Timestamp fechaHoraTimestamp = new Timestamp(parsedFechaHora.getTime());
 
-                        boolean saved = controller.updateClase(nombre, fechaHoraTimestamp, Time.valueOf(duracion), Integer.parseInt(instructorId), Integer.parseInt(capacidadMaxima), fechaHoraTimestamp);
+                        boolean saved = controller.updateClase(nombre, fechaHoraTimestamp, Time.valueOf(duracion), Integer.parseInt(instructorId), Integer.parseInt(capacidadMaxima), Integer.parseInt(claseId));
                         if (saved) {
                             JOptionPane.showMessageDialog(frame, "¡La clase se ha guardado exitosamente!");
                         } else {
@@ -172,12 +177,14 @@ public class ClassEdit {
 			}
 		});
 		
+		
 		JButton btnEliminar = new JButton("Eliminar");
 		btnEliminar.setForeground(Color.WHITE);
 		btnEliminar.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
 		btnEliminar.setBackground(Color.BLACK);
-		btnEliminar.setBounds(117, 437, 93, 32);
+		btnEliminar.setBounds(163, 400, 93, 32);
 		panel_2.add(btnEliminar);
+		
 		btnEliminar.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		        int confirmacion = JOptionPane.showConfirmDialog(frame, "¿Estás seguro de que deseas eliminar esta clase?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
@@ -196,13 +203,19 @@ public class ClassEdit {
 		        }
 		    }
 		});
+				
+		JLabel lblNewLabel = new JLabel("Editar clase");
+		lblNewLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 34));
+		lblNewLabel.setBounds(134, 10, 233, 48);
+		panel_2.add(lblNewLabel);
 		
-		
+
+
 
 	}
 	
 	private int obtenerIdClase() {
-	
+		
 		return Integer.parseInt(textField_2.getText());
 	}
 	
@@ -214,9 +227,5 @@ public class ClassEdit {
         textField_4.setText("");
     }
 
-	public void setVisible(boolean b) {
-        frame.setVisible(true);
-		
-	}
 
 }

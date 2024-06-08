@@ -19,6 +19,7 @@ import mainControllers.MainLoginController;
 
 
 import javax.swing.ImageIcon;
+import javax.swing.border.MatteBorder;
 
 public class MainLogin {
     
@@ -50,55 +51,62 @@ public class MainLogin {
         frame = new JFrame();
         frame.setBounds(100, 100, 700, 550);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null); 
         frame.getContentPane().setLayout(null);
 
         JPanel panel = new JPanel();
         panel.setBackground(new Color(148, 121, 150));
         panel.setBounds(0, 0, 700, 550);
-        panel.setBorder(new EmptyBorder(20, 20, 20, 20));
+        panel.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
         panel.setLayout(null);
         frame.getContentPane().add(panel);
 
         JLabel lblTitle = new JLabel("Iniciar sesión");
         lblTitle.setForeground(new Color(255, 255, 255));
         lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
-        lblTitle.setFont(new Font("Arial", Font.BOLD, 53));
-        lblTitle.setBounds(177, 46, 408, 50);
+        lblTitle.setFont(new Font("Tw Cen MT", Font.BOLD, 82));
+        lblTitle.setBounds(91, 88, 517, 62);
         panel.add(lblTitle);
 
         usernameField = new JTextField();
-        usernameField.setBounds(237, 208, 300, 40);
+        usernameField.setFont(new Font("Tw Cen MT", Font.PLAIN, 16));
+        usernameField.setBounds(193, 234, 378, 40);
+        usernameField.setBackground(new Color(148, 121, 150));
+		usernameField.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(0, 0, 0)));
         panel.add(usernameField);
         usernameField.setColumns(10);
 
         JLabel lblUsername = new JLabel("Nombre");
-        lblUsername.setFont(new Font("Tahoma", Font.BOLD, 20));
+        lblUsername.setFont(new Font("Tw Cen MT", Font.BOLD, 26));
         lblUsername.setForeground(new Color(255, 255, 255));
-        lblUsername.setBounds(177, 165, 300, 20);
+        lblUsername.setBounds(123, 192, 300, 20);
         panel.add(lblUsername);
 
         passwordField = new JPasswordField();
-        passwordField.setBounds(237, 319, 300, 40);
-        panel.add(passwordField);
+        passwordField.setFont(new Font("Tw Cen MT", Font.PLAIN, 16));
+        passwordField.setBounds(193, 340, 378, 40);
+        passwordField.setBackground(new Color(148, 121, 150));
+		passwordField.setBorder(new MatteBorder(0, 0, 2, 0, (Color) new Color(0, 0, 0)));
+		panel.add(passwordField);
         passwordField.setColumns(10);
 
         JLabel lblPassword = new JLabel("Contraseña");
-        lblPassword.setFont(new Font("Tahoma", Font.BOLD, 20));
+        lblPassword.setFont(new Font("Tw Cen MT", Font.BOLD, 26));
         lblPassword.setForeground(new Color(255, 255, 255));
-        lblPassword.setBounds(177, 269, 300, 20);
+        lblPassword.setBounds(123, 310, 300, 20);
         panel.add(lblPassword);
 
         JButton btnLogin = new JButton("Iniciar sesión");
         btnLogin.setFont(new Font("Arial", Font.BOLD, 18));
-        btnLogin.setBackground(new Color(100, 149, 237));
-        btnLogin.setForeground(new Color(144, 45, 65));
-        btnLogin.setBounds(317, 395, 160, 40);
+        btnLogin.setBackground(new Color(0, 0, 0));
+        btnLogin.setForeground(new Color(255, 255, 255));
+        btnLogin.setBounds(286, 410, 160, 40);
         panel.add(btnLogin);
         
         btnLogin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String username = usernameField.getText();
-                String password = new String(passwordField.getPassword()); // Use getPassword() for JPasswordField
+                String password = new String(passwordField.getPassword()); 
                 boolean loggedIn = mainLoginController.login(username, password);
                 if (loggedIn) {
                     System.out.println("Login successful!");
@@ -111,47 +119,31 @@ public class MainLogin {
             }
         });
 
-        JButton btnToMainPanel = new JButton("Salir");
-        btnToMainPanel.setFont(new Font("Arial", Font.PLAIN, 12));
-        btnToMainPanel.setBounds(564, 485, 95, 35);
-        btnToMainPanel.setBackground(new Color(100, 149, 237));
-        btnToMainPanel.setForeground(new Color(144, 45, 65));
-        panel.add(btnToMainPanel);
-        
-        btnToMainPanel.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose();               
-                MainPanel mainPanel = new MainPanel(); 
-                mainPanel.setVisible(true);             
-            }
-        });
+  
 
         JButton btnToRegister = new JButton("¿No tienes cuenta? Registrate");
-        btnToRegister.setFont(new Font("Arial", Font.PLAIN, 14));
-        btnToRegister.setOpaque(false);
-        btnToRegister.setBounds(237, 445, 300, 30);
+        btnToRegister.setFont(new Font("Arial", Font.ITALIC, 16));
+        btnToRegister.setFocusPainted(false);
+        btnToRegister.setBorderPainted(false);
+        btnToRegister.setContentAreaFilled(false);
+        btnToRegister.setBounds(208, 448, 300, 30);
         panel.add(btnToRegister);
-
         btnToRegister.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose();               
-                MainRegister.main(new String[0]);         
+            @Override
+			public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                MainRegister.main(new String[0]);
                 }
         });
-        
-        JPanel panel_2 = new JPanel();
-        panel_2.setBounds(35, 0, 95, 550);
-        panel_2.setBackground(new Color(144, 151, 192));
-        panel.add(panel_2);
 
         JLabel lblNewLabel = new JLabel("");
         lblNewLabel.setIcon(new ImageIcon(MainLogin.class.getResource("/ImagenesGym/IconoChikito1.png")));
-        lblNewLabel.setBounds(177, 206, 61, 52);
+        lblNewLabel.setBounds(133, 222, 61, 52);
         panel.add(lblNewLabel);
 
         JLabel lblNewLabel_1 = new JLabel("");
         lblNewLabel_1.setIcon(new ImageIcon(MainLogin.class.getResource("/ImagenesGym/InocoChikito2.png")));
-        lblNewLabel_1.setBounds(177, 319, 50, 40);
+        lblNewLabel_1.setBounds(133, 340, 50, 40);
         panel.add(lblNewLabel_1);
     }
 }

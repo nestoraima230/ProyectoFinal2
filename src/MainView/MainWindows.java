@@ -2,11 +2,10 @@ package MainView;
 
 import javax.swing.*;
 
-import instructorsViews.InstructorPanel;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.border.MatteBorder;
 
 
 public class MainWindows {
@@ -25,14 +24,15 @@ public class MainWindows {
         frame.getContentPane().setLayout(null);
 
         JPanel panel = new JPanel();
+        panel.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
         panel.setBackground(new Color(255, 255, 255));
         panel.setBounds(10, 11, 325, 75);
         frame.getContentPane().add(panel);
         panel.setLayout(null);
 
-        JLabel lblNewLabel = new JLabel("Bienvenido a PZ GYM");
+        JLabel lblNewLabel = new JLabel("Bienvenido(a)");
         lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+        lblNewLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 31));
         lblNewLabel.setBounds(111, 22, 197, 29);
         panel.add(lblNewLabel);
         
@@ -42,50 +42,45 @@ public class MainWindows {
         panel.add(lblNewLabel_2);
 
         JPanel panel_1 = new JPanel();
+        panel_1.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
         panel_1.setBackground(new Color(144, 151, 192 ));
         panel_1.setBounds(10, 96, 664, 370);
         frame.getContentPane().add(panel_1);
         panel_1.setLayout(null);
 
         JButton btnClients = new JButton("Clientes");
-        btnClients.setForeground(new Color(0, 0, 0));
-        btnClients.setBackground(new Color(148, 121, 150 ));
+        btnClients.setForeground(new Color(255, 255, 255));
+        btnClients.setBackground(new Color(0, 0, 0));
         btnClients.setOpaque(true);
         btnClients.setBounds(24, 224, 105, 23);
         panel_1.add(btnClients);
 
         JButton btnRates = new JButton("Tarifas");
-        btnRates.setForeground(new Color(0, 0, 0));
-        btnRates.setBackground(new Color(148, 121, 150 ));
+        btnRates.setForeground(new Color(255, 255, 255));
+        btnRates.setBackground(new Color(0, 0, 0));
         btnRates.setOpaque(true);
         btnRates.setBounds(155, 224, 105, 23);
         panel_1.add(btnRates);
 
         JButton btnInstructors = new JButton("Instructores");
-        btnInstructors.setForeground(new Color(0, 0, 0));
-        btnInstructors.setBackground(new Color(148, 121, 150 ));
+        btnInstructors.setForeground(new Color(255, 255, 255));
+        btnInstructors.setBackground(new Color(0, 0, 0));
         btnInstructors.setOpaque(true);
         btnInstructors.setBounds(286, 224, 105, 23);
         panel_1.add(btnInstructors);
 
-        btnInstructors.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				InstructorPanel instructorPanel = new InstructorPanel();
-				instructorPanel.getFrame().setVisible(true);
-			}
-		});
 
         JButton btnClasses = new JButton("Clases");
-        btnClasses.setForeground(new Color(0, 0, 0));
-        btnClasses.setBackground(new Color(148, 121, 150 ));
+        btnClasses.setForeground(new Color(255, 255, 255));
+        btnClasses.setBackground(new Color(0, 0, 0));
         btnClasses.setOpaque(true);
         btnClasses.setBounds(417, 224, 105, 23);
         panel_1.add(btnClasses);
 
         JButton btnCheckIn = new JButton("Checador");
-        btnCheckIn.setForeground(new Color(0, 0, 0));
-        btnCheckIn.setBackground(new Color(148, 121, 150 ));
+        btnCheckIn.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
+        btnCheckIn.setForeground(new Color(255, 255, 255));
+        btnCheckIn.setBackground(new Color(0, 0, 0));
         btnCheckIn.setOpaque(true);
         btnCheckIn.setBounds(548, 224, 105, 23);
         panel_1.add(btnCheckIn);
@@ -147,11 +142,14 @@ public class MainWindows {
         panel_2_1_1_1_1.add(lblNewLabel_3_1_1_1_1);
 
         JButton btnLogout = new JButton("Cerrar Sesion");
-        btnLogout.setBounds(569, 477, 105, 23);
-        frame.getContentPane().add(btnLogout);
-        
+        btnLogout.setForeground(new Color(255, 255, 255));
+        btnLogout.setBounds(536, 327, 118, 33);
+        btnLogout.setBackground(new Color(0, 0, 0));
+        panel_1.add(btnLogout);
+
         btnLogout.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            @Override
+			public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(frame, "Sesión cerrada");
                 frame.setVisible(false);
 
@@ -172,11 +170,12 @@ public class MainWindows {
         lblNewLabel_1.setBounds(0, 0, 325, 75);
         panel_3.add(lblNewLabel_1);
 
+        
     }
 
     public void setVisible(boolean visible) {
         frame.setVisible(visible);
+        
     }
 }
-
 

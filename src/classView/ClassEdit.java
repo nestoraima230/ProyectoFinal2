@@ -152,7 +152,7 @@ public class ClassEdit {
                 String instructorId = textField_2.getText();
                 String capacidadMaxima = textField_4.getText();
                 String fechaHora = textField_3.getText();
-                String claseId = textField_2.getText(); 
+                String claseId = textField_5.getText(); 
                 
                 if (fechaHora.matches("\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}")) {
                     try {
@@ -216,7 +216,7 @@ public class ClassEdit {
 	
 	private int obtenerIdClase() {
 		
-		return Integer.parseInt(textField_2.getText());
+		return Integer.parseInt(textField_5.getText());
 	}
 	
     private void limpiarCampos() {

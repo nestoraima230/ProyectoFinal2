@@ -14,6 +14,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import instructorsControllers.EditInstructorController;
 import javax.swing.ImageIcon;
+import javax.swing.border.MatteBorder;
 
 public class InstructorEdit extends JPanel {
 
@@ -67,12 +68,15 @@ public class InstructorEdit extends JPanel {
         panel.setLayout(null);
 
         JPanel panel_1 = new JPanel();
+        panel_1.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
         panel_1.setBounds(0, 0, 684, 511);
         panel_1.setBackground(new Color(148, 121, 150));
         panel.add(panel_1);
         panel_1.setLayout(null);
 
         JPanel panel_2 = new JPanel();
+        panel_2.setBackground(new Color(255, 255, 255));
+        panel_2.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
         panel_2.setBounds(155, 27, 409, 454);
         panel_1.add(panel_2);
         panel_2.setLayout(null);
@@ -84,8 +88,10 @@ public class InstructorEdit extends JPanel {
         lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
         nombre = new JTextField();
+        nombre.setFont(new Font("Tw Cen MT", Font.PLAIN, 16));
         nombre.setBackground(new Color(255, 255, 255));
         nombre.setBounds(29, 91, 338, 32);
+        nombre.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
         panel_2.add(nombre);
         nombre.setColumns(10);
 
@@ -96,15 +102,19 @@ public class InstructorEdit extends JPanel {
         lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
         apellido = new JTextField();
+        apellido.setFont(new Font("Tw Cen MT", Font.PLAIN, 16));
         apellido.setBounds(29, 175, 338, 32);
         panel_2.add(apellido);
         apellido.setColumns(10);
         apellido.setOpaque(true);
-        apellido.setBorder(new EmptyBorder(0, 5, 0, 2));
+        apellido.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
+        
         apellido.setPreferredSize(new Dimension(100, 20));
 
         especialidad = new JTextField();
+        especialidad.setFont(new Font("Tw Cen MT", Font.PLAIN, 16));
         especialidad.setBounds(29, 259, 338, 32);
+        especialidad.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
         panel_2.add(especialidad);
         especialidad.setColumns(10);
 
@@ -121,7 +131,9 @@ public class InstructorEdit extends JPanel {
         lblNewLabel_1_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
         email = new JTextField();
+        email.setFont(new Font("Tw Cen MT", Font.PLAIN, 16));
         email.setBounds(29, 334, 338, 32);
+        email.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
         panel_2.add(email);
         email.setColumns(10);
 
@@ -133,14 +145,14 @@ public class InstructorEdit extends JPanel {
         JButton btnGuardar = new JButton("Guardar");
         btnGuardar.setForeground(new Color(255, 255, 255));
         btnGuardar.setBackground(new Color(0, 0, 0));
-        btnGuardar.setBounds(265, 412, 100, 32);
+        btnGuardar.setBounds(267, 398, 100, 32);
         panel_2.add(btnGuardar);
         btnGuardar.setFont(new Font("Tahoma", Font.BOLD, 14));
         
                 JButton btnEliminar = new JButton("Eliminar");
                 btnEliminar.setForeground(new Color(255, 255, 255));
                 btnEliminar.setBackground(new Color(0, 0, 0));
-                btnEliminar.setBounds(29, 412, 100, 32);
+                btnEliminar.setBounds(29, 399, 100, 32);
                 panel_2.add(btnEliminar);
                 btnEliminar.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
                 btnEliminar.addActionListener(e -> {

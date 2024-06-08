@@ -74,11 +74,11 @@ public class InstructorsDetails {
 
         JLabel lblNewLabel = new JLabel("\tHistorial de clases");
         lblNewLabel.setForeground(new Color(255, 255, 255));
-        lblNewLabel.setBackground(new Color(144, 45, 65));
+        lblNewLabel.setBackground(new Color(0, 0, 0));
         lblNewLabel.setOpaque(true);
         lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
         lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 32));
-        lblNewLabel.setBounds(139, 10, 400, 40);
+        lblNewLabel.setBounds(35, 10, 622, 40);
         panel.add(lblNewLabel);
 
         btnNewButton_1 = new JButton("Credencial");

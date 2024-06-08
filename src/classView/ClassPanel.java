@@ -61,12 +61,12 @@ public class ClassPanel {
 		panel.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Clases");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblNewLabel.setBounds(303, 14, 169, 30);
+		lblNewLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 36));
+		lblNewLabel.setBounds(287, 25, 169, 30);
 		panel.add(lblNewLabel);
 
 		  JScrollPane scrollPane = new JScrollPane();
-	        scrollPane.setBounds(10, 75, 666, 331);
+	        scrollPane.setBounds(24, 75, 640, 331);
 	        panel.add(scrollPane);
 
 	       
@@ -75,22 +75,25 @@ public class ClassPanel {
 	   
 	        DefaultTableModel model = new DefaultTableModel();
 	        model.addColumn("Nombre");
-	        model.addColumn("");
+	        model.addColumn("Descripcion");
+	        model.addColumn("Inscribirse                   descargar");
 	        
-	        model.addRow(new Object[]{"Yoga", new Object()});
+	        model.addRow(new Object[]{"Yoga", "práctica que conecta el cuerpo y la respiración"});
 	        
 
 	       
 	        table.setModel(model);
 
-	        table.getColumnModel().getColumn(1).setCellRenderer(new TableCellRenderer() {
+	        table.getColumnModel().getColumn(2).setCellRenderer(new TableCellRenderer() {
 	            @Override
 	            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 	                JPanel panel = new JPanel(new GridLayout(1, 2, 10, 0));
 	                panel.setBackground(table.getBackground());
 
-	                JButton btnEdit = new JButton(new ImageIcon(getClass().getResource("/ImagenesGym/boton-editar.png")));
-	                JButton btnView = new JButton(new ImageIcon(getClass().getResource("/ImagenesGym/ver-detalles.png")));
+	                JButton btnEdit = new JButton(new ImageIcon(getClass().getResource("/ImagenesGym/inscribirse.png")));
+	                btnEdit.setBackground(Color.WHITE);
+	                JButton btnView = new JButton(new ImageIcon(getClass().getResource("/ImagenesGym/descargar.png")));
+	                btnView.setBackground(Color.white);
 
 	                panel.add(btnEdit);
 	                panel.add(btnView);
@@ -107,9 +110,10 @@ public class ClassPanel {
 
 	        frame.setVisible(true);
 		JButton btnNewButton = new JButton("OK");
+		btnNewButton.setForeground(new Color(220, 255, 255));
 		btnNewButton.setFont(new Font("Tw Cen MT", Font.BOLD, 15));
-		btnNewButton.setBackground(new Color(255, 255, 255));
-		btnNewButton.setBounds(565, 467, 85, 21);
+		btnNewButton.setBackground(new Color(0, 0, 0));
+		btnNewButton.setBounds(576, 454, 83, 25);
 		panel.add(btnNewButton);
 
 	}

@@ -56,11 +56,15 @@ public class Credential {
 		panel.add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Descargar");
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.setBackground(new Color(0, 0, 0));
 		btnNewButton.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
 		btnNewButton.setBounds(22, 441, 144, 32);
 		panel.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("OK");
+		btnNewButton_1.setForeground(new Color(255, 255, 255));
+		btnNewButton_1.setBackground(new Color(0, 0, 0));
 		btnNewButton_1.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
 		btnNewButton_1.setBounds(200, 441, 104, 32);
 		panel.add(btnNewButton_1);

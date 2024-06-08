@@ -62,13 +62,8 @@ public class ClientPanel {
         frame.getContentPane().add(panel);
         panel.setLayout(null);
 
-        JLabel lblNewLabel = new JLabel("Clientes");
-        lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
-        lblNewLabel.setBounds(303, 14, 169, 30);
-        panel.add(lblNewLabel);
-
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(22, 54, 628, 393);
+        scrollPane.setBounds(22, 95, 628, 349);
         panel.add(scrollPane);
 
         table = new JTable();
@@ -91,12 +86,12 @@ public class ClientPanel {
                 }}
             },
             new String[] {
-                "Nombre",""
+                "Nombre","editar                               ver detalle"
             }
         ));
 
         JLabel img= new JLabel ();
-		img.setBounds(613,-13,63,85);
+		img.setBounds(613,0,63,85);
 		img.setIcon(new ImageIcon(ClientPanel.class.getResource("/ImagenesGym/agregarUsuario.png")));
 		panel.add(img);
 		
@@ -123,10 +118,21 @@ public class ClientPanel {
         scrollPane.setViewportView(table);
         
         JButton btnNewButton = new JButton("OK");
+        btnNewButton.setForeground(new Color(255, 255, 255));
         btnNewButton.setFont(new Font("Tw Cen MT", Font.BOLD, 15));
-        btnNewButton.setBackground(new Color(255, 255, 255));
+        btnNewButton.setBackground(new Color(0, 0, 0));
         btnNewButton.setBounds(565, 467, 85, 21);
         panel.add(btnNewButton);
+        
+        JPanel panel_1 = new JPanel();
+        panel_1.setBackground(new Color(0, 0, 0));
+        panel_1.setBounds(22, 58, 628, 44);
+        panel.add(panel_1);
+        
+                JLabel lblNewLabel = new JLabel("Clientes");
+                lblNewLabel.setForeground(new Color(255, 255, 255));
+                panel_1.add(lblNewLabel);
+                lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
     
     }
 }

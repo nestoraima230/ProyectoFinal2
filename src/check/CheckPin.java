@@ -11,11 +11,15 @@ import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
+import javax.swing.border.MatteBorder;
 
 public class CheckPin {
 
 	private JFrame frame;
-	private JTextField textField;
+	private JPasswordField passwordField;
 
 	/**
 	 * Launch the application.
@@ -50,35 +54,38 @@ public class CheckPin {
 		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 684, 511);
+		panel.setBackground(new Color(255, 255, 255));
+		panel.setBounds(-12, 10, 717, 511);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBounds(292, 239, 100, 32);
-		panel.add(textField);
-		textField.setColumns(10);
+		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
+		panel_1.setBackground(new Color(255, 255, 255));
+		panel_1.setBounds(217, 84, 258, 320);
+		panel.add(panel_1);
+		panel_1.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Regresar");
-		btnNewButton.setBounds(31, 462, 100, 32);
-		panel.add(btnNewButton);
+		JLabel lblNewLabel = new JLabel("Ingrese su pin");
+		lblNewLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 30));
+		lblNewLabel.setBounds(42, 69, 206, 45);
+		panel_1.add(lblNewLabel);
 		
-		JLabel lblNewLabel = new JLabel("Ingrese su PIN");
-		lblNewLabel.setBackground(new Color(192, 192, 192));
-		lblNewLabel.setOpaque(true);
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(240, 196, 205, 32);
-		panel.add(lblNewLabel);
+		passwordField = new JPasswordField();
+		passwordField.setBounds(42, 142, 174, 45);
+		panel_1.add(passwordField);
 		
-		JButton btnNewButton_1 = new JButton("Ingresar");
-		btnNewButton_1.setBounds(292, 295, 100, 32);
-		panel.add(btnNewButton_1);
+		JButton btnNewButton = new JButton("Aceptar");
+		btnNewButton.setBackground(new Color(0, 0, 0));
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
+		btnNewButton.setBounds(83, 244, 96, 27);
+		panel_1.add(btnNewButton);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon(CheckPin.class.getResource("/ImagenesGym/chicoenGymIcono.jpg")));
-		lblNewLabel_1.setBounds(0, 0, 684, 511);
+		lblNewLabel_1.setBounds(10, 0, 745, 531);
 		panel.add(lblNewLabel_1);
+		
 	}
-
 }

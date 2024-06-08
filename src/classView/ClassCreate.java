@@ -13,6 +13,7 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.border.MatteBorder;
 
 public class ClassCreate {
 
@@ -61,68 +62,65 @@ public class ClassCreate {
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(148, 121, 150));
-		panel_1.setBounds(488, 29, 487, 511);
-		panel.add(panel_1);
-		panel_1.setLayout(null);
-		
-		JButton btnCrear = new JButton("Guardar");
-		btnCrear.setBounds(360, 460, 100, 32);
-		panel_1.add(btnCrear);
-		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(146, 29, 371, 472);
+		panel_2.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
+		panel_2.setBounds(182, 10, 333, 472);
 		panel.add(panel_2);
+		panel_2.setBackground(new Color(255, 255, 255));
 		panel_2.setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("Clase");
-		lblNewLabel_1.setBounds(10, 34, 135, 25);
+		lblNewLabel_1.setBounds(37, 76, 135, 25);
 		panel_2.add(lblNewLabel_1);
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_1.setFont(new Font("Tw Cen MT", Font.PLAIN, 23));
 		
 		textField = new JTextField();
-		textField.setBounds(10, 69, 250, 32);
+		textField.setFont(new Font("Tw Cen MT", Font.PLAIN, 16));
+		textField.setBounds(37, 111, 250, 32);
 		panel_2.add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Duracion");
-		lblNewLabel_1_1.setBounds(10, 111, 250, 32);
+		lblNewLabel_1_1.setBounds(37, 164, 250, 32);
 		panel_2.add(lblNewLabel_1_1);
-		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_1_1.setFont(new Font("Tw Cen MT", Font.PLAIN, 23));
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(10, 153, 250, 32);
+		textField_1.setFont(new Font("Tw Cen MT", Font.PLAIN, 16));
+		textField_1.setBounds(37, 206, 250, 32);
 		panel_2.add(textField_1);
 		textField_1.setColumns(10);
 		
 		JLabel lblNewLabel_1_1_1 = new JLabel("Instructor");
-		lblNewLabel_1_1_1.setBounds(10, 195, 250, 32);
+		lblNewLabel_1_1_1.setBounds(37, 240, 250, 32);
 		panel_2.add(lblNewLabel_1_1_1);
-		lblNewLabel_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_1_1_1.setFont(new Font("Tw Cen MT", Font.PLAIN, 23));
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(10, 237, 250, 32);
+		textField_2.setFont(new Font("Tw Cen MT", Font.PLAIN, 16));
+		textField_2.setBounds(37, 282, 250, 32);
 		panel_2.add(textField_2);
 		textField_2.setColumns(10);
 		
 		JLabel lblNewLabel_1_1_1_1 = new JLabel("Capacidad");
-		lblNewLabel_1_1_1_1.setBounds(10, 279, 250, 32);
+		lblNewLabel_1_1_1_1.setBounds(37, 324, 141, 32);
 		panel_2.add(lblNewLabel_1_1_1_1);
-		lblNewLabel_1_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_1_1_1_1.setFont(new Font("Tw Cen MT", Font.PLAIN, 23));
 		
 		textField_4 = new JTextField();
-		textField_4.setBounds(10, 321, 250, 32);
+		textField_4.setFont(new Font("Tw Cen MT", Font.PLAIN, 16));
+		textField_4.setBounds(37, 361, 105, 32);
 		panel_2.add(textField_4);
 		textField_4.setColumns(10);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("Horario");
-		lblNewLabel_1_2.setBounds(10, 353, 250, 32);
+		lblNewLabel_1_2.setBounds(173, 324, 96, 32);
 		panel_2.add(lblNewLabel_1_2);
-		lblNewLabel_1_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_1_2.setFont(new Font("Tw Cen MT", Font.PLAIN, 23));
 		
 		textField_3 = new JTextField();
-		textField_3.setBounds(10, 395, 250, 32);
+		textField_3.setFont(new Font("Tw Cen MT", Font.PLAIN, 16));
+		textField_3.setBounds(175, 361, 112, 32);
 		panel_2.add(textField_3);
 		textField_3.setColumns(10);
 		
@@ -130,12 +128,12 @@ public class ClassCreate {
 		btnNewButton.setBackground(new Color(0, 0, 0));
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
-		btnNewButton.setBounds(234, 437, 93, 32);
+		btnNewButton.setBounds(194, 418, 93, 32);
 		panel_2.add(btnNewButton);
 		
 		JLabel lblNewLabel = new JLabel("Crea una clase");
-		lblNewLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 24));
-		lblNewLabel.setBounds(89, 10, 169, 25);
+		lblNewLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 33));
+		lblNewLabel.setBounds(61, 21, 226, 25);
 		panel_2.add(lblNewLabel);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.ImageIcon;
+import javax.swing.border.MatteBorder;
 
 public class ClientDetail {
 
@@ -30,6 +31,10 @@ public class ClientDetail {
 	private JLabel lblNewLabel_4;
 	private JLabel lblNewLabel_5;
 	private JLabel lblNewLabel_6;
+	private JPanel panel_1;
+	private JLabel lblNewLabel_7;
+	private JLabel lblNewLabel_8;
+	private JLabel lblNewLabel_9;
 
 	/**
 	 * Launch the application.
@@ -85,36 +90,22 @@ public class ClientDetail {
 		panel.add(lblNewLabel_2);
 
 		textField = new JTextField();
+		textField.setFont(new Font("Tw Cen MT", Font.PLAIN, 16));
 		textField.setBounds(61, 71, 326, 29);
 		panel.add(textField);
 		textField.setColumns(10);
 
 		textField_1 = new JTextField();
+		textField_1.setFont(new Font("Tw Cen MT", Font.PLAIN, 16));
 		textField_1.setColumns(10);
 		textField_1.setBounds(61, 147, 326, 29);
 		panel.add(textField_1);
 
 		textField_2 = new JTextField();
+		textField_2.setFont(new Font("Tw Cen MT", Font.PLAIN, 16));
 		textField_2.setColumns(10);
 		textField_2.setBounds(86, 209, 65, 29);
 		panel.add(textField_2);
-
-		JLabel lblNewLabel_3 = new JLabel("Imagen");
-		lblNewLabel_3.setIcon(new ImageIcon(ClientDetail.class.getResource("/ImagenesGym/mujerFoto.png")));
-		lblNewLabel_3.setBackground(new Color(255, 255, 255));
-		lblNewLabel_3.setBounds(500, 71, 141, 168);
-		lblNewLabel_3.setOpaque(true);
-		panel.add(lblNewLabel_3);
-
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(289, 209, 65, 29);
-		panel.add(textField_3);
-
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(192, 209, 65, 29);
-		panel.add(textField_4);
 
 		Object[][] data = { { "Alejandro Perez", "$290", "Sí" }, { "Hannia Ruiz", "$450", "No" },
 				{ "Ruben Alejandro", "$200", "No" } };
@@ -126,23 +117,26 @@ public class ClientDetail {
 		panel.add(table);
 
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(61, 271, 576, 150);
+		scrollPane.setBounds(61, 271, 559, 150);
 		panel.add(scrollPane);
 
 		btnNewButton = new JButton("Credencial");
-		btnNewButton.setBackground(new Color(255, 255, 255));
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.setBackground(new Color(0, 0, 0));
 		btnNewButton.setFont(new Font("Tw Cen MT", Font.BOLD, 18));
-		btnNewButton.setBounds(61, 451, 128, 21);
+		btnNewButton.setBounds(42, 451, 128, 21);
 		panel.add(btnNewButton);
 
 		btnNewButton_1 = new JButton("Reporte");
-		btnNewButton_1.setBackground(new Color(255, 255, 255));
+		btnNewButton_1.setForeground(new Color(255, 255, 255));
+		btnNewButton_1.setBackground(new Color(0, 0, 0));
 		btnNewButton_1.setFont(new Font("Tw Cen MT", Font.BOLD, 19));
 		btnNewButton_1.setBounds(279, 451, 150, 21);
 		panel.add(btnNewButton_1);
 
 		btnNewButton_2 = new JButton("OK");
-		btnNewButton_2.setBackground(new Color(255, 255, 255));
+		btnNewButton_2.setForeground(new Color(255, 255, 255));
+		btnNewButton_2.setBackground(new Color(0, 0, 0));
 		btnNewButton_2.setFont(new Font("Tw Cen MT", Font.BOLD, 19));
 		btnNewButton_2.setBounds(521, 451, 113, 21);
 		panel.add(btnNewButton_2);
@@ -168,7 +162,48 @@ public class ClientDetail {
 		lblNewLabel_6.setForeground(new Color(255, 255, 255));
 		lblNewLabel_6.setOpaque(true);
 		lblNewLabel_6.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
-		lblNewLabel_6.setBounds(440, 258, 194, 13);
+		lblNewLabel_6.setBounds(440, 258, 180, 13);
 		panel.add(lblNewLabel_6);
+		
+		panel_1 = new JPanel();
+		panel_1.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
+		panel_1.setBackground(new Color(255, 255, 255));
+		panel_1.setBounds(42, 34, 607, 399);
+		panel.add(panel_1);
+		panel_1.setLayout(null);
+		
+				JLabel lblNewLabel_3 = new JLabel("");
+				lblNewLabel_3.setBounds(426, 10, 141, 168);
+				panel_1.add(lblNewLabel_3);
+				lblNewLabel_3.setIcon(new ImageIcon(ClientDetail.class.getResource("/ImagenesGym/mujerFoto.png")));
+				lblNewLabel_3.setBackground(new Color(255, 255, 255));
+				lblNewLabel_3.setOpaque(true);
+				
+				lblNewLabel_7 = new JLabel("dd");
+				lblNewLabel_7.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
+				lblNewLabel_7.setBounds(21, 186, 45, 13);
+				panel_1.add(lblNewLabel_7);
+				
+				lblNewLabel_8 = new JLabel("mm");
+				lblNewLabel_8.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
+				lblNewLabel_8.setBounds(123, 187, 45, 13);
+				panel_1.add(lblNewLabel_8);
+				
+				lblNewLabel_9 = new JLabel("aaaa");
+				lblNewLabel_9.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
+				lblNewLabel_9.setBounds(226, 186, 45, 13);
+				panel_1.add(lblNewLabel_9);
+				
+						textField_3 = new JTextField();
+						textField_3.setBounds(156, 178, 65, 29);
+						panel_1.add(textField_3);
+						textField_3.setFont(new Font("Tw Cen MT", Font.PLAIN, 16));
+						textField_3.setColumns(10);
+						
+								textField_4 = new JTextField();
+								textField_4.setBounds(264, 178, 65, 29);
+								panel_1.add(textField_4);
+								textField_4.setFont(new Font("Tw Cen MT", Font.PLAIN, 16));
+								textField_4.setColumns(10);
 	}
 }

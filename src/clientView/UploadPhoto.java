@@ -67,6 +67,8 @@ public class UploadPhoto {
 		panel.add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("OK");
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.setBackground(new Color(0, 0, 0));
 		btnNewButton.setFont(new Font("Tw Cen MT", Font.BOLD, 19));
 		btnNewButton.setBounds(302, 437, 85, 21);
 		panel.add(btnNewButton);

@@ -69,15 +69,15 @@ public class ClassRecords {
 
           JLabel lblNewLabel = new JLabel("Registro de Clases");
           lblNewLabel.setForeground(new Color(255, 255, 255));
-          lblNewLabel.setBackground(new Color(144, 45, 65));
+          lblNewLabel.setBackground(new Color(0, 0, 0));
           lblNewLabel.setOpaque(true);
           lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
           lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 32));
-          lblNewLabel.setBounds(139, 20, 400, 40);
+          lblNewLabel.setBounds(28, 60, 630, 40);
           panel_1.add(lblNewLabel);
 
           JLabel img = new JLabel();
-          img.setBounds(621, 36, 63, 85);
+          img.setBounds(621, 0, 63, 85);
           img.setIcon(new ImageIcon(ClientPanel.class.getResource("/ImagenesGym/agregarUsuario.png")));
           panel_1.add(img);
 
@@ -106,8 +106,10 @@ public class ClassRecords {
                   panel.setBackground(table.getBackground());
 
                   JButton btnEdit = new JButton(new ImageIcon(getClass().getResource("/ImagenesGym/boton-editar.png")));
+                  btnEdit.setBackground(Color.WHITE);
                  
                   JButton btnView = new JButton(new ImageIcon(getClass().getResource("/ImagenesGym/ver-detalles.png")));
+                  btnView.setBackground(Color.WHITE);
 
                   panel.add(btnEdit);
                 

@@ -53,16 +53,19 @@ public class ClientReport {
 		
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setIcon(new ImageIcon(ClientReport.class.getResource("/ImagenesGym/reporte.png")));
-		lblNewLabel.setBounds(10, 29, 343, 422);
+		lblNewLabel.setBounds(10, 10, 343, 441);
 		panel.add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Descargar");
-		btnNewButton.setBackground(new Color(255, 255, 255));
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.setBackground(new Color(0, 0, 0));
 		btnNewButton.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
 		btnNewButton.setBounds(469, 187, 117, 40);
 		panel.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Regresar");
+		btnNewButton_1.setForeground(new Color(255, 255, 255));
+		btnNewButton_1.setBackground(new Color(0, 0, 0));
 		btnNewButton_1.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
 		btnNewButton_1.setBounds(469, 299, 117, 40);
 		panel.add(btnNewButton_1);

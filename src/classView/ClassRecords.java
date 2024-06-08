@@ -94,7 +94,7 @@ public class ClassRecords {
           model.addColumn("Instructor");
           model.addColumn("Capacidad");
           model.addColumn("Horario");
-          model.addColumn("");
+          model.addColumn("editar   ver detalles");
           table.setModel(model);
           
           model.addRow(new Object[]{"Yoga", "1 hora", "Juan Perez", "20", "Lunes 18:00", new Object()});

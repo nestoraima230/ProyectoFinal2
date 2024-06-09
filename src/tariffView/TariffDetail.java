@@ -1,6 +1,7 @@
 package tariffView;
 
 import authModels.tariffModels;
+import classView.ClassRecords;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -17,6 +18,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TariffDetail {
 
@@ -56,6 +59,8 @@ public class TariffDetail {
         frame = new JFrame();
         frame.setBounds(100, 100, 700, 550);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
+
 
         JPanel panel = new JPanel();
         panel.setBounds(0, 0, 686, 513);
@@ -64,13 +69,22 @@ public class TariffDetail {
         panel.setLayout(null);
         
         JLabel lblNewLabel = new JLabel("Detalle de tarifas");
+        lblNewLabel.setForeground(new Color(255, 255, 255));
         lblNewLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 24));
         lblNewLabel.setBounds(252, 17, 243, 27);
         panel.add(lblNewLabel);
 
         JButton btnNewButton = new JButton("OK");
+        btnNewButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		frame.dispose();
+                 TariffPanel.main(new String[0]);
+        	}
+        	
+        });
+        btnNewButton.setForeground(new Color(255, 255, 255));
         btnNewButton.setFont(new Font("Tw Cen MT", Font.BOLD, 15));
-        btnNewButton.setBackground(new Color(255, 255, 255));
+        btnNewButton.setBackground(new Color(0, 0, 0));
         btnNewButton.setBounds(591, 467, 85, 21);
         panel.add(btnNewButton);
         
@@ -94,6 +108,11 @@ public class TariffDetail {
         table.getColumnModel().getColumn(5).setPreferredWidth(10);
         table.setRowHeight(60);
         scrollPane.setViewportView(table);
+        
+        JPanel panel_1 = new JPanel();
+        panel_1.setBackground(new Color(0, 0, 0));
+        panel_1.setBounds(22, 17, 654, 39);
+        panel.add(panel_1);
     }
 
     public void populateTable() {

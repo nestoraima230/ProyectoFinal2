@@ -16,6 +16,9 @@ import javax.swing.border.EmptyBorder;
 
 import instructorsControllers.AddInstructorController;
 import javax.swing.border.MatteBorder;
+
+import classView.ClassRecords;
+
 import javax.swing.border.BevelBorder;
 
 public class InstructorCreate extends JPanel {
@@ -168,6 +171,8 @@ public class InstructorCreate extends JPanel {
             boolean success = controller.addInstructor(nombreText, apellidoText, especialidadText, emailText);
             if (success) {
                 JOptionPane.showMessageDialog(frame, "Instructor agregado exitosamente!");
+                frame.dispose();
+                ConsultRecords.main(new String[0]);
             } else {
                 JOptionPane.showMessageDialog(frame, "Error al agregar instructor.", "Error", JOptionPane.ERROR_MESSAGE);
             }

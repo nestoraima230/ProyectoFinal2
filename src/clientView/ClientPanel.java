@@ -10,14 +10,20 @@ import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
+
+import MainView.MainWindows;
+
 import javax.swing.table.TableCellEditor;
 
 import authControllers.clientControllers;
+import clientView.ClientDetail;
+import classView.ClassRecords;
 import instructorsViews.InstructorPanel;
 
 import java.awt.Font;
 import javax.swing.JScrollPane;
 import java.awt.GridLayout;
+import java.awt.Window;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -25,6 +31,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.AbstractCellEditor;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ClientPanel {
 
@@ -63,6 +71,7 @@ public class ClientPanel {
         frame = new JFrame();
         frame.setBounds(100, 100, 700, 550);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null); 
         frame.getContentPane().setLayout(null);
 
         JPanel panel = new JPanel();
@@ -71,20 +80,15 @@ public class ClientPanel {
         frame.getContentPane().add(panel);
         panel.setLayout(null);
 
-        JLabel lblNewLabel = new JLabel("Clientes");
-        lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
-        lblNewLabel.setBounds(303, 14, 169, 30);
-        panel.add(lblNewLabel);
-
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(10, 75, 666, 331);
+        scrollPane.setBounds(10, 99, 666, 331);
         panel.add(scrollPane);
 
         table = new JTable();
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Nombre");
         model.addColumn("Apellidos");
-        model.addColumn("Acciones");
+        model.addColumn("editar                      ver detalle");
 
         List<List<String>> clientes = controller.getAllClients();
         for (List<String> cliente : clientes) {
@@ -103,20 +107,49 @@ public class ClientPanel {
 
         frame.setVisible(true);
         
-        JButton btnNewButton = new JButton("OK");
+        JLabel img1 = new JLabel();
+        img1.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		 frame.dispose();
+                 NewClient.main(new String[0]);
+        	}
+        });
+        img1.setBounds(638, -11, 63, 85);
+        img1.setIcon(new ImageIcon(ClassRecords.class.getResource("/ImagenesGym/agregarUsuario.png")));
+        panel.add(img1);
+        
+        
+        JButton btnNewButton = new JButton("Salir");
+        btnNewButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		 frame.dispose();
+	                MainWindows MainWindows = new MainWindows();
+	                MainWindows.setVisible(true);
+        	}
+        });
+        btnNewButton.setForeground(new Color(255, 255, 255));
         btnNewButton.setFont(new Font("Tw Cen MT", Font.BOLD, 15));
-        btnNewButton.setBackground(new Color(255, 255, 255));
-        btnNewButton.setBounds(565, 467, 85, 21);
+        btnNewButton.setBackground(new Color(0, 0, 0));
+        btnNewButton.setBounds(585, 451, 91, 25);
         panel.add(btnNewButton);
+        
+        JPanel panel_1 = new JPanel();
+        panel_1.setBackground(new Color(0, 0, 0));
+        panel_1.setBounds(10, 55, 666, 45);
+        panel.add(panel_1);
+        
+                JLabel lblNewLabel = new JLabel("Clientes");
+                panel_1.add(lblNewLabel);
+                lblNewLabel.setForeground(new Color(255, 255, 255));
+                lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 24));
     }
 
     public void show() {
-        // Make the frame visible
-        frame.setVisible(true);
+                frame.setVisible(true);
     }
 
-    // Custom renderer for buttons in the table
-    private class ButtonRenderer extends JPanel implements TableCellRenderer {
+        private class ButtonRenderer extends JPanel implements TableCellRenderer {
 
         public ButtonRenderer() {
             setLayout(new GridLayout(1, 2, 10, 0));
@@ -126,7 +159,11 @@ public class ClientPanel {
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
             JButton btnEdit = new JButton(new ImageIcon(getClass().getResource("/ImagenesGym/boton-editar.png")));
+            btnEdit.setBackground(Color.WHITE);
+
             JButton btnView = new JButton(new ImageIcon(getClass().getResource("/ImagenesGym/ver-detalles.png")));
+            btnView.setBackground(Color.WHITE);
+
             removeAll();
             add(btnEdit);
             add(btnView);
@@ -134,8 +171,7 @@ public class ClientPanel {
         }
     }
 
-    // Custom editor for buttons in the table
-    private class ButtonEditor extends AbstractCellEditor implements TableCellEditor, ActionListener {
+        private class ButtonEditor extends AbstractCellEditor implements TableCellEditor, ActionListener {
 
         private JPanel panel;
         private JButton btnEdit;
@@ -202,4 +238,16 @@ public class ClientPanel {
 
 
     }
+
+		public void setVisible(boolean b) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		
+
+		
+		
+
+	
 }

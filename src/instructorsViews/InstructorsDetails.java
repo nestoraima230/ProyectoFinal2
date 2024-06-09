@@ -18,6 +18,8 @@ import javax.swing.JList;
 import javax.swing.JTable;
 import javax.swing.ImageIcon;
 import authControllers.instructorControllers;
+import classView.ClassRecords;
+
 import java.util.List;
 
 //INCOMPLETO
@@ -73,7 +75,7 @@ public class InstructorsDetails {
         frame.getContentPane().add(panel);
         panel.setLayout(null);
 
-        JLabel lblNewLabel = new JLabel("\tHistorial de clases");
+        JLabel lblNewLabel = new JLabel("Historial del instructor");
         lblNewLabel.setForeground(new Color(255, 255, 255));
         lblNewLabel.setBackground(new Color(0, 0, 0));
         lblNewLabel.setOpaque(true);
@@ -86,7 +88,7 @@ public class InstructorsDetails {
         btnNewButton_1.setForeground(new Color(255, 255, 255));
         btnNewButton_1.setBackground(new Color(0, 0, 0));
         btnNewButton_1.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
-        btnNewButton_1.setBounds(400, 478, 112, 23);
+        btnNewButton_1.setBounds(326, 478, 112, 23);
         panel.add(btnNewButton_1);
         
         btnNewButton_1.addActionListener(new ActionListener() {
@@ -102,7 +104,7 @@ public class InstructorsDetails {
         btnNewButton_2.setForeground(new Color(255, 255, 255));
         btnNewButton_2.setBackground(new Color(0, 0, 0));
         btnNewButton_2.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
-        btnNewButton_2.setBounds(545, 478, 112, 23);
+        btnNewButton_2.setBounds(450, 478, 112, 23);
         panel.add(btnNewButton_2);
         
         table = new JTable();
@@ -134,8 +136,26 @@ public class InstructorsDetails {
         
         lblNewLabel_2 = new JLabel("Historial");
         lblNewLabel_2.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
-        lblNewLabel_2.setBounds(351, 71, 112, 13);
+        lblNewLabel_2.setBounds(256, 70, 112, 13);
         panel.add(lblNewLabel_2);
+        
+        JButton btnNewButton_3 = new JButton("Ok");
+        btnNewButton_3.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		 frame.dispose();
+                 ClassRecords.main(new String[0]);
+        	}
+        });
+        btnNewButton_3.setForeground(new Color(255, 255, 255));
+        btnNewButton_3.setBackground(new Color(0, 0, 0));
+        btnNewButton_3.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
+        btnNewButton_3.setBounds(572, 478, 85, 23);
+        panel.add(btnNewButton_3);
+        
+        JLabel lblNewLabel_3 = new JLabel("Clase");
+        lblNewLabel_3.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
+        lblNewLabel_3.setBounds(467, 70, 45, 13);
+        panel.add(lblNewLabel_3);
         
         btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

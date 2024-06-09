@@ -13,6 +13,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JTextPane;
 import javax.swing.border.MatteBorder;
 
+import classView.ClassRecords;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 public class InstructorReportcard {
 
 	private JFrame frame;
@@ -56,6 +61,12 @@ public class InstructorReportcard {
 		panel.setLayout(null);
 		
 		JButton btnNewButton_1 = new JButton("Regresar");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 frame.dispose();
+                 ClassRecords.main(new String[0]);
+			}
+		});
 		btnNewButton_1.setBounds(528, 437, 128, 32);
 		panel.add(btnNewButton_1);
 		btnNewButton_1.setFont(new Font("Tw Cen MT", Font.PLAIN, 16));

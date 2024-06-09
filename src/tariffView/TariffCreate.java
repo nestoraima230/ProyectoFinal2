@@ -61,6 +61,8 @@ public class TariffCreate {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 700, 550);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
+
 
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 686, 513);
@@ -107,7 +109,7 @@ public class TariffCreate {
 		lblNewLabel_2.setFont(new Font("Tw Cen MT", Font.PLAIN, 22));
 		
 		JLabel lblNewLabel_3 = new JLabel("Fecha final");
-		lblNewLabel_3.setBounds(220, 241, 135, 13);
+		lblNewLabel_3.setBounds(220, 240, 135, 14);
 		panel_1.add(lblNewLabel_3);
 		lblNewLabel_3.setFont(new Font("Tw Cen MT", Font.PLAIN, 22));
 		
@@ -144,6 +146,9 @@ public class TariffCreate {
 
                 if (tarifaGuardada) {
                     JOptionPane.showMessageDialog(frame, "Tarifa guardada correctamente.");
+                    frame.dispose();
+                    TariffPanel.main(new String[0]);
+                    
                 } else {
                     JOptionPane.showMessageDialog(frame, "Error al guardar la tarifa. Por favor, inténtelo de nuevo.");
                 }

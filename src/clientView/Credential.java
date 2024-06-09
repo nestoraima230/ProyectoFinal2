@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import MainView.MainWindows;
 import instructorsViews.InstructorCredential;
 import instructorsViews.InstructorsDetails;
 
@@ -59,10 +60,7 @@ public class Credential {
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon(Credential.class.getResource("/ImagenesGym/Credential.png")));
-		lblNewLabel.setBounds(126, 28, 425, 376);
-		panel.add(lblNewLabel);
+		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(144, 45, 65));
 		panel_1.setBounds(60, 31, 252, 420);
@@ -90,7 +88,7 @@ public class Credential {
 		lblNewLabel_2.setBounds(0, 0, 212, 180);
 		panel_3.add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_6 = new JLabel("[Nombre]");
+		JLabel lblNewLabel_6 = new JLabel("Instructor");
 		lblNewLabel_6.setForeground(Color.WHITE);
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);
@@ -126,22 +124,25 @@ public class Credential {
 		panel_1_1.add(panel_2_1_1);
 		
 		JButton btnNewButton = new JButton("Regresar");
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.setBackground(new Color(0, 0, 0));
 		btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton.setBounds(60, 477, 95, 24);
+		btnNewButton.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
+		btnNewButton.setBounds(393, 477, 103, 24);
 		panel.add(btnNewButton);
 		
 		btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	frame.dispose();
-            	InstructorsDetails InstructorsDetails = new InstructorsDetails();
-            	InstructorsDetails.getFrame().setVisible(true);
+            	  frame.dispose();
+                  ClientPanel.main(new String[0]);
             }
         });
 		
 		JButton btnNewButton_1 = new JButton("Descargar");
-		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton_1.setBounds(529, 477, 95, 24);
+		btnNewButton_1.setForeground(new Color(255, 255, 255));
+		btnNewButton_1.setBackground(new Color(0, 0, 0));
+		btnNewButton_1.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
+		btnNewButton_1.setBounds(506, 477, 118, 24);
 		panel.add(btnNewButton_1);
 	
 	}

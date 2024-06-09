@@ -48,6 +48,7 @@ public class ClientReport {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 700, 550);
+		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panel = new JPanel();
@@ -58,16 +59,19 @@ public class ClientReport {
 		
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setIcon(new ImageIcon(ClientReport.class.getResource("/ImagenesGym/reporte.png")));
-		lblNewLabel.setBounds(10, 29, 343, 422);
+		lblNewLabel.setBounds(31, 29, 343, 422);
 		panel.add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Descargar");
-		btnNewButton.setBackground(new Color(255, 255, 255));
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.setBackground(new Color(0, 0, 0));
 		btnNewButton.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
 		btnNewButton.setBounds(469, 187, 117, 40);
 		panel.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Regresar");
+		btnNewButton_1.setForeground(new Color(255, 255, 255));
+		btnNewButton_1.setBackground(new Color(0, 0, 0));
 		btnNewButton_1.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
 		btnNewButton_1.setBounds(469, 299, 117, 40);
 		panel.add(btnNewButton_1);
@@ -76,9 +80,8 @@ public class ClientReport {
 		    @Override
 		    public void actionPerformed(ActionEvent e) {
 
-		        frame.dispose();		        
-                ClassPanel classPanelWindow = new ClassPanel();
-		        classPanelWindow.getFrame().setVisible(true);
+		    	  frame.dispose();
+                  ClientPanel.main(new String[0]);
 		    }
 		});
 
@@ -88,5 +91,8 @@ public class ClientReport {
     public JFrame getFrame() {
         return frame;
     }
+    
+   
+
 
 }

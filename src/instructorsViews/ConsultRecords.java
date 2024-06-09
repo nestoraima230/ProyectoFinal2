@@ -15,6 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -24,14 +25,15 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
+import clientView.ClientEdit;
 import clientView.ClientPanel;
-import instructorsControllers.ConsultRecordsController;
+import authControllers.instructorControllers;
 
 public class ConsultRecords {
 
     private JFrame frame;
     private JTable table;
-    private ConsultRecordsController controller;
+    private instructorControllers controller;
 
     public static void main(String[] args) {
     	EventQueue.invokeLater(() -> {
@@ -40,12 +42,11 @@ public class ConsultRecords {
     	    window.table.repaint();
     	});
 
-
     }
 
     public ConsultRecords() {
         initialize();
-        controller = new ConsultRecordsController();
+        controller = new instructorControllers();
         displayInstructors();
     }
 
@@ -85,6 +86,7 @@ public class ConsultRecords {
 
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Nombre");
+        model.addColumn("ID");
         model.addColumn("Apellidos");
         model.addColumn("Especialidad");
         model.addColumn("Email");
@@ -95,13 +97,13 @@ public class ConsultRecords {
         ButtonRenderer buttonRenderer = new ButtonRenderer();
 
         // Asignar el renderizador personalizado a la columna de botones
-        table.getColumnModel().getColumn(4).setCellRenderer(buttonRenderer);
+        table.getColumnModel().getColumn(5).setCellRenderer(buttonRenderer);
 
         // Crear un editor de botones personalizado
         ButtonEditor buttonEditor = new ButtonEditor();
 
         // Asignar el editor personalizado a la columna de botones
-        table.getColumnModel().getColumn(4).setCellEditor(buttonEditor);
+        table.getColumnModel().getColumn(5).setCellEditor(buttonEditor);
 
         table.setRowHeight(50);
         
@@ -138,7 +140,7 @@ public class ConsultRecords {
 
         for (List<String> instructorDetails : allInstructors) {
             String[] instructorArray = instructorDetails.toArray(new String[0]);
-            model.addRow(new Object[]{instructorArray[0], instructorArray[1], instructorArray[2], instructorArray[3]});
+            model.addRow(new Object[]{instructorArray[0], instructorArray[1], instructorArray[2], instructorArray[3],instructorArray[4]});
         }
     }
 
@@ -200,14 +202,35 @@ public class ConsultRecords {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == btnEdit) {
-                frame.dispose();
-                InstructorEdit.main(new String[0]);
-            } else if (e.getSource() == btnView) {
+      	  if (e.getSource() == btnEdit) {
+  	        String nombreInstructor = (String) table.getModel().getValueAt(row, 0);
+  	        int instructorId = buscarIdInstructorPorNombre(nombreInstructor);
+  	        if (instructorId != -1) {
+  	            frame.dispose();
+  	            InstructorEdit.main(new String[]{Integer.toString(instructorId)});
+  	        }else {
+  	            JOptionPane.showMessageDialog(frame, "No se pudo encontrar el ID del instructor.");
+  	        }
+  	    }  else if (e.getSource() == btnView) {
                 frame.dispose();
                 InstructorsDetails.main(new String[0]);
             }
             fireEditingStopped();
         }
+
+        
+        private int buscarIdInstructorPorNombre(String nombreInstructor) {
+            List<List<String>> instructores = controller.getAllInstructors();
+            for (List<String> instructor : instructores) {
+                String nombre = instructor.get(0); 
+                if (nombre.equals(nombreInstructor)) {
+                    return Integer.parseInt(instructor.get(1));
+                }
+            }
+            return -1; 
+        }
+
+
+
     }
 }

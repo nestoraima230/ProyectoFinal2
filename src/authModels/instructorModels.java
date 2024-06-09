@@ -58,7 +58,7 @@ public class instructorModels {
 
     // Consult Record
     public List<String> getInstructorDetails(int instructorId) {
-        String query = "SELECT NOMBRE, APELLIDOS, ESPECIALIDAD, EMAIL FROM INSTRUCTOR WHERE INSTRUCTOR_ID = ?";
+        String query = "SELECT NOMBRE, INSTRUCTOR_ID, APELLIDOS, ESPECIALIDAD, EMAIL FROM INSTRUCTOR WHERE INSTRUCTOR_ID = ?";
         List<String> instructorDetails = new ArrayList<>();
 
         try (Connection con = getConnection();
@@ -67,6 +67,7 @@ public class instructorModels {
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
                     instructorDetails.add(rs.getString("NOMBRE"));
+                    instructorDetails.add(rs.getString("INSTRUCTOR_ID"));
                     instructorDetails.add(rs.getString("APELLIDOS"));
                     instructorDetails.add(rs.getString("ESPECIALIDAD"));
                     instructorDetails.add(rs.getString("EMAIL"));
@@ -79,7 +80,7 @@ public class instructorModels {
     }
 
     public List<List<String>> getAllInstructors() {
-        String query = "SELECT NOMBRE, APELLIDOS, ESPECIALIDAD, EMAIL FROM INSTRUCTOR";
+    	String query = "SELECT INSTRUCTOR_ID, NOMBRE, APELLIDOS, ESPECIALIDAD, EMAIL FROM INSTRUCTOR";
         List<List<String>> allInstructors = new ArrayList<>();
 
         try (Connection con = getConnection();
@@ -88,6 +89,7 @@ public class instructorModels {
             while (rs.next()) {
                 List<String> instructorDetails = new ArrayList<>();
                 instructorDetails.add(rs.getString("NOMBRE"));
+                instructorDetails.add(rs.getString("INSTRUCTOR_ID"));
                 instructorDetails.add(rs.getString("APELLIDOS"));
                 instructorDetails.add(rs.getString("ESPECIALIDAD"));
                 instructorDetails.add(rs.getString("EMAIL"));
@@ -99,6 +101,8 @@ public class instructorModels {
 
         return allInstructors;
     }
+    
+    
 
     // Edit Instructor
     public boolean updateInstructor(int id, String nombre, String apellidos, String especialidad, String email) {

@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.util.List;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -12,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import authControllers.instructorControllers;
+import clientView.ClientEdit;
 
 import javax.swing.border.MatteBorder;
 
@@ -27,22 +30,41 @@ public class InstructorEdit extends JPanel {
     private int instructorId;
     private JTextField textField;
 
+   
     public static void main(String[] args) {
-
-        EventQueue.invokeLater(() -> {
-            try {
-            	InstructorEdit window = new InstructorEdit();
-				window.frame.setVisible(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+        if (args.length > 0) {
+            int instructorId = Integer.parseInt(args[0]);
+            EventQueue.invokeLater(() -> {
+                try {
+                    InstructorEdit window = new InstructorEdit(instructorId); 
+                    window.frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        }
     }
 
-	public InstructorEdit() {
+	public InstructorEdit(int instructorId) {
         controller = new instructorControllers(); 
         initialize();
+        cargarInformacionInstructor(instructorId);
 	}
+	
+	private void cargarInformacionInstructor(int instructorId) {
+	    List<String> instructorDetails = controller.getInstructorDetails(instructorId);
+	    if (instructorDetails.size() >= 5) { // Verifica que la lista tenga al menos 5 elementos
+	        nombre.setText(instructorDetails.get(0)); 
+	        apellido.setText(instructorDetails.get(2));
+	        especialidad.setText(instructorDetails.get(3));
+	        email.setText(instructorDetails.get(4));
+	        textField.setText(instructorDetails.get(1));
+	        
+
+
+	    }
+	}
+
 	
     private void initialize() {
         frame = new JFrame();
@@ -156,7 +178,6 @@ public class InstructorEdit extends JPanel {
                 btnEliminar.addActionListener(e -> {
                 	
                 	instructorId = obtenerIdInstructor();
-
                     try {
                         boolean success = controller.deleteInstructor(instructorId);
                         if (success) {

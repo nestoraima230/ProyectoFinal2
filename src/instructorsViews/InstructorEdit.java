@@ -10,10 +10,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
-import instructorsControllers.EditInstructorController;
-import javax.swing.ImageIcon;
+
+import authControllers.instructorControllers;
+
 import javax.swing.border.MatteBorder;
 
 public class InstructorEdit extends JPanel {
@@ -24,37 +23,27 @@ public class InstructorEdit extends JPanel {
     private JTextField apellido;
     private JTextField especialidad;
     private JTextField email;
-    private EditInstructorController controller;
+    private instructorControllers controller;
     private int instructorId;
+    private JTextField textField;
 
     public static void main(String[] args) {
-        int instructorId = 2;
 
-        if (args.length > 0) {
-            try {
-                instructorId = Integer.parseInt(args[0]);
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid instructor ID. Using default ID 2."); // SOLO RECIBE IDs
-            }
-        }
-
-        final int finalInstructorId = instructorId;
         EventQueue.invokeLater(() -> {
             try {
-                EditInstructorController controller = new EditInstructorController();
-                controller.showView(finalInstructorId);
+            	InstructorEdit window = new InstructorEdit();
+				window.frame.setVisible(true);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
     }
 
-    public InstructorEdit(EditInstructorController controller, int id) {
-        this.controller = controller;
-        this.instructorId = id;
+	public InstructorEdit() {
+        controller = new instructorControllers(); 
         initialize();
-    }
-
+	}
+	
     private void initialize() {
         frame = new JFrame();
         frame.setBounds(100, 100, 700, 550);
@@ -155,7 +144,19 @@ public class InstructorEdit extends JPanel {
                 btnEliminar.setBounds(29, 399, 100, 32);
                 panel_2.add(btnEliminar);
                 btnEliminar.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
+                
+                textField = new JTextField();
+                textField.setFont(new Font("Tw Cen MT", Font.PLAIN, 16));
+                textField.setColumns(10);
+                textField.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
+                textField.setBounds(126, 373, 143, 25);
+                panel_2.add(textField);
+                
+                
                 btnEliminar.addActionListener(e -> {
+                	
+                	instructorId = obtenerIdInstructor();
+
                     try {
                         boolean success = controller.deleteInstructor(instructorId);
                         if (success) {
@@ -169,41 +170,56 @@ public class InstructorEdit extends JPanel {
                     }
                 });
 
-        btnGuardar.addActionListener(e -> {
-            String nombreText = nombre.getText();
-            String apellidoText = apellido.getText();
-            String especialidadText = especialidad.getText();
-            String emailText = email.getText();
+                btnGuardar.addActionListener(e -> {
+                    String nombreText = nombre.getText();
+                    String apellidoText = apellido.getText();
+                    String especialidadText = especialidad.getText();
+                    String emailText = email.getText();
+                    String instructorIdText = textField.getText();
 
-            if (nombreText.isEmpty() || apellidoText.isEmpty() || especialidadText.isEmpty() || emailText.isEmpty()) {
-                JOptionPane.showMessageDialog(frame, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
+                    if (nombreText.isEmpty() || apellidoText.isEmpty() || especialidadText.isEmpty() || emailText.isEmpty() || instructorIdText.isEmpty()) {
+                        JOptionPane.showMessageDialog(frame, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
 
-            if (nombreText.matches(".*\\d.*")) {
-                JOptionPane.showMessageDialog(frame, "El nombre no puede contener números.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
+                    if (nombreText.matches(".*\\d.*")) {
+                        JOptionPane.showMessageDialog(frame, "El nombre no puede contener números.", "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
 
-            if (apellidoText.matches(".*\\d.*")) {
-                JOptionPane.showMessageDialog(frame, "El apellido no puede contener números.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
+                    if (apellidoText.matches(".*\\d.*")) {
+                        JOptionPane.showMessageDialog(frame, "El apellido no puede contener números.", "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
 
-            if (especialidadText.matches(".*\\d.*")) {
-                JOptionPane.showMessageDialog(frame, "La especialidad no puede contener números.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
+                    if (especialidadText.matches(".*\\d.*")) {
+                        JOptionPane.showMessageDialog(frame, "La especialidad no puede contener números.", "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
 
-            boolean success = controller.updateInstructor(instructorId, nombreText, apellidoText, especialidadText, emailText);
-            if (success) {
-                JOptionPane.showMessageDialog(frame, "Instructor actualizado exitosamente!");
-            } else {
-                JOptionPane.showMessageDialog(frame, "Error al actualizar usuario.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        });
+                    int instructorId;
+                    try {
+                        instructorId = Integer.parseInt(instructorIdText);
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(frame, "El ID del instructor debe ser un número entero.", "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+
+                    boolean success = controller.updateInstructor(instructorId, nombreText, apellidoText, especialidadText, emailText);
+                    if (success) {
+                        JOptionPane.showMessageDialog(frame, "¡Instructor actualizado exitosamente!");
+                    } else {
+                        JOptionPane.showMessageDialog(frame, "Error al actualizar el instructor.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                });
+
     }
 
+	private int obtenerIdInstructor() {
+		
+		return Integer.parseInt(textField.getText());
+	}
+	
     public void setVisible(boolean visible) {
         frame.setVisible(visible);
     }

@@ -124,28 +124,6 @@ public class classModels {
     }
 
 
-    public List<String> getDetallesClase(String nombreClase) {
-        String query = "SELECT * FROM CLASE WHERE NOMBRE = ?";
-        List<String> claseDetails = new ArrayList<>();
-
-        try (Connection con = getConnection();
-             PreparedStatement pstmt = con.prepareStatement(query)) {
-            pstmt.setString(1, nombreClase);
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    claseDetails.add(String.valueOf(rs.getInt("CLASE_ID")));
-                    claseDetails.add(rs.getString("NOMBRE"));
-                    claseDetails.add(rs.getTime("DURACION").toString());
-                    claseDetails.add(rs.getTimestamp("HORARIO").toString());
-                    claseDetails.add(String.valueOf(rs.getInt("CAPACIDAD_MAXIMA")));
-                    claseDetails.add(String.valueOf(rs.getInt("INSTRUCTOR_ID")));
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return claseDetails;
-    }
 
     public boolean updateClase(String nombre, Timestamp horario, Time duracion, int instructorId, int capacidadMaxima, int claseId) {
     	String query = "UPDATE CLASE SET NOMBRE = ?, HORARIO = ?, DURACION = ?, INSTRUCTOR_ID = ?, CAPACIDAD_MAXIMA = ? WHERE CLASE_ID = ?";
@@ -166,6 +144,29 @@ public class classModels {
                  return false;
              }
   }
+
+	public List<String> getDetallesClase(int classId) {
+        String query = "SELECT * FROM CLASE WHERE CLASE_ID = ?";
+        List<String> claseDetails = new ArrayList<>();
+
+        try (Connection con = getConnection();
+             PreparedStatement pstmt = con.prepareStatement(query)) {
+            pstmt.setInt(1, classId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    claseDetails.add(String.valueOf(rs.getInt("CLASE_ID")));
+                    claseDetails.add(rs.getString("NOMBRE"));
+                    claseDetails.add(rs.getTime("DURACION").toString());
+                    claseDetails.add(rs.getTimestamp("HORARIO").toString());
+                    claseDetails.add(String.valueOf(rs.getInt("CAPACIDAD_MAXIMA")));
+                    claseDetails.add(String.valueOf(rs.getInt("INSTRUCTOR_ID")));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return claseDetails;
+	}
 
 
 }

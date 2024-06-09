@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -21,6 +22,7 @@ import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
 import authControllers.tariffControllers;
+import clientView.ClientEdit;
 
 public class TariffPanel {
 
@@ -197,14 +199,31 @@ public class TariffPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == btnEdit) {
-                frame.dispose();
-                TariffCreate.main(new String[0]); 
-            } else if (e.getSource() == btnView) {
+      	  if (e.getSource() == btnEdit) {
+  	        String nombreTarifa = (String) table.getModel().getValueAt(row, 1);
+  	        int tarifaId = buscarIdTarifaPorNombre(nombreTarifa);
+  	        if (tarifaId != -1) {
+  	            frame.dispose();
+  	            TariffEdit.main(new String[]{Integer.toString(tarifaId)});
+  	        } else {
+  	            JOptionPane.showMessageDialog(frame, "No se pudo encontrar el ID del cliente.");
+  	        }
+  	    } else if (e.getSource() == btnView) {
                 frame.dispose();
                 TariffDetail.main(new String[0]); 
             }
             fireEditingStopped();
+        }
+        
+        private int buscarIdTarifaPorNombre(String nombreTarifa) {
+            List<List<String>> tarifas = controller.getAllTariffs();
+            for (List<String> tarifa : tarifas) {
+                String nombre = tarifa.get(5); 
+                if (nombre.equals(nombreTarifa)) {
+                    return Integer.parseInt(tarifa.get(0));
+                }
+            }
+            return -1; 
         }
     }
 }

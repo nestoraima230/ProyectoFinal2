@@ -115,54 +115,57 @@ public class instructorModels {
 
             int rowsAffected = pstmt.executeUpdate();
             return rowsAffected > 0;
-        } catch (SQLException e) {
+        }catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("Error al actualizar el instructor: " + e.getMessage());
             return false;
         }
+
     }
 
     public boolean deleteInstructor(int id) {
         String deleteInscriptionQuery = "DELETE FROM INSCRIPCION WHERE CLASE_IMPARTIDA_ID IN (SELECT CLASE_IMPARTIDA_ID FROM CLASE_IMPARTIDA WHERE INSTRUCTOR_ID = ?)";
         String deleteAttendanceQuery = "DELETE FROM ASISTENCIA WHERE CLASE_IMPARTIDA_ID IN (SELECT CLASE_IMPARTIDA_ID FROM CLASE_IMPARTIDA WHERE INSTRUCTOR_ID = ?)";
         String deleteClaseImpartidaQuery = "DELETE FROM CLASE_IMPARTIDA WHERE INSTRUCTOR_ID = ?";
+        String deleteClaseQuery = "DELETE FROM CLASE WHERE INSTRUCTOR_ID = ?";
         String deleteInstructorQuery = "DELETE FROM INSTRUCTOR WHERE INSTRUCTOR_ID = ?";
-
-        try (Connection con = getConnection()) {
+        
+        try (Connection con = getConnection();
+             PreparedStatement pstmt1 = con.prepareStatement(deleteInscriptionQuery);
+             PreparedStatement pstmt2 = con.prepareStatement(deleteAttendanceQuery);
+             PreparedStatement pstmt3 = con.prepareStatement(deleteClaseImpartidaQuery);
+             PreparedStatement pstmt4 = con.prepareStatement(deleteClaseQuery);
+             PreparedStatement pstmt5 = con.prepareStatement(deleteInstructorQuery)) {
+            
             con.setAutoCommit(false);
-
-            try (PreparedStatement pstmt1 = con.prepareStatement(deleteInscriptionQuery);
-                 PreparedStatement pstmt2 = con.prepareStatement(deleteAttendanceQuery);
-                 PreparedStatement pstmt3 = con.prepareStatement(deleteClaseImpartidaQuery);
-                 PreparedStatement pstmt4 = con.prepareStatement(deleteInstructorQuery)) {
-
-                // Delete from INSCRIPCION
-                pstmt1.setInt(1, id);
-                pstmt1.executeUpdate();
-
-                // Delete from ASISTENCIA
-                pstmt2.setInt(1, id);
-                pstmt2.executeUpdate();
-
-                // Delete from CLASE_IMPARTIDA
-                pstmt3.setInt(1, id);
-                pstmt3.executeUpdate();
-
-                // Delete from INSTRUCTOR
-                pstmt4.setInt(1, id);
-                pstmt4.executeUpdate();
-
-                con.commit();
-                return true;
-            } catch (SQLException e) {
-                con.rollback();
-                e.printStackTrace();
-                return false;
-            }
+            
+            pstmt1.setInt(1, id);
+            pstmt1.executeUpdate();
+            
+            pstmt2.setInt(1, id);
+            pstmt2.executeUpdate();
+            
+            pstmt3.setInt(1, id);
+            pstmt3.executeUpdate();
+            
+            pstmt4.setInt(1, id);
+            pstmt4.executeUpdate();
+            
+            pstmt5.setInt(1, id);
+            int rowsAffected = pstmt5.executeUpdate();
+            
+            // Commit the transaction
+            con.commit();
+            
+            return rowsAffected > 0;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
     }
+
+
+
 
     public List<List<String>> getAllInstructorsClassHistory() {
         List<List<String>> allInstructorsClassHistory = new ArrayList<>();

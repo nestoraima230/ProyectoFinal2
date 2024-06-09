@@ -114,7 +114,8 @@ public class ClassRecords {
                 clase.get(4),    
                 clase.get(5),    
                 clase.get(2),    
-                ""  // Cambiar "new Object()" por una cadena vacía para representar la columna de botones
+                ""  
+
             });
         }
 

@@ -73,8 +73,8 @@ public class InstructorPanel {
         btnNewButton_3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	frame.dispose();
-            	InstructorEdit InstructorEdit = new InstructorEdit(null, 0);
-            	InstructorEdit.getFrame().setVisible(true);     
+            	//InstructorEdit InstructorEdit = new InstructorEdit(null, 0);
+            	//InstructorEdit.getFrame().setVisible(true);     
             }
         });
         panel_1.add(btnNewButton_3);

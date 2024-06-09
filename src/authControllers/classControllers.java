@@ -30,8 +30,8 @@ public class classControllers {
     }
     
     
-    public List<String> getDetallesClase(String nombreClase) {
-        return classModels.getDetallesClase(nombreClase);
+    public List<String> getDetallesClase(int classId) {
+        return classModels.getDetallesClase(classId);
     }
 
 

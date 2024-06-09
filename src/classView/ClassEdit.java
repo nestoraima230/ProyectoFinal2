@@ -9,6 +9,7 @@ import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,6 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.border.MatteBorder;
 
 import authControllers.classControllers;
+import clientView.ClientDetail;
 
 
 public class ClassEdit {
@@ -36,26 +38,49 @@ public class ClassEdit {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ClassEdit window = new ClassEdit();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+    public static void main(String[] args) {
+        if (args.length > 0) {
+            int classId = Integer.parseInt(args[0]);
+            EventQueue.invokeLater(() -> {
+                try {
+                	ClassEdit window = new ClassEdit(classId);
+                    window.frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+    }
+
 
 	/**
 	 * Create the application.
 	 */
-	public ClassEdit() {
-        controller = new classControllers(); 
+	public ClassEdit(int classId) {
         initialize();
+        controller = new classControllers(); 
+        cargarInformacionClase(classId);
+
 	}
+	
+    private void cargarInformacionClase(int classId) {
+        List<String> classDetails = controller.getDetallesClase(classId);
+        if (!classDetails.isEmpty()) {
+        	textField.setText(classDetails.get(1));
+        	textField_1.setText(classDetails.get(2));
+        	textField_2.setText(classDetails.get(5));
+        	textField_3.setText(classDetails.get(3));
+        	textField_4.setText(classDetails.get(4));
+        	textField_5.setText(classDetails.get(0));
+        	
+            String fechaHora = classDetails.get(3);
+            if (fechaHora != null && fechaHora.contains(".")) {
+                fechaHora = fechaHora.substring(0, fechaHora.indexOf('.'));
+            }
+            textField_3.setText(fechaHora);
+        }
+        
+    }
 
 	/**
 	 * Initialize the contents of the frame.
@@ -159,6 +184,9 @@ public class ClassEdit {
                         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                         java.util.Date parsedFechaHora = sdf.parse(fechaHora);
                         Timestamp fechaHoraTimestamp = new Timestamp(parsedFechaHora.getTime());
+                        
+                        fechaHoraTimestamp.setNanos(0);
+
 
                         boolean saved = controller.updateClase(nombre, fechaHoraTimestamp, Time.valueOf(duracion), Integer.parseInt(instructorId), Integer.parseInt(capacidadMaxima), Integer.parseInt(claseId));
                         if (saved) {

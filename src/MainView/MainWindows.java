@@ -7,6 +7,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.border.MatteBorder;
 
+import check.CheckPin;
+import classView.ClassPanel;
+import clientView.ClientPanel;
+import instructorsViews.InstructorPanel;
+import tariffView.TariffPanel;
+
 
 public class MainWindows {
     private JFrame frame;
@@ -84,6 +90,43 @@ public class MainWindows {
         btnCheckIn.setOpaque(true);
         btnCheckIn.setBounds(548, 224, 105, 23);
         panel_1.add(btnCheckIn);
+        
+        btnClients.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	frame.dispose();
+                ClientPanel.main(new String[0]);
+            }
+        });
+
+        btnRates.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	frame.dispose();
+                TariffPanel.main(new String[0]);
+            }
+        });
+
+        btnInstructors.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	frame.dispose();
+                InstructorPanel.main(new String[0]);
+            }
+        });
+
+        btnClasses.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	frame.dispose();
+                ClassPanel.main(new String[0]);
+            }
+        });
+
+        btnCheckIn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	frame.dispose();
+                CheckPin checkPin = new CheckPin();
+                checkPin.getFrame().setVisible(true);
+            }
+        });
+
 
         JPanel panel_2 = new JPanel();
         panel_2.setForeground(new Color(255, 255, 255));

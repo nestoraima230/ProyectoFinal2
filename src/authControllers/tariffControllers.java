@@ -1,7 +1,6 @@
 package authControllers;
 
 import authModels.tariffModels;
-import java.sql.Date;
 import java.util.List;
 
 public class tariffControllers {

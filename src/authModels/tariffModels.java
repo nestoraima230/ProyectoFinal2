@@ -62,6 +62,8 @@ public class tariffModels {
         }
         return tariffDetails;
     }
+    
+    
 
     public List<List<String>> getAllTariffs() {
         String query = "SELECT t.TARIFA_ID, t.CLIENTE_ID, c.NOMBRE AS NOMBRE_CLIENTE, t.FECHA_VALIDA_INICIAL, t.FECHA_VALIDA_FINALIZADA, t.COSTO, t.NOMBRE " +

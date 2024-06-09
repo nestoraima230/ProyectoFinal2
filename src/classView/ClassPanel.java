@@ -1,30 +1,37 @@
 package classView;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellEditor;
+import javax.swing.table.TableCellRenderer;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.EventQueue;
-import javax.swing.JPanel;
-import javax.swing.ImageIcon;
-import javax.swing.JTable;
-import javax.swing.JLabel;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
-import authControllers.classControllers;
 import java.awt.Font;
-import javax.swing.JScrollPane;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
-import javax.swing.JButton;
+import java.util.EventObject;
+
+import authControllers.classControllers;
+import clientView.ClientEdit;
+import clientView.ClientPanel;
+import instructorsViews.InstructorEdit;
 
 public class ClassPanel {
 
     private JFrame frame;
     private JTable table;
     private classControllers controller;
-    private JButton btnMostrarClasses;
-    private JButton btnMostrarRecords;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
@@ -70,28 +77,22 @@ public class ClassPanel {
 
         List<List<String>> clases = controller.getAllClases();
         for (List<String> clase : clases) {
-            model.addRow(new Object[]{clase.get(1), new ImageIcon[]{
-                    new ImageIcon(getClass().getResource("/ImagenesGym/boton-editar.png")), 
-                    new ImageIcon(getClass().getResource("/ImagenesGym/ver-detalles.png"))}});
+            model.addRow(new Object[]{clase.get(1)});
         }
 
         table.setModel(model);
-        table.getColumnModel().getColumn(1).setCellRenderer(new TableCellRenderer() {
-            @Override
-            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                JPanel panel = new JPanel(new GridLayout(1, 2, 10, 0));
-                panel.setBackground(table.getBackground());
 
-                ImageIcon[] icons = (ImageIcon[]) value;
-                for (ImageIcon icon : icons) {
-                    JLabel label = new JLabel(icon);
-                    label.setPreferredSize(new Dimension(50, 50));
-                    panel.add(label);
-                }
+        // Crear un renderizador de botones personalizado
+        ButtonRenderer buttonRenderer = new ButtonRenderer();
 
-                return panel;
-            }
-        });
+        // Asignar el renderizador personalizado a la columna de botones
+        table.getColumnModel().getColumn(1).setCellRenderer(buttonRenderer);
+
+        // Crear un editor de botones personalizado
+        ButtonEditor buttonEditor = new ButtonEditor();
+
+        // Asignar el editor personalizado a la columna de botones
+        table.getColumnModel().getColumn(1).setCellEditor(buttonEditor);
 
         table.setRowHeight(50);
         table.getColumnModel().getColumn(0).setPreferredWidth(300);
@@ -111,11 +112,86 @@ public class ClassPanel {
         return frame;
     }
 
-    public JButton getBtnMostrarClasses() {
-        return btnMostrarClasses;
+    private class ButtonRenderer extends JPanel implements TableCellRenderer {
+
+        public ButtonRenderer() {
+            setLayout(new GridLayout(1, 2, 10, 0));
+            setBackground(Color.WHITE);
+        }
+
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            // Crear botones nuevos para cada celda
+            JPanel panel = new JPanel(new GridLayout(1, 2, 10, 0));
+            panel.setBackground(Color.WHITE);
+            JButton btnEdit = new JButton(new ImageIcon(getClass().getResource("/ImagenesGym/boton-editar.png")));
+            JButton btnView = new JButton(new ImageIcon(getClass().getResource("/ImagenesGym/ver-detalles.png")));
+            panel.add(btnEdit);
+            panel.add(btnView);
+            return panel;
+        }
     }
 
-    public JButton getBtnMostrarRecords() {
-        return btnMostrarRecords;
+
+    private class ButtonEditor extends javax.swing.AbstractCellEditor implements TableCellEditor, ActionListener {
+
+        private JPanel panel;
+        private JButton btnEdit;
+        private JButton btnView;
+        private int row;
+
+        public ButtonEditor() {
+            panel = new JPanel(new GridLayout(1, 2, 10, 0));
+            btnEdit = new JButton(new ImageIcon(getClass().getResource("/ImagenesGym/boton-editar.png")));
+            btnView = new JButton(new ImageIcon(getClass().getResource("/ImagenesGym/ver-detalles.png")));
+            btnEdit.addActionListener(this);
+            btnView.addActionListener(this);
+            panel.add(btnEdit);
+            panel.add(btnView);
+        }
+
+        @Override
+        public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
+            this.row = row;
+            return panel;
+        }
+
+        @Override
+        public Object getCellEditorValue() {
+            return "";
+        }
+
+        @Override
+        public boolean isCellEditable(EventObject anEvent) {
+            return true;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+      	  if (e.getSource() == btnEdit) {
+  	        String nombreClase = (String) table.getModel().getValueAt(row, 0);
+  	        int claseId = buscarIdClasePorNombre(nombreClase);
+  	        if (claseId != -1) {
+  	            frame.dispose();
+  	            ClassEdit.main(new String[]{Integer.toString(claseId)});
+  	        } else {
+  	            JOptionPane.showMessageDialog(frame, "No se pudo encontrar el ID del cliente.");
+  	        }
+  	    } else if (e.getSource() == btnView) {
+            }
+            fireEditingStopped();
+        }
+        
+        private int buscarIdClasePorNombre(String nombreClase) {
+            List<List<String>> clases = controller.getAllClases();
+            for (List<String> clase : clases) {
+                String nombre = clase.get(1); 
+                if (nombre.equals(nombreClase)) {
+                    return Integer.parseInt(clase.get(0));
+                }
+            }
+            return -1; 
+        }
     }
+
 }

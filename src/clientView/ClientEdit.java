@@ -3,8 +3,6 @@ package clientView;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -24,12 +22,6 @@ public class ClientEdit {
     private JTextField textField_2;
     private JTextField textField_5;
     private JTextField textField_idCliente;
-    private final String placeholderNombre = "Nombre";
-    private final String placeholderApellidos = "Apellidos";
-    private final String placeholderFechaNacimiento = "YYYY-MM-DD";
-    private final String placeholderTelefono = "Telefono";
-    private final String placeholderID = "ID";
-    private final Color placeholderColor = Color.GRAY;
 
     private clientControllers controller;
 
@@ -108,31 +100,26 @@ public class ClientEdit {
         panel.add(lblNewLabel_5);
 
         textField = new JTextField();
-        setPlaceholder(textField, placeholderNombre);
         textField.setBounds(59, 82, 296, 28);
         panel.add(textField);
         textField.setColumns(10);
         
         textField_1 = new JTextField();
-        setPlaceholder(textField_1, placeholderApellidos);
         textField_1.setColumns(10);
         textField_1.setBounds(59, 157, 296, 28);
         panel.add(textField_1);
         
         textField_idCliente = new JTextField();
-        setPlaceholder(textField_idCliente, placeholderID);
         textField_idCliente.setBounds(400, 300, 150, 28);
         panel.add(textField_idCliente);
 
         textField_2 = new JTextField();
-        setPlaceholder(textField_2, placeholderTelefono);
         textField_2.setColumns(10);
         textField_2.setBounds(59, 297, 296, 28);
         panel.add(textField_2);
 
 
         textField_5 = new JTextField();
-        setPlaceholder(textField_5, placeholderFechaNacimiento);
         textField_5.setBounds(105, 228, 85, 28);
         panel.add(textField_5);
 
@@ -189,28 +176,6 @@ public class ClientEdit {
         });
     }
 
-    public void setPlaceholder(JTextField textField, String placeholderText) {
-        textField.setText(placeholderText);
-        textField.setForeground(placeholderColor);
-
-        textField.addFocusListener(new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                if (textField.getText().equals(placeholderText)) {
-                    textField.setText("");
-                    textField.setForeground(Color.BLACK);
-                }
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (textField.getText().isEmpty()) {
-                    textField.setText(placeholderText);
-                    textField.setForeground(placeholderColor);
-                }
-            }
-        });
-    }
 
     public int obtenerIdClienteSeleccionado() {
         String idClienteStr = textField_idCliente.getText();

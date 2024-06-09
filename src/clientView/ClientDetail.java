@@ -49,12 +49,14 @@ public class ClientDetail {
     /**
      * Create the application.
      */
+    
     public ClientDetail(int clientId) {
         initialize();
-        table = new JTable();
         controller = new clientControllers();
         cargarInformacionCliente(clientId);
+        cargarDatosTabla(clientId);
     }
+
 
     private void cargarInformacionCliente(int clientId) {
         List<String> clienteDetails = controller.getClientDetails(clientId);
@@ -64,8 +66,6 @@ public class ClientDetail {
             textFieldBirthDay.setText(clienteDetails.get(4));
             textFieldBirthYear.setText(clienteDetails.get(2));
         }
-        
-        cargarDatosTabla(clientId);
     }
     
     private void initialize() {
@@ -84,7 +84,7 @@ public class ClientDetail {
         lblName.setFont(new Font("Tw Cen MT", Font.BOLD, 18));
         lblName.setBounds(61, 48, 105, 21);
         panel.add(lblName);
-
+        
         JLabel lblPhone = new JLabel("Telefono");
         lblPhone.setFont(new Font("Tw Cen MT", Font.BOLD, 19));
         lblPhone.setBounds(61, 125, 105, 21);
@@ -125,7 +125,7 @@ public class ClientDetail {
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setBounds(61, 271, 576, 150);
         panel.add(scrollPane);
-
+        
         table = new JTable();
         scrollPane.setViewportView(table);
 
@@ -195,17 +195,11 @@ public class ClientDetail {
     }
 
     private void cargarDatosTabla(int clientId) {
-
         List<List<String>> classes = controller.getClientClasses(clientId);
         List<List<String>> payments = controller.getClientPayments(clientId);
         List<List<String>> attendances = controller.getClientAttendance(clientId);
 
-        if (table == null) {
-            System.err.println("La tabla es nula.");
-            return;
-        }
-
-        DefaultTableModel model = new DefaultTableModel(new Object[]{"Clase", "Pagos", "Asistencia"}, 0);
+        DefaultTableModel model = new DefaultTableModel(new Object[]{"", "", ""}, 0);
 
         int maxSize = Math.max(classes.size(), Math.max(payments.size(), attendances.size()));
 

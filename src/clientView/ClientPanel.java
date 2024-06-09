@@ -179,7 +179,8 @@ public class ClientPanel {
         	        int clienteId = buscarIdClientePorNombre(nombreCliente);
         	        if (clienteId != -1) {
         	            frame.dispose();
-        	            ClientDetail.main(new String[]{Integer.toString(clienteId)});
+        	            ClientDetail clientDetail = new ClientDetail(clienteId);
+        	            clientDetail.show();
         	        } else {
         	            JOptionPane.showMessageDialog(frame, "No se pudo encontrar el ID del cliente.");
         	        }

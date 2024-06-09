@@ -33,6 +33,8 @@ public class clientControllers {
         return clientModels.getClientPayments(clientId);
     }
 
+
+
     public List<List<String>> getClientAttendance(int clientId) {
         return clientModels.getClientAttendances(clientId);
     }

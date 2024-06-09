@@ -22,6 +22,7 @@ public class ClientEdit {
     private JTextField textField_2;
     private JTextField textField_5;
     private JTextField textField_idCliente;
+    private JLabel lblNewLabel_6;
 
     private clientControllers controller;
 
@@ -53,6 +54,7 @@ public class ClientEdit {
             textField_idCliente.setText(clienteDetails.get(2));
             textField_2.setText(clienteDetails.get(3));
             textField_5.setText(clienteDetails.get(4));
+            lblNewLabel_6.setText(clienteDetails.get(5));
         }
     }
 
@@ -87,6 +89,7 @@ public class ClientEdit {
         lblNewLabel_3.setFont(new Font("Tw Cen MT", Font.BOLD, 19));
         lblNewLabel_3.setBounds(59, 274, 179, 13);
         panel.add(lblNewLabel_3);
+        
 
         JLabel lblNewLabel_4 = new JLabel("Total");
         lblNewLabel_4.setFont(new Font("Tw Cen MT", Font.BOLD, 19));
@@ -149,7 +152,7 @@ public class ClientEdit {
         btnNewButton_1.setBounds(270, 431, 85, 21);
         panel.add(btnNewButton_1);
 
-        JLabel lblNewLabel_6 = new JLabel("$");
+        lblNewLabel_6 = new JLabel("$");
         lblNewLabel_6.setFont(new Font("Tw Cen MT", Font.PLAIN, 19));
         lblNewLabel_6.setBounds(135, 361, 85, 13);
         panel.add(lblNewLabel_6);

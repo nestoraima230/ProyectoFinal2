@@ -85,10 +85,14 @@ public class clientModels {
             return false;
         }
     }
+    
 
     
     public List<String> getClientDetails(int clientId) {
-        String query = "SELECT CLIENTE_ID, NOMBRE, APELLIDOS, FECHA_NACIMIENTO, TELEFONO FROM CLIENTE WHERE CLIENTE_ID = ?";
+        String query = "SELECT c.CLIENTE_ID, c.NOMBRE, c.APELLIDOS, c.FECHA_NACIMIENTO, c.TELEFONO, p.MONTO " +
+                       "FROM CLIENTE c " +
+                       "INNER JOIN PAGO p ON c.CLIENTE_ID = p.CLIENTE_ID " +
+                       "WHERE c.CLIENTE_ID = ?";
         List<String> clientDetails = new ArrayList<>();
 
         try (Connection con = getConnection();
@@ -98,9 +102,10 @@ public class clientModels {
                 if (rs.next()) {
                     clientDetails.add(rs.getString("NOMBRE"));
                     clientDetails.add(rs.getString("APELLIDOS"));
-                	clientDetails.add(rs.getString("CLIENTE_ID"));
+                    clientDetails.add(rs.getString("CLIENTE_ID"));
                     clientDetails.add(rs.getString("TELEFONO"));
                     clientDetails.add(rs.getString("FECHA_NACIMIENTO"));
+                    clientDetails.add(rs.getString("MONTO"));
                 }
             }
         } catch (SQLException e) {

@@ -17,6 +17,11 @@ public class tariffControllers {
     public List<String> getTariff(int id) {
         return tariffModels.getTariff(id);
     }
+    
+    public String getNombreClient(int clientId) {
+    	return tariffModels.getNombreClient(clientId);
+    	
+    }
 
     public List<List<String>> getAllTariffs() {
         return tariffModels.getAllTariffs();

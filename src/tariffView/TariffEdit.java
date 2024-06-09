@@ -65,7 +65,7 @@ public class TariffEdit {
         List<String> clienteDetails = controller.getTariff(tariffId);
         if (!clienteDetails.isEmpty()) {
         	textField_5.setText(clienteDetails.get(0)); 
-        	textField.setText(clienteDetails.get(1));
+        	textField.setText(controller.getNombreClient(Integer.parseInt(clienteDetails.get(1))));
         	textField_3.setText(clienteDetails.get(2));
         	textField_1.setText(clienteDetails.get(3));
             textField_2.setText(clienteDetails.get(4));

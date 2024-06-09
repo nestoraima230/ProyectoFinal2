@@ -29,6 +29,10 @@ public class classControllers {
         return classModels.updateClase(nombre, horario, duracion, instructorId, capacidadMaxima, claseid);
     }
     
+    public String getNombreInstructor(int instructorId) {
+    	return classModels.getNombreInstructor(instructorId);
+    	
+    }
     
     public List<String> getDetallesClase(int classId) {
         return classModels.getDetallesClase(classId);

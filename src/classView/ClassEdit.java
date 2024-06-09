@@ -63,24 +63,24 @@ public class ClassEdit {
 
 	}
 	
-    private void cargarInformacionClase(int classId) {
-        List<String> classDetails = controller.getDetallesClase(classId);
-        if (!classDetails.isEmpty()) {
-        	textField.setText(classDetails.get(1));
-        	textField_1.setText(classDetails.get(2));
-        	textField_2.setText(classDetails.get(5));
-        	textField_3.setText(classDetails.get(3));
-        	textField_4.setText(classDetails.get(4));
-        	textField_5.setText(classDetails.get(0));
-        	
-            String fechaHora = classDetails.get(3);
-            if (fechaHora != null && fechaHora.contains(".")) {
-                fechaHora = fechaHora.substring(0, fechaHora.indexOf('.'));
-            }
-            textField_3.setText(fechaHora);
-        }
-        
-    }
+	private void cargarInformacionClase(int classId) {
+	    List<String> classDetails = controller.getDetallesClase(classId);
+	    if (!classDetails.isEmpty()) {
+	        textField.setText(classDetails.get(1));
+	        textField_1.setText(classDetails.get(2));
+	        textField_2.setText(controller.getNombreInstructor(Integer.parseInt(classDetails.get(5))));
+	        textField_3.setText(classDetails.get(3));
+	        textField_4.setText(classDetails.get(4));
+	        textField_5.setText(classDetails.get(0));
+	        
+	        String fechaHora = classDetails.get(3);
+	        if (fechaHora != null && fechaHora.contains(".")) {
+	            fechaHora = fechaHora.substring(0, fechaHora.indexOf('.'));
+	        }
+	        textField_3.setText(fechaHora);
+	    }
+	}
+
 
 	/**
 	 * Initialize the contents of the frame.

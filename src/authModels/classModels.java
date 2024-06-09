@@ -92,6 +92,25 @@ public class classModels {
 
         return allClases;
     }
+    
+    public String getNombreInstructor(int instructorId) {
+        String query = "SELECT NOMBRE FROM INSTRUCTOR WHERE INSTRUCTOR_ID = ?";
+        String nombreInstructor = null;
+
+        try (Connection con = getConnection();
+             PreparedStatement pstmt = con.prepareStatement(query)) {
+            pstmt.setInt(1, instructorId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    nombreInstructor = rs.getString("NOMBRE");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return nombreInstructor;
+    }
+
 
 
     public boolean deleteClase(int id) {

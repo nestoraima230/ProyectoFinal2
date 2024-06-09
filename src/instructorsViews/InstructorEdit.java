@@ -53,7 +53,7 @@ public class InstructorEdit extends JPanel {
 	
 	private void cargarInformacionInstructor(int instructorId) {
 	    List<String> instructorDetails = controller.getInstructorDetails(instructorId);
-	    if (instructorDetails.size() >= 5) { // Verifica que la lista tenga al menos 5 elementos
+	    if (instructorDetails.size() >= 5) { 
 	        nombre.setText(instructorDetails.get(0)); 
 	        apellido.setText(instructorDetails.get(2));
 	        especialidad.setText(instructorDetails.get(3));

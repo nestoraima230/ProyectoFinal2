@@ -63,6 +63,24 @@ public class tariffModels {
         return tariffDetails;
     }
     
+    public String getNombreClient(int clientid) {
+        String query = "SELECT NOMBRE FROM CLIENTE WHERE CLIENTE_ID = ?";
+        String nombreInstructor = null;
+
+        try (Connection con = getConnection();
+             PreparedStatement pstmt = con.prepareStatement(query)) {
+            pstmt.setInt(1, clientid);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    nombreInstructor = rs.getString("NOMBRE");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return nombreInstructor;
+    }
+
     
 
     public List<List<String>> getAllTariffs() {

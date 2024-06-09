@@ -15,7 +15,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -25,15 +24,18 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
-import clientView.ClientEdit;
+import MainView.MainWindows;
+import classView.ClassRecords;
 import clientView.ClientPanel;
-import authControllers.instructorControllers;
+import instructorsControllers.ConsultRecordsController;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ConsultRecords {
 
     private JFrame frame;
     private JTable table;
-    private instructorControllers controller;
+    private ConsultRecordsController controller;
 
     public static void main(String[] args) {
     	EventQueue.invokeLater(() -> {
@@ -42,11 +44,12 @@ public class ConsultRecords {
     	    window.table.repaint();
     	});
 
+
     }
 
     public ConsultRecords() {
         initialize();
-        controller = new instructorControllers();
+        controller = new ConsultRecordsController();
         displayInstructors();
     }
 
@@ -86,24 +89,19 @@ public class ConsultRecords {
 
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Nombre");
-        model.addColumn("ID");
         model.addColumn("Apellidos");
         model.addColumn("Especialidad");
         model.addColumn("Email");
         model.addColumn("editar         ver detalle");
         table.setModel(model);
 
-        // Crear un renderizador de botones personalizado
         ButtonRenderer buttonRenderer = new ButtonRenderer();
 
-        // Asignar el renderizador personalizado a la columna de botones
-        table.getColumnModel().getColumn(5).setCellRenderer(buttonRenderer);
+        table.getColumnModel().getColumn(4).setCellRenderer(buttonRenderer);
 
-        // Crear un editor de botones personalizado
         ButtonEditor buttonEditor = new ButtonEditor();
 
-        // Asignar el editor personalizado a la columna de botones
-        table.getColumnModel().getColumn(5).setCellEditor(buttonEditor);
+        table.getColumnModel().getColumn(4).setCellEditor(buttonEditor);
 
         table.setRowHeight(50);
         
@@ -121,11 +119,25 @@ public class ConsultRecords {
 
 
         JLabel img = new JLabel();
+        img.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		 frame.dispose();
+                 InstructorCreate.main(new String[0]);
+        	}
+        });
         img.setBounds(621, 0, 63, 85);
         img.setIcon(new ImageIcon(ClientPanel.class.getResource("/ImagenesGym/agregarUsuario.png")));
         panel_1.add(img);
 
         JButton btnOk = new JButton("OK");
+        btnOk.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		frame.dispose();
+                MainWindows MainWindows = new MainWindows();
+                MainWindows.setVisible(true);
+        	}
+        });
         btnOk.setForeground(new Color(255, 255, 255));
         btnOk.setBackground(new Color(0, 0, 0));
         btnOk.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
@@ -140,7 +152,7 @@ public class ConsultRecords {
 
         for (List<String> instructorDetails : allInstructors) {
             String[] instructorArray = instructorDetails.toArray(new String[0]);
-            model.addRow(new Object[]{instructorArray[0], instructorArray[1], instructorArray[2], instructorArray[3],instructorArray[4]});
+            model.addRow(new Object[]{instructorArray[0], instructorArray[1], instructorArray[2], instructorArray[3]});
         }
     }
 
@@ -159,7 +171,11 @@ public class ConsultRecords {
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
             JButton btnEdit = new JButton(new ImageIcon(getClass().getResource("/ImagenesGym/boton-editar.png")));
+            btnEdit.setBackground(Color.WHITE);
+
             JButton btnView = new JButton(new ImageIcon(getClass().getResource("/ImagenesGym/ver-detalles.png")));
+            btnView.setBackground(Color.WHITE);
+
             removeAll();
             add(btnEdit);
             add(btnView);
@@ -202,35 +218,14 @@ public class ConsultRecords {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-      	  if (e.getSource() == btnEdit) {
-  	        String nombreInstructor = (String) table.getModel().getValueAt(row, 0);
-  	        int instructorId = buscarIdInstructorPorNombre(nombreInstructor);
-  	        if (instructorId != -1) {
-  	            frame.dispose();
-  	            InstructorEdit.main(new String[]{Integer.toString(instructorId)});
-  	        }else {
-  	            JOptionPane.showMessageDialog(frame, "No se pudo encontrar el ID del instructor.");
-  	        }
-  	    }  else if (e.getSource() == btnView) {
+            if (e.getSource() == btnEdit) {
+                frame.dispose();
+                InstructorEdit.main(new String[0]);
+            } else if (e.getSource() == btnView) {
                 frame.dispose();
                 InstructorsDetails.main(new String[0]);
             }
             fireEditingStopped();
         }
-
-        
-        private int buscarIdInstructorPorNombre(String nombreInstructor) {
-            List<List<String>> instructores = controller.getAllInstructors();
-            for (List<String> instructor : instructores) {
-                String nombre = instructor.get(0); 
-                if (nombre.equals(nombreInstructor)) {
-                    return Integer.parseInt(instructor.get(1));
-                }
-            }
-            return -1; 
-        }
-
-
-
     }
 }

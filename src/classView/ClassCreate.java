@@ -28,7 +28,7 @@ public class ClassCreate {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_4;
-	private JTextField textField_3;
+	private JTextField txtYyyymmddHhmmss;
     private classControllers controller;
 
 
@@ -74,7 +74,7 @@ public class ClassCreate {
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
-		panel_2.setBounds(182, 10, 333, 472);
+		panel_2.setBounds(182, 10, 369, 472);
 		panel.add(panel_2);
 		panel_2.setBackground(new Color(255, 255, 255));
 		panel_2.setLayout(null);
@@ -101,7 +101,7 @@ public class ClassCreate {
 		panel_2.add(textField_1);
 		textField_1.setColumns(10);
 		
-		JLabel lblNewLabel_1_1_1 = new JLabel("Instructor");
+		JLabel lblNewLabel_1_1_1 = new JLabel("Instructor (ID)");
 		lblNewLabel_1_1_1.setBounds(37, 240, 250, 32);
 		panel_2.add(lblNewLabel_1_1_1);
 		lblNewLabel_1_1_1.setFont(new Font("Tw Cen MT", Font.PLAIN, 23));
@@ -124,15 +124,16 @@ public class ClassCreate {
 		textField_4.setColumns(10);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("Horario");
-		lblNewLabel_1_2.setBounds(173, 324, 96, 32);
+		lblNewLabel_1_2.setBounds(173, 324, 146, 32);
 		panel_2.add(lblNewLabel_1_2);
 		lblNewLabel_1_2.setFont(new Font("Tw Cen MT", Font.PLAIN, 23));
 		
-		textField_3 = new JTextField();
-		textField_3.setFont(new Font("Tw Cen MT", Font.PLAIN, 16));
-		textField_3.setBounds(175, 361, 112, 32);
-		panel_2.add(textField_3);
-		textField_3.setColumns(10);
+		txtYyyymmddHhmmss = new JTextField();
+		txtYyyymmddHhmmss.setText("yyyy-MM-dd HH:mm:ss");
+		txtYyyymmddHhmmss.setFont(new Font("Tw Cen MT", Font.PLAIN, 16));
+		txtYyyymmddHhmmss.setBounds(164, 361, 135, 32);
+		panel_2.add(txtYyyymmddHhmmss);
+		txtYyyymmddHhmmss.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Guardar");
 		btnNewButton.setBackground(new Color(0, 0, 0));
@@ -150,7 +151,7 @@ public class ClassCreate {
 		btnRegresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                ClassPanel.main(new String[0]);
+                ClassRecords.main(new String[0]);
 			}
 		});
 		btnRegresar.setForeground(Color.WHITE);
@@ -162,9 +163,9 @@ public class ClassCreate {
 		btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String nombre = textField.getText();
-                String fechaHora = textField_3.getText();
+                String fechaHora = txtYyyymmddHhmmss.getText();
                 String duracion = textField_1.getText();
-                String instructorId = lblNewLabel_1_1_1.getText();
+                String instructorId = textField_2.getText();
                 String capacidadMaxima = textField_4.getText();
 
                 if (fechaHora.matches("\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}")) {

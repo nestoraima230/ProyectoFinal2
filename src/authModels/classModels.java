@@ -88,6 +88,8 @@ public class classModels {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("Error al ejecutar la consulta SQL: " + e.getMessage());
+
         }
 
         return allClases;

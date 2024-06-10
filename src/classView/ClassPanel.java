@@ -22,6 +22,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.EventObject;
+import java.io.IOException;
+import java.io.InputStream;
+import javax.imageio.ImageIO;
 
 import authControllers.classControllers;
 
@@ -91,7 +94,7 @@ public class ClassPanel {
             }
         });
         img1.setBounds(638, -11, 63, 85);
-        img1.setIcon(new ImageIcon(ClassPanel.class.getResource("/ImagenesGym/agregarUsuario.png")));
+        img1.setIcon(loadImageIcon("/ImagenesGym/agregarUsuario.png"));
         img1.setBorderPainted(false);
         img1.setContentAreaFilled(false);
         img1.setFocusPainted(false);
@@ -147,14 +150,26 @@ public class ClassPanel {
         return frame;
     }
 
+    private ImageIcon loadImageIcon(String path) {
+        InputStream imgStream = getClass().getResourceAsStream(path);
+        if (imgStream != null) {
+            try {
+                return new ImageIcon(ImageIO.read(imgStream));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+    
     private class ButtonRenderer extends JPanel implements TableCellRenderer {
 
         /**
-		 * 
-		 */
-		private static final long serialVersionUID = 1L;
+         * 
+         */
+        private static final long serialVersionUID = 1L;
 
-		public ButtonRenderer() {
+        public ButtonRenderer() {
             setLayout(new GridLayout(1, 2, 10, 0));
             setBackground(Color.WHITE);
         }
@@ -163,8 +178,8 @@ public class ClassPanel {
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
             JPanel panel = new JPanel(new GridLayout(1, 2, 10, 0));
             panel.setBackground(Color.WHITE);
-            JButton btnEdit = new JButton(new ImageIcon(getClass().getResource("/ImagenesGym/boton-editar.png")));
-            JButton btnView = new JButton(new ImageIcon(getClass().getResource("/ImagenesGym/ver-detalles.png")));
+            JButton btnEdit = new JButton(loadImageIcon("/ImagenesGym/boton-editar.png"));
+            JButton btnView = new JButton(loadImageIcon("/ImagenesGym/ver-detalles.png"));
             panel.add(btnEdit);
             panel.add(btnView);
             return panel;
@@ -175,18 +190,18 @@ public class ClassPanel {
     private class ButtonEditor extends javax.swing.AbstractCellEditor implements TableCellEditor, ActionListener {
 
         /**
-		 * 
-		 */
-		private static final long serialVersionUID = 1L;
-		private JPanel panel;
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+        private JPanel panel;
         private JButton btnEdit;
         private JButton btnView;
         private int row;
 
         public ButtonEditor() {
             panel = new JPanel(new GridLayout(1, 2, 10, 0));
-            btnEdit = new JButton(new ImageIcon(getClass().getResource("/ImagenesGym/boton-editar.png")));
-            btnView = new JButton(new ImageIcon(getClass().getResource("/ImagenesGym/ver-detalles.png")));
+            btnEdit = new JButton(loadImageIcon("/ImagenesGym/boton-editar.png"));
+            btnView = new JButton(loadImageIcon("/ImagenesGym/ver-detalles.png"));
             btnEdit.addActionListener(this);
             btnView.addActionListener(this);
             panel.add(btnEdit);
@@ -211,36 +226,31 @@ public class ClassPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-      	  if (e.getSource() == btnEdit) {
-  	        String nombreClase = (String) table.getModel().getValueAt(row, 0);
-  	        int claseId = buscarIdClasePorNombre(nombreClase);
-  	        if (claseId != -1) {
-  	            frame.dispose();
-  	            ClassEdit.main(new String[]{Integer.toString(claseId)});
-  	        } else {
-                System.out.println("");
-
-  	        }
-  	    } else if (e.getSource() == btnView) {
-  	    	
-	            frame.dispose();  	            
+            if (e.getSource() == btnEdit) {
+                String nombreClase = (String) table.getModel().getValueAt(row, 0);
+                int claseId = buscarIdClasePorNombre(nombreClase);
+                if (claseId != -1) {
+                    frame.dispose();
+                    ClassEdit.main(new String[]{Integer.toString(claseId)});
+                } else {
+                    System.out.println("");
+                }
+            } else if (e.getSource() == btnView) {
+                frame.dispose();
                 ClassReport.main(new String[0]);
-                
-                
             }
             fireEditingStopped();
         }
-        
+
         private int buscarIdClasePorNombre(String nombreClase) {
             List<List<String>> clases = controller.getAllClases();
             for (List<String> clase : clases) {
-                String nombre = clase.get(1); 
+                String nombre = clase.get(1);
                 if (nombre.equals(nombreClase)) {
                     return Integer.parseInt(clase.get(0));
                 }
             }
-            return -1; 
+            return -1;
         }
     }
-
 }

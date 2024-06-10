@@ -34,6 +34,11 @@ public class classControllers {
     	
     }
     
+    public List<List<String>> getInstructorsForClass(int classId) {
+        return classModels.getInstructorsForClass(classId);
+    }
+
+    
     public List<String> getDetallesClase(int classId) {
         return classModels.getDetallesClase(classId);
     }

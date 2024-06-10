@@ -113,6 +113,19 @@ public class TariffDetail {
         panel_1.setBackground(new Color(0, 0, 0));
         panel_1.setBounds(22, 17, 654, 39);
         panel.add(panel_1);
+        
+        JButton btnSalir = new JButton("Salir");
+        btnSalir.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		frame.dispose();
+        		TariffPanel.main(new String[0]);
+        	}
+        });
+        btnSalir.setForeground(Color.WHITE);
+        btnSalir.setFont(new Font("Tw Cen MT", Font.BOLD, 15));
+        btnSalir.setBackground(Color.BLACK);
+        btnSalir.setBounds(32, 467, 85, 21);
+        panel.add(btnSalir);
     }
 
     public void populateTable() {

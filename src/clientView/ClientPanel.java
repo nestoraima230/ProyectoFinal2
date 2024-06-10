@@ -16,14 +16,11 @@ import MainView.MainWindows;
 import javax.swing.table.TableCellEditor;
 
 import authControllers.clientControllers;
-import clientView.ClientDetail;
 import classView.ClassRecords;
-import instructorsViews.InstructorPanel;
 
 import java.awt.Font;
 import javax.swing.JScrollPane;
 import java.awt.GridLayout;
-import java.awt.Window;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -215,8 +212,7 @@ public class ClientPanel {
         	        int clienteId = buscarIdClientePorNombre(nombreCliente);
         	        if (clienteId != -1) {
         	            frame.dispose();
-        	            ClientDetail clientDetail = new ClientDetail(clienteId);
-        	            clientDetail.show();
+        	            ClientDetail.main(new String[]{Integer.toString(clienteId)});
         	        } else {
         	            JOptionPane.showMessageDialog(frame, "No se pudo encontrar el ID del cliente.");
         	        }
@@ -244,10 +240,6 @@ public class ClientPanel {
 			
 		}
 
-		
-
-		
-		
 
 	
 }

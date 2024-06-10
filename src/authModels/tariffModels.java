@@ -21,16 +21,17 @@ public class tariffModels {
         return DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
     }
 
-    public boolean addTariff(int clienteId, java.sql.Date fechaValidaInicial, java.sql.Date fechaValidaFinal, double costo) {
-        String query = "INSERT INTO TARIFA (CLIENTE_ID, FECHA_VALIDA_INICIAL, FECHA_VALIDA_FINALIZADA, COSTO) VALUES (?, ?, ?, ?)";;
+    public boolean addTariff(int clienteId, String nombre, java.sql.Date fechaValidaInicial, java.sql.Date fechaValidaFinal, double costo) {
+        String query = "INSERT INTO TARIFA (CLIENTE_ID, NOMBRE, FECHA_VALIDA_INICIAL, FECHA_VALIDA_FINALIZADA, COSTO) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection con = getConnection();
              PreparedStatement pstmt = con.prepareStatement(query)) {
 
             pstmt.setInt(1, clienteId);
-            pstmt.setDate(2, fechaValidaInicial);
-            pstmt.setDate(3, fechaValidaFinal);
-            pstmt.setDouble(4, costo); 
+            pstmt.setString(2, nombre);
+            pstmt.setDate(3, fechaValidaInicial);
+            pstmt.setDate(4, fechaValidaFinal);
+            pstmt.setDouble(5, costo); 
 
             int rowsAffected = pstmt.executeUpdate();
             return rowsAffected > 0;
@@ -39,6 +40,7 @@ public class tariffModels {
             return false;
         }
     }
+
 
     public List<String> getTariff(int id) {
         String query = "SELECT * FROM TARIFA WHERE TARIFA_ID = ?";

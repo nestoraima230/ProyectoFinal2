@@ -93,6 +93,30 @@ public class classModels {
         return allClases;
     }
     
+    public List<List<String>> getInstructorsForClass(int classId) {
+        String query = "SELECT i.NOMBRE, i.APELLIDOS, i.EMAIL FROM INSTRUCTOR i JOIN CLASE c ON i.INSTRUCTOR_ID = c.INSTRUCTOR_ID WHERE c.CLASE_ID = ?";
+        List<List<String>> instructorsForClass = new ArrayList<>();
+
+        try (Connection con = getConnection();
+             PreparedStatement pstmt = con.prepareStatement(query)) {
+            pstmt.setInt(1, classId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    List<String> instructorDetails = new ArrayList<>();
+                    instructorDetails.add(rs.getString("NOMBRE"));
+                    instructorDetails.add(rs.getString("APELLIDOS"));
+                    instructorDetails.add(rs.getString("EMAIL"));
+                    instructorsForClass.add(instructorDetails);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return instructorsForClass;
+    }
+
+    
     public String getNombreInstructor(int instructorId) {
         String query = "SELECT NOMBRE FROM INSTRUCTOR WHERE INSTRUCTOR_ID = ?";
         String nombreInstructor = null;
@@ -110,8 +134,6 @@ public class classModels {
         }
         return nombreInstructor;
     }
-
-
 
     public boolean deleteClase(int id) {
         String deleteClaseQuery = "DELETE FROM CLASE WHERE CLASE_ID = ?";
@@ -141,8 +163,6 @@ public class classModels {
             return false;
         }
     }
-
-
 
     public boolean updateClase(String nombre, Timestamp horario, Time duracion, int instructorId, int capacidadMaxima, int claseId) {
     	String query = "UPDATE CLASE SET NOMBRE = ?, HORARIO = ?, DURACION = ?, INSTRUCTOR_ID = ?, CAPACIDAD_MAXIMA = ? WHERE CLASE_ID = ?";
@@ -186,6 +206,4 @@ public class classModels {
         }
         return claseDetails;
 	}
-
-
 }

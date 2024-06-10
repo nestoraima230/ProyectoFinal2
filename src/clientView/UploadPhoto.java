@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class UploadPhoto {
 
@@ -67,6 +69,12 @@ public class UploadPhoto {
 		panel.add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("OK");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                ClientPanel.main(new String[0]);
+			}
+		});
 		btnNewButton.setFont(new Font("Tw Cen MT", Font.BOLD, 19));
 		btnNewButton.setBounds(302, 437, 85, 21);
 		panel.add(btnNewButton);

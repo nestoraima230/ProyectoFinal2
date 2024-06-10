@@ -22,18 +22,16 @@ import classView.ClassRecords;
 
 import java.util.List;
 
-//INCOMPLETO
 public class InstructorsDetails {
 
     private JFrame frame;
-    private JButton btnNewButton;
     private JButton btnNewButton_1;
     private JButton btnNewButton_2;
-    private JLabel lblImagenInstructor_1;
     private instructorControllers controller;
     private JTable table;
     private JLabel lblNewLabel_1;
     private JLabel lblNewLabel_2;
+    private JButton btnNewButton_4;
 
     /**
      * Launch the application.
@@ -156,6 +154,19 @@ public class InstructorsDetails {
         lblNewLabel_3.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
         lblNewLabel_3.setBounds(467, 70, 45, 13);
         panel.add(lblNewLabel_3);
+        
+        btnNewButton_4 = new JButton("Salir");
+        btnNewButton_4.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		frame.dispose();
+        		InstructorPanel.main(new String[0]);
+        	}
+        });
+        btnNewButton_4.setForeground(Color.WHITE);
+        btnNewButton_4.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
+        btnNewButton_4.setBackground(Color.BLACK);
+        btnNewButton_4.setBounds(31, 479, 91, 23);
+        panel.add(btnNewButton_4);
         
         btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

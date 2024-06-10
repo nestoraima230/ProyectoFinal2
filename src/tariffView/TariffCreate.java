@@ -29,6 +29,7 @@ public class TariffCreate {
 	private JTextField textField_3;
 	private JTextField textField_1;
     private tariffControllers controller;
+    private JTextField textField_4;
 
 	/**
 	 * Launch the application.
@@ -73,13 +74,13 @@ public class TariffCreate {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 		panel_1.setBackground(new Color(255, 255, 255));
-		panel_1.setBounds(141, 45, 414, 397);
+		panel_1.setBounds(62, 45, 540, 397);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
 		textField = new JTextField();
 		textField.setFont(new Font("Tw Cen MT", Font.PLAIN, 16));
-		textField.setBounds(76, 99, 240, 28);
+		textField.setBounds(76, 99, 164, 28);
 		textField.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
 
 		panel_1.add(textField);
@@ -135,31 +136,55 @@ public class TariffCreate {
 		btnNewButton.setBackground(new Color(0, 0, 0));
 		btnNewButton.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
 		
-        btnNewButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                int clienteID = Integer.parseInt(textField.getText());
-                double cuotaMensual = Double.parseDouble(textField_2.getText());
-                Date fechaInicio = Date.valueOf(textField_3.getText().trim());
-                Date fechaFin = Date.valueOf(textField_1.getText().trim()); 
-                
-                boolean tarifaGuardada = controller.addTariff(clienteID, fechaInicio,fechaFin, cuotaMensual);
+		btnNewButton.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        int clienteID = Integer.parseInt(textField.getText());
+		        String nombreTarifa = textField_4.getText(); 
+		        double cuotaMensual = Double.parseDouble(textField_2.getText());
+		        Date fechaInicio = Date.valueOf(textField_3.getText().trim());
+		        Date fechaFin = Date.valueOf(textField_1.getText().trim()); 
+		        
+		        boolean tarifaGuardada = controller.addTariff(clienteID, nombreTarifa, fechaInicio,fechaFin, cuotaMensual); // Modifica esta línea para pasar el nombre como un argumento
 
-                if (tarifaGuardada) {
-                    JOptionPane.showMessageDialog(frame, "Tarifa guardada correctamente.");
-                    frame.dispose();
-                    TariffPanel.main(new String[0]);
-                    
-                } else {
-                    JOptionPane.showMessageDialog(frame, "Error al guardar la tarifa. Por favor, inténtelo de nuevo.");
-                }
-
-            }
-        });
+		        if (tarifaGuardada) {
+		            JOptionPane.showMessageDialog(frame, "Tarifa guardada correctamente.");
+		            frame.dispose();
+		            TariffPanel.main(new String[0]);
+		            
+		        } else {
+		            JOptionPane.showMessageDialog(frame, "Error al guardar la tarifa. Por favor, inténtelo de nuevo.");
+		        }
+		    }
+		});
 		
 		JLabel lblNewLabel_4 = new JLabel("Crear tarifa de gimnasio");
 		lblNewLabel_4.setBounds(72, 21, 301, 45);
 		panel_1.add(lblNewLabel_4);
 		lblNewLabel_4.setFont(new Font("Tw Cen MT Condensed", Font.BOLD, 33));
+		
+		JLabel lblNombre = new JLabel("Nombre");
+		lblNombre.setFont(new Font("Tw Cen MT", Font.PLAIN, 22));
+		lblNombre.setBounds(353, 76, 155, 28);
+		panel_1.add(lblNombre);
+		
+		textField_4 = new JTextField();
+		textField_4.setFont(new Font("Tw Cen MT", Font.PLAIN, 16));
+		textField_4.setColumns(10);
+		textField_4.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
+		textField_4.setBounds(300, 103, 197, 28);
+		panel_1.add(textField_4);
+		
+		JButton btnSalir = new JButton("Salir");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+        		frame.dispose();
+        		TariffPanel.main(new String[0]);
+			}
+		});
+		btnSalir.setForeground(Color.WHITE);
+		btnSalir.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
+		btnSalir.setBackground(Color.BLACK);
+		btnSalir.setBounds(45, 347, 96, 28);
+		panel_1.add(btnSalir);
 	}
-
 }

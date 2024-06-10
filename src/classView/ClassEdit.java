@@ -3,6 +3,7 @@ package classView;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Time;
@@ -12,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -40,7 +42,7 @@ public class ClassEdit {
 	 */
     public static void main(String[] args) {
         if (args.length > 0) {
-            int classId = Integer.parseInt(args[0]);
+        	 int classId = Integer.parseInt(args[0]);
             EventQueue.invokeLater(() -> {
                 try {
                 	ClassEdit window = new ClassEdit(classId);
@@ -53,9 +55,10 @@ public class ClassEdit {
     }
 
 
-	/**
-	 * Create the application.
+    /**
+	 * @wbp.parser.entryPoint
 	 */
+
 	public ClassEdit(int classId) {
         initialize();
         controller = new classControllers(); 
@@ -63,24 +66,24 @@ public class ClassEdit {
 
 	}
 	
-	private void cargarInformacionClase(int classId) {
-	    List<String> classDetails = controller.getDetallesClase(classId);
-	    if (!classDetails.isEmpty()) {
-	        textField.setText(classDetails.get(1));
-	        textField_1.setText(classDetails.get(2));
-	        textField_2.setText(controller.getNombreInstructor(Integer.parseInt(classDetails.get(5))));
-	        textField_3.setText(classDetails.get(3));
-	        textField_4.setText(classDetails.get(4));
-	        textField_5.setText(classDetails.get(0));
-	        
-	        String fechaHora = classDetails.get(3);
-	        if (fechaHora != null && fechaHora.contains(".")) {
-	            fechaHora = fechaHora.substring(0, fechaHora.indexOf('.'));
-	        }
-	        textField_3.setText(fechaHora);
-	    }
-	}
-
+    private void cargarInformacionClase(int classId) {
+        List<String> classDetails = controller.getDetallesClase(classId);
+        if (!classDetails.isEmpty()) {
+        	textField.setText(classDetails.get(1));
+        	textField_1.setText(classDetails.get(2));
+        	textField_2.setText(classDetails.get(5));
+        	textField_3.setText(classDetails.get(3));
+        	textField_4.setText(classDetails.get(4));
+        	textField_5.setText(classDetails.get(0));
+        	
+            String fechaHora = classDetails.get(3);
+            if (fechaHora != null && fechaHora.contains(".")) {
+                fechaHora = fechaHora.substring(0, fechaHora.indexOf('.'));
+            }
+            textField_3.setText(fechaHora);
+        }
+        
+    }
 
 	/**
 	 * Initialize the contents of the frame.
@@ -114,6 +117,18 @@ public class ClassEdit {
 		textField.setBounds(25, 139, 172, 32);
 		panel_2.add(textField);
 		textField.setColumns(10);
+        textField.setInputVerifier(new InputVerifier() {
+            @Override
+            public boolean verify(JComponent input) {
+                String text = ((JTextField) input).getText();
+                if (text.matches(".*\\d.*")) {
+                    JOptionPane.showMessageDialog(frame, "El campo no debe contener números.", "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                    return false;
+                }
+                return true;
+            }
+        });
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Duración");
 		lblNewLabel_1_1.setBounds(223, 97, 250, 32);
@@ -146,18 +161,18 @@ public class ClassEdit {
 		textField_4.setColumns(10);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("Horario");
-		lblNewLabel_1_2.setBounds(25, 279, 250, 32);
+		lblNewLabel_1_2.setBounds(25, 279, 154, 32);
 		panel_2.add(lblNewLabel_1_2);
 		lblNewLabel_1_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		textField_3 = new JTextField();
-		textField_3.setBounds(22, 321, 373, 32);
+		textField_3.setBounds(22, 321, 172, 32);
 		panel_2.add(textField_3);
 		textField_3.setColumns(10);
 		
 		
 		
-		JButton btnNewButton = new JButton("OK");
+		JButton btnNewButton = new JButton("Guardar");
 		btnNewButton.setBackground(new Color(0, 0, 0));
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
@@ -165,7 +180,7 @@ public class ClassEdit {
 		panel_2.add(btnNewButton);
 		
 		textField_5 = new JTextField();
-		textField_5.setBounds(190, 275, 52, 20);
+		textField_5.setBounds(223, 321, 172, 31);
 		panel_2.add(textField_5);
 		textField_5.setColumns(10);
 
@@ -191,6 +206,8 @@ public class ClassEdit {
                         boolean saved = controller.updateClase(nombre, fechaHoraTimestamp, Time.valueOf(duracion), Integer.parseInt(instructorId), Integer.parseInt(capacidadMaxima), Integer.parseInt(claseId));
                         if (saved) {
                             JOptionPane.showMessageDialog(frame, "¡La clase se ha guardado exitosamente!");
+                            frame.dispose();
+                            ClassRecords.main(new String[0]);
                         } else {
                             JOptionPane.showMessageDialog(frame, "Error al guardar la clase. Por favor, inténtelo de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
                         }
@@ -237,6 +254,11 @@ public class ClassEdit {
 		lblNewLabel.setBounds(134, 10, 233, 48);
 		panel_2.add(lblNewLabel);
 		
+		JLabel lblNewLabel_2 = new JLabel("ID");
+		lblNewLabel_2.setFont(new Font("Tw Cen MT", Font.PLAIN, 20));
+		lblNewLabel_2.setBounds(223, 293, 45, 13);
+		panel_2.add(lblNewLabel_2);
+		
 
 
 
@@ -254,6 +276,9 @@ public class ClassEdit {
         textField_3.setText("");
         textField_4.setText("");
     }
+
+
+	
 
 
 }

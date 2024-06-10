@@ -130,6 +130,12 @@ public class ClassRecords {
         panel_1.add(btnMostrarDetalle);
 
         JButton btnNewButton = new JButton("Salir");
+        btnNewButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		frame.dispose();
+        		ClassPanel.main(new String[0]);
+        	}
+        });
         btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
         btnNewButton.setBounds(168, 457, 100, 24);
         panel_1.add(btnNewButton);
@@ -185,18 +191,41 @@ public class ClassRecords {
         public Object getCellEditorValue() {
             return "";
         }
-
+       
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == btnEdit) {
-                String claseSeleccionada = (String) table.getModel().getValueAt(row, 0);
-                ClientEdit.main(new String[0]);
+      	  if (e.getSource() == btnEdit) {
+  	        String nombreClase = (String) table.getModel().getValueAt(row, 0);
+  	        int claseId = buscarIdClasePorNombre(nombreClase);
+  	        if (claseId != -1) {
+  	            frame.dispose();
+  	            ClassEdit.main(new String[]{Integer.toString(claseId)});
+  	        } else {
+                System.out.println("");
 
-            } else if (e.getSource() == btnView) {
-                String claseSeleccionada = (String) table.getModel().getValueAt(row, 0);
-                ClientPanel.main(new String[0]);
-            }
+  	        }
+  	    } else if (e.getSource() == btnView) {
+            String claseNombre = (String) table.getModel().getValueAt(row, 0);
+            int claseId = buscarIdClasePorNombre(claseNombre);
+            if (claseId != -1) {
+                frame.dispose();
+                ClassDetail.main(new String[]{Integer.toString(claseId)});
+            } else {
+                JOptionPane.showMessageDialog(frame, "No se encontró la clase seleccionada.", "Error", JOptionPane.ERROR_MESSAGE);
+            }                                
+           }
             fireEditingStopped();
+        }
+        
+        private int buscarIdClasePorNombre(String nombreClase) {
+            List<List<String>> clases = controller.getAllClases();
+            for (List<String> clase : clases) {
+                String nombre = clase.get(1); 
+                if (nombre.equals(nombreClase)) {
+                    return Integer.parseInt(clase.get(0));
+                }
+            }
+            return -1; 
         }
     }
 

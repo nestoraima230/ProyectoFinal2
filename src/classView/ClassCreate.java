@@ -6,12 +6,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.Color;
-import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.sql.Time;
 import java.sql.Timestamp;
@@ -65,6 +63,7 @@ public class ClassCreate {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 700, 550);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
 		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
@@ -135,7 +134,7 @@ public class ClassCreate {
 		panel_2.add(textField_3);
 		textField_3.setColumns(10);
 		
-		JButton btnNewButton = new JButton("OK");
+		JButton btnNewButton = new JButton("Guardar");
 		btnNewButton.setBackground(new Color(0, 0, 0));
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
@@ -146,6 +145,20 @@ public class ClassCreate {
 		lblNewLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 33));
 		lblNewLabel.setBounds(61, 21, 226, 25);
 		panel_2.add(lblNewLabel);
+		
+		JButton btnRegresar = new JButton("Salir");
+		btnRegresar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                ClassPanel.main(new String[0]);
+			}
+		});
+		btnRegresar.setForeground(Color.WHITE);
+		btnRegresar.setFont(new Font("Tw Cen MT", Font.BOLD, 16));
+		btnRegresar.setBackground(Color.BLACK);
+		btnRegresar.setBounds(37, 418, 93, 32);
+		panel_2.add(btnRegresar);
+		
 		btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String nombre = textField.getText();
@@ -163,6 +176,8 @@ public class ClassCreate {
                         boolean saved = controller.addClase(nombre, fechaHoraTimestamp, Time.valueOf(duracion), Integer.parseInt(instructorId), Integer.parseInt(capacidadMaxima));
                         if (saved) {
                             JOptionPane.showMessageDialog(frame, "¡La clase se ha guardado exitosamente!");
+                            frame.dispose();
+                            ClassRecords.main(new String[0]);
                         } else {
                             JOptionPane.showMessageDialog(frame, "Error al guardar la clase. Por favor, inténtelo de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
                         }

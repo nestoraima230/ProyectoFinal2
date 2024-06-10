@@ -10,8 +10,8 @@ public class tariffControllers {
         tariffModels = new tariffModels();
     }
 
-    public boolean addTariff(int clienteId, java.sql.Date fechaValidaInicial, java.sql.Date fechaValidaFinal, double costo) {
-        return tariffModels.addTariff(clienteId, fechaValidaInicial, fechaValidaFinal, costo);
+    public boolean addTariff(int clienteId, String nombre, java.sql.Date fechaValidaInicial, java.sql.Date fechaValidaFinal, double costo) {
+        return tariffModels.addTariff(clienteId, nombre, fechaValidaInicial, fechaValidaFinal, costo);
     }
 
     public List<String> getTariff(int id) {

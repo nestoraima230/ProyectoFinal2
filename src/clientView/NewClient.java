@@ -16,9 +16,9 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 
 import authControllers.clientControllers;
-import classView.ClassDetail;
 
 import javax.swing.border.MatteBorder;
+
 
 public class NewClient {
 
@@ -178,6 +178,8 @@ public class NewClient {
         btnNewButton.setBackground(new Color(0, 0, 0));
         btnNewButton.setBounds(180, 411, 105, 37);
         panel_1.add(btnNewButton);
+        
+
         btnNewButton_1.addActionListener(e -> {
             String nombre = textField.getText();
             String apellidos = textField_1.getText();

@@ -7,7 +7,6 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -15,7 +14,7 @@ import java.awt.event.ActionListener;
 import javax.swing.border.MatteBorder;
 
 import MainView.MainWindows;
-import classView.ClassDetail;
+//import classView.ClassDetail;
 
 public class CheckPin {
 	private JFrame frame;

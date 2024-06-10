@@ -156,6 +156,20 @@ public class TariffPanel {
                 panel_1.add(lblNewLabel);
                 lblNewLabel.setForeground(new Color(255, 255, 255));
                 lblNewLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 33));
+                
+                JButton btnRegreso = new JButton("REGRESAR");
+                btnRegreso.addActionListener(new ActionListener() {
+                	public void actionPerformed(ActionEvent e) {
+                        frame.dispose();
+                        MainWindows MainWindows = new MainWindows();
+                        MainWindows.setVisible(true);
+                	}
+                });
+                btnRegreso.setForeground(Color.WHITE);
+                btnRegreso.setFont(new Font("Tw Cen MT", Font.BOLD, 15));
+                btnRegreso.setBackground(Color.BLACK);
+                btnRegreso.setBounds(46, 454, 122, 25);
+                panel.add(btnRegreso);
         table.getColumnModel().getColumn(0).setPreferredWidth(30);
         table.getColumnModel().getColumn(1).setPreferredWidth(10);
         table.getColumnModel().getColumn(2).setPreferredWidth(10);

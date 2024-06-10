@@ -6,7 +6,6 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import classView.ClassPanel;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -69,7 +68,7 @@ public class ClientReport {
 		btnNewButton.setBounds(469, 187, 117, 40);
 		panel.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Regresar");
+		JButton btnNewButton_1 = new JButton("Salir");
 		btnNewButton_1.setForeground(new Color(255, 255, 255));
 		btnNewButton_1.setBackground(new Color(0, 0, 0));
 		btnNewButton_1.setFont(new Font("Tw Cen MT", Font.BOLD, 16));

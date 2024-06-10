@@ -11,15 +11,14 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
+
 
 import instructorsControllers.AddInstructorController;
 import javax.swing.border.MatteBorder;
 
-import classView.ClassRecords;
 
-import javax.swing.border.BevelBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class InstructorCreate extends JPanel {
 
@@ -141,6 +140,19 @@ public class InstructorCreate extends JPanel {
         btnCrear.setBounds(261, 400, 100, 32);
         panel_2.add(btnCrear);
         btnCrear.setFont(new Font("Tahoma", Font.BOLD, 14));
+        
+        JButton btnSalir = new JButton("Salir");
+        btnSalir.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		frame.dispose();
+        		InstructorPanel.main(new String[0]);
+        	}
+        });
+        btnSalir.setForeground(Color.WHITE);
+        btnSalir.setFont(new Font("Tahoma", Font.BOLD, 14));
+        btnSalir.setBackground(Color.BLACK);
+        btnSalir.setBounds(39, 400, 100, 32);
+        panel_2.add(btnSalir);
 
         btnCrear.addActionListener(e -> {
             String nombreText = nombre.getText();

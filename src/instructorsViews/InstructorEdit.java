@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.util.List;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -30,20 +32,40 @@ public class InstructorEdit extends JPanel {
 
     public static void main(String[] args) {
 
-        EventQueue.invokeLater(() -> {
-            try {
-            	InstructorEdit window = new InstructorEdit();
-				window.frame.setVisible(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+       
+        if (args.length > 0) {
+       	 int instructorId = Integer.parseInt(args[0]);
+           EventQueue.invokeLater(() -> {
+               try {
+            	   InstructorEdit window = new InstructorEdit(instructorId);
+                   window.frame.setVisible(true);
+               } catch (Exception e) {
+                   e.printStackTrace();
+               }
+           });
+       }
+        
     }
 
-	public InstructorEdit() {
+	public InstructorEdit(int instructorId) {
         controller = new instructorControllers(); 
         initialize();
+        cargarInformacionInstructor(instructorId);
+
 	}
+	
+    private void cargarInformacionInstructor(int instructorId) {
+        List<String> instructorDetails = controller.getInstructorDetails(instructorId);
+        if (!instructorDetails.isEmpty()) {
+            nombre.setText(instructorDetails.get(0));
+            apellido.setText(instructorDetails.get(1));
+            especialidad.setText(instructorDetails.get(2));
+            email.setText(instructorDetails.get(3));
+            textField.setText(String.valueOf(instructorId));
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontraron detalles para el instructor con ID " + instructorId);
+        }
+    }
 	
     private void initialize() {
         frame = new JFrame();

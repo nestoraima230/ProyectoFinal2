@@ -165,6 +165,9 @@ public class TariffEdit {
 			public void actionPerformed(ActionEvent e) {
 				int id = Integer.parseInt(textField.getText());
 
+        		frame.dispose();
+        		TariffPanel.main(new String[0]);
+        		
 				boolean success = controller.deleteTariff(id);
 				if (success) {
 					JOptionPane.showMessageDialog(frame, "Tarifa eliminada correctamente.");

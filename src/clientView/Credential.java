@@ -1,4 +1,5 @@
 package clientView;
+
 import java.awt.Color;
 import java.awt.EventQueue;
 
@@ -6,9 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import MainView.MainWindows;
 import instructorsViews.InstructorCredential;
-import instructorsViews.InstructorsDetails;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -123,7 +122,7 @@ public class Credential {
 		panel_2_1_1.setBounds(0, 316, 252, 74);
 		panel_1_1.add(panel_2_1_1);
 		
-		JButton btnNewButton = new JButton("Regresar");
+		JButton btnNewButton = new JButton("Salir");
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(new Color(0, 0, 0));
 		btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);

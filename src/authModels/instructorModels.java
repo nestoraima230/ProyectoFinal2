@@ -67,8 +67,8 @@ public class instructorModels {
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
                     instructorDetails.add(rs.getString("NOMBRE"));
-                    instructorDetails.add(rs.getString("INSTRUCTOR_ID"));
                     instructorDetails.add(rs.getString("APELLIDOS"));
+                    instructorDetails.add(rs.getString("INSTRUCTOR_ID")); 
                     instructorDetails.add(rs.getString("ESPECIALIDAD"));
                     instructorDetails.add(rs.getString("EMAIL"));
                 }
@@ -79,6 +79,7 @@ public class instructorModels {
         return instructorDetails;
     }
 
+
     public List<List<String>> getAllInstructors() {
     	String query = "SELECT INSTRUCTOR_ID, NOMBRE, APELLIDOS, ESPECIALIDAD, EMAIL FROM INSTRUCTOR";
         List<List<String>> allInstructors = new ArrayList<>();
@@ -88,8 +89,8 @@ public class instructorModels {
              ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {
                 List<String> instructorDetails = new ArrayList<>();
+                instructorDetails.add(rs.getString("INSTRUCTOR_ID")); 
                 instructorDetails.add(rs.getString("NOMBRE"));
-                instructorDetails.add(rs.getString("INSTRUCTOR_ID"));
                 instructorDetails.add(rs.getString("APELLIDOS"));
                 instructorDetails.add(rs.getString("ESPECIALIDAD"));
                 instructorDetails.add(rs.getString("EMAIL"));
@@ -101,7 +102,6 @@ public class instructorModels {
 
         return allInstructors;
     }
-    
     
 
     // Edit Instructor

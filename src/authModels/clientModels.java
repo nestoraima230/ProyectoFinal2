@@ -91,10 +91,9 @@ public class clientModels {
     public List<String> getClientDetails(int clientId) {
         String query = "SELECT c.CLIENTE_ID, c.NOMBRE, c.APELLIDOS, c.FECHA_NACIMIENTO, c.TELEFONO, p.MONTO " +
                        "FROM CLIENTE c " +
-                       "INNER JOIN PAGO p ON c.CLIENTE_ID = p.CLIENTE_ID " +
+                       "LEFT JOIN PAGO p ON c.CLIENTE_ID = p.CLIENTE_ID " +
                        "WHERE c.CLIENTE_ID = ?";
         List<String> clientDetails = new ArrayList<>();
-
         try (Connection con = getConnection();
              PreparedStatement pstmt = con.prepareStatement(query)) {
             pstmt.setInt(1, clientId);
@@ -105,7 +104,9 @@ public class clientModels {
                     clientDetails.add(rs.getString("CLIENTE_ID"));
                     clientDetails.add(rs.getString("TELEFONO"));
                     clientDetails.add(rs.getString("FECHA_NACIMIENTO"));
-                    clientDetails.add(rs.getString("MONTO"));
+                    String monto = rs.getString("MONTO");
+                    clientDetails.add(monto != null ? monto : "0.0");
+
                 }
             }
         } catch (SQLException e) {

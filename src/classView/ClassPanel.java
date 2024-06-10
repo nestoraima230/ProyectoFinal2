@@ -7,13 +7,14 @@ import javax.swing.JScrollPane;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
+
+import MainView.MainWindows;
+
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -23,9 +24,7 @@ import java.util.List;
 import java.util.EventObject;
 
 import authControllers.classControllers;
-import clientView.ClientEdit;
-import clientView.ClientPanel;
-import instructorsViews.InstructorEdit;
+
 
 public class ClassPanel {
 
@@ -79,19 +78,29 @@ public class ClassPanel {
         for (List<String> clase : clases) {
             model.addRow(new Object[]{clase.get(1)});
         }
+        
+        JButton img1 = new JButton();
+        img1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                ClassCreate.main(new String[0]); 
+            }
+        });
+        img1.setBounds(638, -11, 63, 85);
+        img1.setIcon(new ImageIcon(ClassPanel.class.getResource("/ImagenesGym/agregarUsuario.png")));
+        img1.setBorderPainted(false);
+        img1.setContentAreaFilled(false);
+        img1.setFocusPainted(false);
+        panel.add(img1);
 
         table.setModel(model);
 
-        // Crear un renderizador de botones personalizado
         ButtonRenderer buttonRenderer = new ButtonRenderer();
 
-        // Asignar el renderizador personalizado a la columna de botones
         table.getColumnModel().getColumn(1).setCellRenderer(buttonRenderer);
 
-        // Crear un editor de botones personalizado
         ButtonEditor buttonEditor = new ButtonEditor();
 
-        // Asignar el editor personalizado a la columna de botones
         table.getColumnModel().getColumn(1).setCellEditor(buttonEditor);
 
         table.setRowHeight(50);
@@ -104,6 +113,32 @@ public class ClassPanel {
         btnNewButton.setBackground(new Color(255, 255, 255));
         btnNewButton.setBounds(565, 467, 85, 21);
         panel.add(btnNewButton);
+        
+        JButton btnRegresar = new JButton("Salir");
+        btnRegresar.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                frame.dispose();
+                MainWindows MainWindows = new MainWindows();
+                MainWindows.setVisible(true);
+        	}
+        });
+        btnRegresar.setFont(new Font("Tw Cen MT", Font.BOLD, 15));
+        btnRegresar.setBackground(Color.WHITE);
+        btnRegresar.setBounds(46, 467, 101, 21);
+        panel.add(btnRegresar);
+        
+        JButton btnRegistros = new JButton("Registros");
+        btnRegistros.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		frame.dispose();
+        		ClassRecords.main(new String[0]);
+        	}
+        });
+        btnRegistros.setFont(new Font("Tw Cen MT", Font.BOLD, 15));
+        btnRegistros.setBackground(Color.WHITE);
+        btnRegistros.setBounds(173, 467, 101, 21);
+        panel.add(btnRegistros);
 
         frame.setVisible(true);
     }
@@ -121,7 +156,6 @@ public class ClassPanel {
 
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-            // Crear botones nuevos para cada celda
             JPanel panel = new JPanel(new GridLayout(1, 2, 10, 0));
             panel.setBackground(Color.WHITE);
             JButton btnEdit = new JButton(new ImageIcon(getClass().getResource("/ImagenesGym/boton-editar.png")));
@@ -175,9 +209,15 @@ public class ClassPanel {
   	            frame.dispose();
   	            ClassEdit.main(new String[]{Integer.toString(claseId)});
   	        } else {
-  	            JOptionPane.showMessageDialog(frame, "No se pudo encontrar el ID del cliente.");
+                System.out.println("");
+
   	        }
   	    } else if (e.getSource() == btnView) {
+  	    	
+	            frame.dispose();  	            
+                ClassReport.main(new String[0]);
+                
+                
             }
             fireEditingStopped();
         }

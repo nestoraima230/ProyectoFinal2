@@ -196,8 +196,8 @@ public class MainWindows {
                 JOptionPane.showMessageDialog(frame, "Sesión cerrada");
                 frame.setVisible(false);
 
-                MainPanel mainPanel = new MainPanel();
-                mainPanel.setVisible(true);
+                MainPanel.main(new String[0]);
+
             }
         });
         

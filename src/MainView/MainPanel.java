@@ -115,8 +115,8 @@ public class MainPanel {
 
 
 
-    public void setVisible(boolean visible) {
-        frame.setVisible(visible);
+    public void mostrarVentana() {
+        frame.setVisible(true);
     }
 
 

@@ -11,14 +11,14 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
-
-import instructorsControllers.AddInstructorController;
 import javax.swing.border.MatteBorder;
 
+import authControllers.instructorControllers;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 public class InstructorCreate extends JPanel {
 
@@ -28,12 +28,12 @@ public class InstructorCreate extends JPanel {
     private JTextField apellido;
     private JTextField especialidad;
     private JTextField email;
-    private AddInstructorController controller;
+    private instructorControllers controller;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
             try {
-                AddInstructorController controller = new AddInstructorController();
+            	instructorControllers controller = new instructorControllers();
                 InstructorCreate window = controller.getView();
                 window.frame.setVisible(true);
             } catch (Exception e) {
@@ -42,7 +42,7 @@ public class InstructorCreate extends JPanel {
         });
     }
 
-    public InstructorCreate(AddInstructorController controller) {
+    public InstructorCreate(instructorControllers controller) {
         this.controller = controller;
         initialize();
     }
@@ -180,9 +180,15 @@ public class InstructorCreate extends JPanel {
                 return;
             }
 
-            boolean success = controller.addInstructor(nombreText, apellidoText, especialidadText, emailText);
+            List<String> instructorInfo = new ArrayList<>();
+            instructorInfo.add(nombreText);
+            instructorInfo.add(apellidoText);
+            instructorInfo.add(especialidadText);
+            instructorInfo.add(emailText);
+
+            boolean success = controller.addInstructor(instructorInfo);
             if (success) {
-                JOptionPane.showMessageDialog(frame, "Instructor agregado exitosamente!");
+                JOptionPane.showMessageDialog(frame, "¡Instructor agregado exitosamente!");
                 frame.dispose();
                 ConsultRecords.main(new String[0]);
             } else {

@@ -148,7 +148,12 @@ public class ClientPanel {
 
         private class ButtonRenderer extends JPanel implements TableCellRenderer {
 
-        public ButtonRenderer() {
+        /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+		public ButtonRenderer() {
             setLayout(new GridLayout(1, 2, 10, 0));
             setBackground(Color.WHITE);
         }
@@ -170,7 +175,11 @@ public class ClientPanel {
 
         private class ButtonEditor extends AbstractCellEditor implements TableCellEditor, ActionListener {
 
-        private JPanel panel;
+        /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+		private JPanel panel;
         private JButton btnEdit;
         private JButton btnView;
         private int row;

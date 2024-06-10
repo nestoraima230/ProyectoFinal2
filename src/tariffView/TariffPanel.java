@@ -25,12 +25,8 @@ import javax.swing.table.TableCellRenderer;
 import MainView.MainWindows;
 import authControllers.tariffControllers;
 import classView.ClassRecords;
-import clientView.ClientEdit;
-import clientView.ClientPanel;
-import clientView.NewClient;
 
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
 
@@ -186,7 +182,12 @@ public class TariffPanel {
 
     private class ButtonRenderer extends JPanel implements TableCellRenderer {
 
-        public ButtonRenderer() {
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public ButtonRenderer() {
             setLayout(new GridLayout(1, 2, 10, 0));
             setBackground(Color.WHITE);
         }
@@ -208,7 +209,11 @@ public class TariffPanel {
 
     private class ButtonEditor extends AbstractCellEditor implements TableCellEditor, ActionListener {
 
-        private JPanel panel;
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		private JPanel panel;
         private JButton btnEdit;
         private JButton btnView;
         private int row;

@@ -8,15 +8,11 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.FlowLayout;
 import javax.swing.JButton;
-import javax.swing.JList;
 import javax.swing.JTable;
-import javax.swing.ImageIcon;
 import authControllers.instructorControllers;
 import classView.ClassRecords;
 
@@ -177,11 +173,6 @@ public class InstructorsDetails {
 		});
     }
 
-    private String getInstructorSpecialty(int instructorId) {
-        List<String> specialties = controller.getInstructorSpecialties();
-        return specialties.get(instructorId - 1);
-    }
-    
     public JFrame getFrame() {
         return frame;
     }

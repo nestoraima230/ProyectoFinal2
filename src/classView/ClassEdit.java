@@ -3,7 +3,6 @@ package classView;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Time;
@@ -13,7 +12,6 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -22,7 +20,6 @@ import javax.swing.JTextField;
 import javax.swing.border.MatteBorder;
 
 import authControllers.classControllers;
-import clientView.ClientDetail;
 
 
 public class ClassEdit {
@@ -117,19 +114,8 @@ public class ClassEdit {
 		textField.setBounds(25, 139, 172, 32);
 		panel_2.add(textField);
 		textField.setColumns(10);
-        textField.setInputVerifier(new InputVerifier() {
-            @Override
-            public boolean verify(JComponent input) {
-                String text = ((JTextField) input).getText();
-                if (text.matches(".*\\d.*")) {
-                    JOptionPane.showMessageDialog(frame, "El campo no debe contener números.", "Error",
-                            JOptionPane.ERROR_MESSAGE);
-                    return false;
-                }
-                return true;
-            }
-        });
-		
+
+	
 		JLabel lblNewLabel_1_1 = new JLabel("Duración");
 		lblNewLabel_1_1.setBounds(223, 97, 250, 32);
 		panel_2.add(lblNewLabel_1_1);

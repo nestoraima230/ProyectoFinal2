@@ -18,7 +18,6 @@ import java.awt.event.ActionEvent;
 import javax.swing.border.MatteBorder;
 
 import authControllers.tariffControllers;
-import clientView.ClientEdit;
 
 public class TariffEdit {
 

@@ -75,15 +75,19 @@ public class ClassPanel {
         model.addColumn("Acciones");
 
         List<List<String>> clases = controller.getAllClases();
+        System.out.println("Número de clases obtenidas: " + clases.size());
         for (List<String> clase : clases) {
+            System.out.println("Clase: " + clase);
             model.addRow(new Object[]{clase.get(1)});
         }
-        
+
+        table.setModel(model);
+
         JButton img1 = new JButton();
         img1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                ClassCreate.main(new String[0]); 
+                ClassCreate.main(new String[0]);
             }
         });
         img1.setBounds(638, -11, 63, 85);
@@ -93,14 +97,10 @@ public class ClassPanel {
         img1.setFocusPainted(false);
         panel.add(img1);
 
-        table.setModel(model);
-
         ButtonRenderer buttonRenderer = new ButtonRenderer();
-
         table.getColumnModel().getColumn(1).setCellRenderer(buttonRenderer);
 
         ButtonEditor buttonEditor = new ButtonEditor();
-
         table.getColumnModel().getColumn(1).setCellEditor(buttonEditor);
 
         table.setRowHeight(50);
@@ -113,27 +113,26 @@ public class ClassPanel {
         btnNewButton.setBackground(new Color(255, 255, 255));
         btnNewButton.setBounds(565, 467, 85, 21);
         panel.add(btnNewButton);
-        
+
         JButton btnRegresar = new JButton("Salir");
         btnRegresar.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                frame.dispose();
-                MainWindows MainWindows = new MainWindows();
-                MainWindows.setVisible(true);
-        	}
+                MainWindows mainWindows = new MainWindows();
+                mainWindows.setVisible(true);
+            }
         });
         btnRegresar.setFont(new Font("Tw Cen MT", Font.BOLD, 15));
         btnRegresar.setBackground(Color.WHITE);
         btnRegresar.setBounds(46, 467, 101, 21);
         panel.add(btnRegresar);
-        
+
         JButton btnRegistros = new JButton("Registros");
         btnRegistros.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		frame.dispose();
-        		ClassRecords.main(new String[0]);
-        	}
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                ClassRecords.main(new String[0]);
+            }
         });
         btnRegistros.setFont(new Font("Tw Cen MT", Font.BOLD, 15));
         btnRegistros.setBackground(Color.WHITE);
@@ -143,13 +142,19 @@ public class ClassPanel {
         frame.setVisible(true);
     }
 
+
     public JFrame getFrame() {
         return frame;
     }
 
     private class ButtonRenderer extends JPanel implements TableCellRenderer {
 
-        public ButtonRenderer() {
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public ButtonRenderer() {
             setLayout(new GridLayout(1, 2, 10, 0));
             setBackground(Color.WHITE);
         }
@@ -169,7 +174,11 @@ public class ClassPanel {
 
     private class ButtonEditor extends javax.swing.AbstractCellEditor implements TableCellEditor, ActionListener {
 
-        private JPanel panel;
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		private JPanel panel;
         private JButton btnEdit;
         private JButton btnView;
         private int row;

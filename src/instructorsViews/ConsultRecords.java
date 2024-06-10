@@ -178,7 +178,12 @@ public class ConsultRecords {
     
     private class ButtonRenderer extends JPanel implements TableCellRenderer {
 
-        public ButtonRenderer() {
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public ButtonRenderer() {
             setLayout(new GridLayout(1, 2, 10, 0));
             setBackground(Color.WHITE);
         }
@@ -200,7 +205,11 @@ public class ConsultRecords {
 
     private class ButtonEditor extends javax.swing.AbstractCellEditor implements TableCellEditor, ActionListener {
 
-        private JPanel panel;
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		private JPanel panel;
         private JButton btnEdit;
         private JButton btnView;
         private int row;

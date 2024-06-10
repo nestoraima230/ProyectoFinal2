@@ -1,13 +1,18 @@
 package authControllers;
 
 import authModels.instructorModels;
+import instructorsViews.InstructorCreate;
+
+
 import java.util.List;
 
 public class instructorControllers {
     private instructorModels instructorModels;
+    private InstructorCreate view;
 
     public instructorControllers() {
         instructorModels = new instructorModels();
+        view = new InstructorCreate(this);  
     }
 
     public boolean addInstructor(List<String> instructor) {
@@ -44,5 +49,10 @@ public class instructorControllers {
 
     public boolean generateReportPDF(List<List<String>> data, String filePath) {
         return instructorModels.generateReportPDF(data, filePath);
+    }
+
+    public InstructorCreate getView() {
+        return view;
+        
     }
 }
